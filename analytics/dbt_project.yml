@@ -18,9 +18,21 @@ models:
   analytics:
     staging:
       +materialized: view
+      +enabled: "{{ target.name == 'dev' }}"
 
     intermediate:
       +materialized: view
+      +enabled: "{{ target.name == 'dev' }}"
 
     marts:
       +materialized: table
+      +enabled: "{{ target.name == 'dev' }}"
+
+    ga4:
+      +enabled: "{{ target.name == 'ga4_dev' }}"
+      staging:
+        +materialized: view
+      intermediate:
+        +materialized: view
+      marts:
+        +materialized: table

@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+  - name: ga4_raw
+    description: >-
+      Public, obfuscated GA4 ecommerce sample in BigQuery US. The staging
+      model reads only daily shards events_20210125 through events_20210131.
+    database: bigquery-public-data
+    schema: ga4_obfuscated_sample_ecommerce
+    config:
+      enabled: "{{ target.name == 'ga4_dev' }}"
+    quoting:
+      database: true
+      schema: true
+      identifier: true
+
+    tables:
+      - name: events
+        identifier: "events_*"
+        description: >-
+          Wildcard daily events source. Always apply a constant _TABLE_SUFFIX
+          filter when querying this source; the identifier alone is unbounded.

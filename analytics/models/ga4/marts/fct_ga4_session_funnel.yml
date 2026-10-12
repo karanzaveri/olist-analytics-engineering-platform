@@ -1,0 +1,128 @@
+version: 2
+
+models:
+  - name: fct_ga4_session_funnel
+    description: >-
+      One row per observed (user_pseudo_id, ga_session_id), including sessions
+      with no views or purchases. Inherits ga4_dev-only table materialization.
+      Sequential funnel uses the earliest view_item, then earliest add_to_cart
+      at or after that view, earliest begin_checkout at or after that cart, and
+      earliest purchase at or after that checkout. Equal timestamps qualify
+      together. Independent has_* flags are retained separately. Historical
+      obfuscated GA4 sample observed January 25-31, 2021; boundary sessions may
+      be incomplete. No product-level continuity is enforced. Attribution is
+      the unchanged custom proxy, not official GA4 session attribution.
+    data_tests:
+      - unique_ga4_session
+
+    columns:
+      - name: user_pseudo_id
+        description: User component of the composite session key; not individually unique.
+        data_tests: [not_null]
+      - name: ga_session_id
+        description: Session component of the composite key; not individually unique.
+        data_tests: [not_null]
+      - name: session_start_timestamp
+        description: Earliest observed UTC event timestamp, copied from int_ga4_sessions.
+        data_tests: [not_null]
+      - name: session_end_timestamp
+        description: Latest observed UTC event timestamp, copied from int_ga4_sessions.
+        data_tests: [not_null]
+      - name: session_duration_seconds
+        description: Nonnegative whole-second observed duration; not engagement time.
+        data_tests: [not_null, nonnegative]
+      - name: total_events
+        description: All raw event rows in the session, including duplicate events.
+        data_tests: [not_null, nonnegative]
+      - name: device_category
+        description: Device on the earliest recorded event, using the existing session tie-breaker.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['desktop', 'mobile', 'tablet']
+      - name: has_product_view
+        description: Independent presence of any view_item event, without sequence requirements.
+        data_tests: [not_null]
+      - name: has_add_to_cart
+        description: Independent presence of any add_to_cart event, even before a product view.
+        data_tests: [not_null]
+      - name: has_begin_checkout
+        description: Independent presence of any begin_checkout event, even without a qualifying cart.
+        data_tests: [not_null]
+      - name: has_purchase
+        description: Independent presence of any purchase event, even without a qualifying checkout.
+        data_tests: [not_null]
+      - name: attributed_source
+        description: Unchanged custom attributed source; null for internal-only and unknown sessions.
+        data_tests:
+          - not_null:
+              config:
+                where: "attribution_status = 'Attributed'"
+      - name: attributed_medium
+        description: Unchanged medium from the same attributed event as source.
+        data_tests:
+          - not_null:
+              config:
+                where: "attribution_status = 'Attributed'"
+      - name: attributed_channel
+        description: Unchanged custom channel label; not official GA4 default channel grouping.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Direct', 'Organic Search', 'Paid Search', 'Email', 'Referral', 'Other', 'Internal Referral Only', 'Unknown']
+      - name: attribution_status
+        description: Unchanged custom attribution status from int_ga4_session_attribution.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Attributed', 'Internal Referral Only', 'Unknown']
+      - name: has_internal_referral
+        description: Unchanged flag for either merchandise-store self-referral pair.
+        data_tests: [not_null]
+      - name: has_conflicting_sources
+        description: Unchanged flag for more than one complete source/medium pair, including internal pairs.
+        data_tests: [not_null]
+      - name: distinct_source_medium_pairs
+        description: Unchanged distinct complete trimmed pair count, including internal pairs.
+        data_tests: [not_null, nonnegative]
+      - name: funnel_view_item_timestamp
+        description: Earliest observed view_item UTC timestamp; null when the funnel was not entered.
+      - name: funnel_add_to_cart_timestamp
+        description: Earliest add_to_cart timestamp at or after the qualifying view; otherwise null.
+      - name: funnel_begin_checkout_timestamp
+        description: Earliest begin_checkout timestamp at or after the qualifying cart; otherwise null.
+      - name: funnel_purchase_timestamp
+        description: Earliest purchase timestamp at or after the qualifying checkout; otherwise null.
+      - name: funnel_viewed_product
+        description: Sequential stage 1; a qualifying product view exists.
+        data_tests: [not_null]
+      - name: funnel_added_to_cart
+        description: Sequential stage 2; a cart event at or after the qualifying view exists.
+        data_tests: [not_null]
+      - name: funnel_started_checkout
+        description: Sequential stage 3; checkout at or after the qualifying cart exists.
+        data_tests: [not_null]
+      - name: funnel_purchased
+        description: Sequential stage 4; purchase at or after the qualifying checkout exists.
+        data_tests: [not_null]
+      - name: funnel_stage_reached
+        description: Highest sequential stage; 0 none, 1 view, 2 cart, 3 checkout, 4 purchase.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [0, 1, 2, 3, 4]
+                quote: false
+      - name: funnel_drop_off_stage
+        description: >-
+          Not Entered for stage 0; After Product View, After Add to Cart, or
+          After Begin Checkout for stages 1-3; Completed for stage 4.
+          Describes observed progression only, not the reason for abandonment.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Not Entered', 'After Product View', 'After Add to Cart', 'After Begin Checkout', 'Completed']

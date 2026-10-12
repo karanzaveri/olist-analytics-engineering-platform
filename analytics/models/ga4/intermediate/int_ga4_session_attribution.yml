@@ -1,0 +1,83 @@
+version: 2
+
+models:
+  - name: int_ga4_session_attribution
+    description: >-
+      Custom attribution proxy, NOT official GA4 session attribution or default
+      channel grouping. One row per observed session from int_ga4_sessions.
+      Chooses the earliest event with a populated, non-internal source/medium
+      pair within January 25-31, 2021; timestamp ties use lexical source then
+      medium. Both values must be nonblank after trimming; case is preserved.
+      The two merchandise-store domains with referral medium are internal
+      self-referrals (case-insensitive match). No first-user fallback, session
+      carryover, or inferred direct attribution is applied. Inherits ga4_dev-only
+      enablement and view materialization.
+    data_tests:
+      - unique_ga4_session
+
+    columns:
+      - name: user_pseudo_id
+        description: Session's user identifier; unique only together with ga_session_id.
+        data_tests:
+          - not_null
+
+      - name: ga_session_id
+        description: Session identifier; not individually unique across users.
+        data_tests:
+          - not_null
+
+      - name: attributed_source
+        description: Earliest non-internal populated source; null for internal-only and unknown sessions.
+        data_tests:
+          - not_null:
+              config:
+                where: "attribution_status = 'Attributed'"
+
+      - name: attributed_medium
+        description: Medium from the same selected event as source; null for internal-only and unknown sessions.
+        data_tests:
+          - not_null:
+              config:
+                where: "attribution_status = 'Attributed'"
+
+      - name: attributed_channel
+        description: >-
+          Custom labels from selected source/medium. Explicit (direct)/(none)
+          or none maps to Direct; organic to Organic Search; cpc/ppc/paidsearch
+          to Paid Search; email to Email; referral to Referral; otherwise Other.
+          Unattributed sessions use their status label. Rules match case-insensitively.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Direct', 'Organic Search', 'Paid Search', 'Email', 'Referral', 'Other', 'Internal Referral Only', 'Unknown']
+
+      - name: attribution_status
+        description: >-
+          Attributed when a non-internal populated pair exists; Internal Referral
+          Only when all populated pairs are self-referrals; Unknown when no
+          complete populated pair exists, including partially populated events.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Attributed', 'Internal Referral Only', 'Unknown']
+
+      - name: has_internal_referral
+        description: Whether any populated pair is one of the two internal self-referrals.
+        data_tests:
+          - not_null
+
+      - name: has_conflicting_sources
+        description: True when more than one distinct populated source/medium pair exists, including internal pairs.
+        data_tests:
+          - not_null
+
+      - name: distinct_source_medium_pairs
+        description: >-
+          Number of distinct complete trimmed pairs, including internal pairs.
+          Distinctness is case-sensitive; incomplete pairs are excluded. Zero
+          for Unknown. Duplicate events do not increase this count.
+        data_tests:
+          - not_null
+          - nonnegative

@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: stg_ga4_events
+    description: >-
+      One row per raw GA4 event from daily shards January 25-31, 2021,
+      including duplicate events. Enabled only for ga4_dev by dbt_project.yml.
+      Missing parameters remain null; repeated parameter keys use the first
+      array occurrence. No field or combination is assumed to be unique.
+
+    columns:
+      - name: event_date
+        description: Event date in the property's reporting timezone, parsed as DATE.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - '2021-01-25'
+                  - '2021-01-26'
+                  - '2021-01-27'
+                  - '2021-01-28'
+                  - '2021-01-29'
+                  - '2021-01-30'
+                  - '2021-01-31'
+
+      - name: event_timestamp
+        description: UTC TIMESTAMP converted from the raw microsecond Unix timestamp.
+        data_tests:
+          - not_null
+
+      - name: event_name
+        description: GA4 event name; multiple events may share the same name and timestamp.
+        data_tests:
+          - not_null
+
+      - name: user_pseudo_id
+        description: Raw pseudonymous user identifier; nullable and shared across events.
+
+      - name: ga_session_id
+        description: Integer ga_session_id parameter; nullable and not globally unique.
+
+      - name: device_category
+        description: Raw device.category, such as desktop, mobile, or tablet.
+
+      - name: first_user_source
+        description: First user acquisition source from traffic_source.source.
+
+      - name: first_user_medium
+        description: First user acquisition medium from traffic_source.medium.
+
+      - name: event_source
+        description: Event's source string parameter; nullable, without attribution fallback.
+
+      - name: event_medium
+        description: Event's medium string parameter; nullable, without attribution fallback.
+
+      - name: event_campaign
+        description: Event's campaign string parameter; nullable, without attribution fallback.
+
+      - name: page_location
+        description: Page URL from the page_location string parameter, when present.
+
+      - name: ecommerce_transaction_id
+        description: Raw ecommerce.transaction_id; may be absent or repeated across events.
+
+      - name: purchase_revenue_usd
+        description: Raw ecommerce.purchase_revenue_in_usd; null is preserved, not replaced by zero.
