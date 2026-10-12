@@ -1,0 +1,81 @@
+version: 2
+
+models:
+  - name: int_ga4_sessions
+    description: >-
+      One row per (user_pseudo_id, ga_session_id) observed in stg_ga4_events,
+      including sessions without purchases. Inherits ga4_dev-only enablement
+      and view materialization. Start/end are the earliest/latest observed UTC
+      event timestamps within the January 25-31, 2021 daily-table window, not
+      necessarily the complete real session at either date boundary. Duplicate
+      raw events count toward total_events. Null identifiers are retained and
+      flagged by tests rather than silently discarded.
+    data_tests:
+      - unique_ga4_session
+
+    columns:
+      - name: user_pseudo_id
+        description: Pseudonymous user identifier; unique only together with ga_session_id.
+        data_tests:
+          - not_null
+
+      - name: ga_session_id
+        description: Integer session identifier; may be shared by different users.
+        data_tests:
+          - not_null
+
+      - name: session_start_timestamp
+        description: Minimum observed event timestamp (UTC), possibly truncated by the date window.
+        data_tests:
+          - not_null
+
+      - name: session_end_timestamp
+        description: Maximum observed event timestamp (UTC), possibly truncated by the date window.
+        data_tests:
+          - not_null
+
+      - name: session_duration_seconds
+        description: >-
+          Nonnegative whole seconds between the observed end and start using
+          TIMESTAMP_DIFF. Single-event sessions have zero duration. Subsecond
+          precision is discarded; this is elapsed time, not engagement time.
+        data_tests:
+          - not_null
+          - nonnegative
+
+      - name: total_events
+        description: Count of all observed staging rows in the session, including duplicates.
+        data_tests:
+          - not_null
+          - nonnegative
+
+      - name: device_category
+        description: >-
+          Device category from the earliest observed event, retaining null if
+          that event has no category. Timestamp ties are ordered lexically by
+          TO_JSON_STRING of all staging event fields. Identical duplicate rows
+          are indistinguishable but yield the same device category.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['desktop', 'mobile', 'tablet']
+
+      - name: has_product_view
+        description: True when at least one observed event has event_name = view_item.
+        data_tests:
+          - not_null
+
+      - name: has_add_to_cart
+        description: True when at least one observed event has event_name = add_to_cart.
+        data_tests:
+          - not_null
+
+      - name: has_begin_checkout
+        description: True when at least one observed event has event_name = begin_checkout.
+        data_tests:
+          - not_null
+
+      - name: has_purchase
+        description: True when at least one observed event has event_name = purchase; otherwise false.
+        data_tests:
+          - not_null

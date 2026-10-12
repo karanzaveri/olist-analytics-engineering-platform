@@ -49,3 +49,6 @@ jobs:
       - name: Parse dbt project
         working-directory: analytics
         run: dbt parse
+
+      - name: Validate GA4 parsing and target isolation offline
+        run: python analytics/ci/validate_ga4.py

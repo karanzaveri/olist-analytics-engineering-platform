@@ -13,6 +13,12 @@ guardrail evaluation. It is separate from the Olist/FX warehouse pipelines and
 contains no real-company experiment or production deployment. See the
 [experimentation module](experimentation/README.md) for reproducible commands.
 
+A separate [GA4 Product Analytics & Conversion Funnel feature](analytics/models/ga4/README.md)
+reconstructs sessions, investigates attribution quality, and measures sequential
+conversion in the historical public GA4 sample. It uses BigQuery US under
+`ga4_dev`, while Olist remains in EU under the default `dev` target. The GA4
+documentation includes verified results, limitations, and read-only analysis.
+
 ## Business questions
 
 - How do order volume, delivered revenue, and average order value change by purchase month?
