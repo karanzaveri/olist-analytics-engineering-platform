@@ -20,6 +20,16 @@ GA4_MODELS = {
     'int_ga4_session_attribution',
     'fct_ga4_session_funnel',
 }
+EXPECTED_OLIST_MODELS = 24
+
+
+def validate_model_selection(enabled):
+    """Keep the exact model-count and GA4 exclusion assertions for both targets."""
+    if (len(enabled['dev']) != EXPECTED_OLIST_MODELS or enabled['dev'] & GA4_MODELS
+            or 'weekly_revenue_forecasting' not in enabled['dev']):
+        raise AssertionError(f'Unexpected dev selection: {enabled["dev"]}')
+    if enabled['ga4_dev'] != GA4_MODELS:
+        raise AssertionError(f'Unexpected ga4_dev selection: {enabled["ga4_dev"]}')
 
 
 def main():
@@ -71,10 +81,7 @@ def main():
             }
             for target, manifest in manifests.items()
         }
-        if len(enabled['dev']) != 23 or enabled['dev'] & GA4_MODELS:
-            raise AssertionError(f'Unexpected dev selection: {enabled["dev"]}')
-        if enabled['ga4_dev'] != GA4_MODELS:
-            raise AssertionError(f'Unexpected ga4_dev selection: {enabled["ga4_dev"]}')
+        validate_model_selection(enabled)
         for target, other in [('dev', 'ga4_dev'), ('ga4_dev', 'dev')]:
             disabled = {
                 node['name'] for nodes in manifests[target]['disabled'].values()
@@ -100,7 +107,7 @@ def main():
         if analysis['depends_on']['nodes'] != ['model.analytics.fct_ga4_session_funnel']:
             raise AssertionError('Read-only analysis must depend only on the funnel mart')
 
-        print('Offline checks passed: dev=23 Olist, ga4_dev=4 GA4; 67 test definitions parsed.')
+        print(f'Offline checks passed: dev={EXPECTED_OLIST_MODELS} Olist, ga4_dev=4 GA4; 67 test definitions parsed.')
         print('No warehouse SQL or data tests executed; warehouse validity is not checked here.')
 
 

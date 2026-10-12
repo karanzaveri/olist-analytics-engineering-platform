@@ -31,6 +31,9 @@ ai/outputs/
 # Generated synthetic experiment artifacts
 experimentation/outputs/
 
+# Generated forecasting reports and extracted snapshots
+forecasting/outputs/
+
 # Track the Customer Retention & Cohorts PBIR page.
 !dashboard/Data Analytics.Report/definition/pages/b5c0a170e8204dc8a501/**
 

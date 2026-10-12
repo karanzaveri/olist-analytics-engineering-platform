@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: weekly_revenue_forecasting
+    description: >-
+      Forecasting input with 86 consecutive Monday-Sunday purchase weeks from
+      January 2, 2017 through August 20, 2018 (last Sunday August 26). Includes
+      only orders currently delivered. Revenue sums total_payment_value,
+      preserving monthly_revenue_reporting's payment-based definition rather
+      than merchandise value or delivery-date recognition. The full-week window
+      differs from monthly reporting at the edges. Inherits table materialization
+      and EU dev-only enablement; disabled under ga4_dev. No revenue rounding.
+      A calendar spine retains empty weeks with zero orders/revenue. All-missing
+      payment weeks retain NULL revenue; partial payment gaps remain auditable.
+      This dataset does not fit a forecasting model.
+
+    columns:
+      - name: week_start
+        description: Monday purchase-week date; unique grain of the dataset.
+        data_tests: [not_null, unique]
+      - name: week_end
+        description: Inclusive Sunday date, six days after week_start.
+        data_tests: [not_null]
+      - name: delivered_orders
+        description: Count of delivered fct_orders rows in the full purchase week, including missing payments.
+        data_tests: [not_null, nonnegative, integer]
+      - name: weekly_revenue
+        description: >-
+          SUM of known total_payment_value without order-level zero replacement
+          or rounding. Zero only for genuinely empty weeks; NULL if all delivered
+          orders have missing payments. Partial sums exclude NULL payments.
+        data_tests: [nonnegative]
+      - name: average_order_value
+        description: >-
+          SAFE_DIVIDE(weekly_revenue, delivered_orders). NULL for empty or
+          all-missing-payment weeks. Includes missing-payment orders in the
+          denominator, unlike monthly AVG's non-null-payment denominator.
+        data_tests: [nonnegative]
+      - name: missing_payment_orders
+        description: Count of delivered orders whose total_payment_value is NULL, not just absent payment rows.
+        data_tests: [not_null, nonnegative, integer]
