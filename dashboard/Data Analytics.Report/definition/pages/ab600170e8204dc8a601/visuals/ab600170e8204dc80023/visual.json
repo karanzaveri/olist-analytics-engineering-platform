@@ -27,8 +27,8 @@
                 }
               },
               "queryRef": "ab_summary.Experiment P-value",
-              "nativeQueryRef": "Significance \u00b7 p-value",
-              "displayName": "Significance \u00b7 p-value"
+              "nativeQueryRef": "Significance · p-value",
+              "displayName": "Significance · p-value"
             }
           ]
         }
@@ -359,7 +359,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Significance \u00b7 p-value'"
+                  "Value": "'Significance · p-value'"
                 }
               }
             }

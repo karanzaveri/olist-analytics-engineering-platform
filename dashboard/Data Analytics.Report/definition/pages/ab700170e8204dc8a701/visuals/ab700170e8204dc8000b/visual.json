@@ -4,9 +4,9 @@
   "position": {
     "x": 368,
     "y": 600,
-    "width": 280,
-    "height": 108,
     "z": 11000,
+    "height": 108,
+    "width": 280,
     "tabOrder": 11000
   },
   "visual": {
@@ -507,6 +507,19 @@
               "expr": {
                 "Literal": {
                   "Value": "16D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "spacing": [
+        {
+          "properties": {
+            "spaceAbovePlotArea": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
                 }
               }
             }

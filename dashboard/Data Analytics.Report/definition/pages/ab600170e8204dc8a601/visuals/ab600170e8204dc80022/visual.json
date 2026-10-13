@@ -42,8 +42,8 @@
                 }
               },
               "queryRef": "Multiply(Max(ab_summary.ci_upper),100)",
-              "nativeQueryRef": "95% CI \u00b7 upper (pp)",
-              "displayName": "95% CI \u00b7 upper (pp)"
+              "nativeQueryRef": "95% CI · upper (pp)",
+              "displayName": "95% CI · upper (pp)"
             }
           ]
         }
@@ -374,7 +374,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'95% CI \u00b7 upper (pp)'"
+                  "Value": "'95% CI · upper (pp)'"
                 }
               }
             }
