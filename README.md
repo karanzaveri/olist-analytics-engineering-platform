@@ -4,14 +4,14 @@
 
 An end-to-end analytics engineering and advanced data analytics portfolio built around Olist e-commerce data. Python ingestion and BigQuery feed tested dbt facts, dimensions and reporting marts; local Airflow orchestration supports business intelligence and validated Gemini-generated insights. The project extends into customer cohorts and repeat purchasing, synthetic experimentation, a separate GA4 product-analytics pipeline, and revenue forecasting research.
 
-**Project status: October 12, 2026.** This is a locally validated portfolio project, not a production deployment. Forecasting remains **in progress**.
+**Project status: October 12, 2026.** This is a locally validated portfolio project, not a production deployment. The forecasting case study is retrospective; operational validity remains unconfirmed.
 
 | Capability | Implemented evidence |
 | --- | --- |
 | Business intelligence | Seven-page Power BI report combining Olist reporting/customer analytics with clearly labeled synthetic A/B results |
 | Customer analytics | Monthly cohorts, periodic retention, complete-follow-up three-month return and purchase-behaviour segments |
 | GA4 product analytics | Four US-region dbt models; 67 warehouse tests passed; 26,355 reconstructed sessions |
-| Revenue forecasting — in progress | Validated 86-week EU mart, five forecasting methods, rolling backtests, error/ACF diagnostics and historical interval experiments |
+| Revenue forecasting case study | Five-model retrospective comparison, boundary investigation, historical intervals and credential-free offline reproduction |
 | AI insights | Gemini commentary grounded in warehouse KPIs, structured validation, numeric checks and synchronized reports |
 
 A standalone [synthetic checkout A/B test case study](experimentation/CASE_STUDY.md)
@@ -41,7 +41,7 @@ documentation includes verified results, limitations, and read-only analysis.
 - [A/B testing and experimentation](#ab-testing-and-experimentation)
 - [GA4 product analytics](#ga4-product-analytics)
 - [GA4 Power BI dashboard](#ga4-product-analytics--power-bi-dashboard)
-- [Revenue forecasting — in progress](#revenue-forecasting--in-progress)
+- [Revenue forecasting case study](#revenue-forecasting-case-study)
 - [AI-generated monthly insights](#ai-generated-monthly-insights)
 - [Airflow orchestration](#airflow-orchestration)
 - [Docker usage](#docker-usage)
@@ -213,17 +213,13 @@ Acquisition attribution uses a **custom session-level proxy**, not official GA4 
 
 [Full three-page dashboard PDF](docs/powerbi/GA4%20Product%20Analytics.pdf) | [Editable Power BI project](dashboard/ga4/GA4%20Product%20Analytics.pbip) | [Dashboard setup and metric guide](dashboard/ga4/README.md) | [GA4 dbt documentation](analytics/models/ga4/README.md)
 
-## Revenue forecasting — in progress
+## Revenue forecasting case study
 
-The validated [weekly revenue mart](analytics/models/marts/weekly_revenue_forecasting.sql) supplies **86 consecutive Monday–Sunday weeks**, January 2, 2017–August 20, 2018, with **96,095 delivered orders** and **R$15,363,879.91** in payment value. Its **14 dbt tests passed**; the verified window has no missing-payment orders. Revenue remains payment-based by purchase week, without transformation rounding or silent order-level payment imputation.
+The [Olist weekly revenue forecasting case study](docs/forecasting/README.md) compares Naive, MA4, MA8, Drift and SES over 86 historical purchase weeks. Naive leads full-sample MAE/WAPE (R$34,070.94 / 13.72%); no model is universally superior. The final week's 49.02% decline reconciles to the original local CSVs, but source completeness remains unconfirmed.
 
-The [forecasting module](forecasting/README.md) implements read-only EU extraction and offline snapshot replay, Naïve/MA4/MA8 baselines, Drift and training-only Simple Exponential Smoothing, chronological expanding-window backtests, MAE/RMSE/WAPE/signed bias, forecast-error diagnostics, and exploratory trend/ACF analysis. The original 12-week holdout remains reproducible; 52-week-warm-up experiments evaluate 34 full-series or 33 boundary-excluded targets.
+Historical nominal 80%/90% intervals achieved 78.57%/85.71% coverage over 14 targets, with wide ranges. Finalized delivered statuses were not fully observable at the original forecast origins, so these are retrospective experiments, not operationally validated forecasts or guaranteed future coverage.
 
-Naïve is the provisional preferred MAE/WAPE baseline: on the full rolling sample its MAE is **R$34,070.94** and WAPE **13.72%**. MA8 has lower full-sample RMSE. SES narrowly wins boundary-excluded MAE by **R$16.27/week (0.053%)**, with worse RMSE; no candidate demonstrates a robust universal improvement. Raw-order investigation confirmed the late-August decline exists upstream of dbt, but its cause and source-end completeness remain unresolved.
-
-A [historical empirical prediction-interval experiment](forecasting/prediction_intervals.py) and its automated tests are implemented. Intervals use only previously observed Naïve errors, with 20 additional calibration origins. Full-series observed coverage is **78.57% / 85.71%** for nominal **80% / 90%** intervals over 14 usable weeks. This is exploratory uncertainty analysis and illustrative business planning, not validated future forecasts or guaranteed coverage.
-
-Forecasting remains in progress: only 86 historical observations are available, fewer than two annual cycles; overlapping origins are not independent experiments; current delivered status may leak as-of information. Generated CSVs, PNGs and reports remain ignored under `forecasting/outputs/`. Reproduce them from the module guide rather than relying on GitHub links to local generated files. Operational forecasting, annual seasonality and production deployment are not claimed.
+[Selected uncertainty visual](docs/forecasting/prediction-intervals.png) | [Model scores](docs/forecasting/model-comparison.csv) | [Methods, limitations and offline/Docker reproduction](forecasting/README.md)
 
 ## AI-generated monthly insights
 
@@ -262,13 +258,13 @@ docker compose run --rm analytics dbt test --select fct_order_items
 docker compose run --rm analytics dbt test --exclude fct_orders_incremental
 ```
 
-The default Compose command runs pytest from `/app`; explicit dbt commands run from `/app/analytics`. Rebuild after code or SQL edits because files are copied at image build time. **Current packaging limitation:** the Dockerfile copies the core modules and tests but does not yet copy `forecasting/`. The new forecasting tests therefore cannot be collected successfully from that image as-is; use the local Python workflow for the complete current suite until packaging is updated.
+The default Compose command runs pytest from `/app`; explicit dbt commands run from `/app/analytics`. Rebuild after code or SQL edits because files are copied at image build time. The Docker image now includes forecasting modules and selected aggregate replay inputs; local generated forecasting outputs and caches stay outside the build context. See the [forecasting guide](forecasting/README.md#docker-and-local-validation) for credential-free container checks.
 
 Compose mounts Windows host dbt and Google application-credential directories read-only using `USERPROFILE` and `APPDATA`. Adapt these mounts for other host operating systems. Credentials are not included in the image. Warehouse commands require external authentication and a dbt profile.
 
 ## Testing and CI
 
-- **Python:** current collection contains 456 tests spanning ingestion, KPI/AI validation, Airflow integration, experimentation, dashboard fixture contracts, forecasting and target isolation. The latest targeted forecasting/isolation run passed 69 tests. A prior full local run reported 419 passes and one Windows CRLF-versus-LF fixture comparison failure; that was before the latest diagnostic additions, not a claim that all 456 currently pass.
+- **Python:** 457 tests are currently collected. Forecasting/target-isolation checks pass 70 tests locally and in Docker. The complete local and container suites each pass all 457 tests after the fixture comparison was made platform independent; no remote CI run is claimed.
 - **dbt:** manifests define 156 Olist tests under `dev` and 67 GA4 tests under `ga4_dev`. The original Olist baseline's 91 non-incremental tests were historically warehouse-validated; the weekly mart's 14 tests and full GA4 suite's 67 tests have separately passed. This does not claim a fresh run of all current Olist tests.
 - **GitHub Actions:** preserves pytest and placeholder-profile parsing, then runs the offline [target-isolation guard](analytics/ci/validate_ga4.py). It checks 24 Olist / 4 GA4 model isolation and 67 GA4 test definitions without production credentials or warehouse runs. Compilation can initialize authentication and is not advertised as credential-free CI validation.
 
@@ -308,7 +304,7 @@ GA4 requires its explicitly selected US target; forecasting is a separate Python
 
 | Validation | Result |
 | --- | --- |
-| Python validation | 456 tests currently collected; latest targeted forecasting/isolation run: 69 passed; known earlier Windows fixture line-ending failure noted above |
+| Python validation | 457 passed locally and in Docker; 70 forecasting/isolation tests passed; cross-platform fixture comparison verified |
 | Original Olist baseline, historical warehouse validation | 18 models and 91 tests passed before customer/forecasting additions; incremental demonstration excluded |
 | GA4 warehouse validation | Four US-region models, 67 tests passed; 26,355 sessions and 226 sequential purchasing sessions |
 | Weekly revenue mart | 86 EU-region rows; 14 tests passed; complete weekly calendar and payment/revenue reconciliation |
@@ -331,7 +327,7 @@ These are local validation results, not production deployment evidence or CI war
 - Production deployment is not implemented.
 - Live AI generation requires Gemini API availability and credentials; narrative quality depends on the configured model/API. Numeric grounding validation does not prove full semantic correctness.
 - New Power BI pages have documented static validation and reference checks; pages 5–7 do not yet have committed screenshot assets. The existing PDF remains a four-page snapshot.
-- Docker packaging currently omits `forecasting/`; older Olist documentation still contains baseline inventory counts. Those files are unchanged by this README update.
+- Older Olist documentation retains baseline inventory counts. Forecasting Docker support and the platform-independent A/B fixture comparison are implemented; full local and container suites pass.
 - Forecasting uses a short retrospective series with an unresolved boundary observation and possible as-of status leakage. Historical interval coverage is not a future guarantee; annual seasonality is not established.
 
 ## Future improvements
