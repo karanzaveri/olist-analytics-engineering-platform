@@ -3,10 +3,10 @@
   "name": "ab700170e8204dc80006",
   "position": {
     "x": 64,
-    "y": 400,
-    "width": 912,
-    "height": 64,
+    "y": 400.51612903225805,
     "z": 6000,
+    "height": 64,
+    "width": 889.80645161290317,
     "tabOrder": 6000
   },
   "visual": {
@@ -23,7 +23,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
                       "fontSize": "18pt",
-                      "color": "#172B3A"
+                      "color": "#172b3a"
                     }
                   }
                 ]
@@ -35,7 +35,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "12pt",
-                      "color": "#64748B"
+                      "color": "#64748b"
                     }
                   }
                 ]

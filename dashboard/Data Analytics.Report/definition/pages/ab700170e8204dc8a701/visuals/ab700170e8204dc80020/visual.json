@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "ab700170e8204dc80020",
   "position": {
-    "x": 1000,
-    "y": 400,
-    "width": 856,
-    "height": 64,
+    "x": 999.22580645161293,
+    "y": 400.51612903225805,
     "z": 32000,
+    "height": 218.83870967741936,
+    "width": 856.77419354838707,
     "tabOrder": 32000
   },
   "visual": {
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Guardrail availability",
+                    "value": "Decision Limitations",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
                       "fontSize": "18pt",
-                      "color": "#172B3A"
+                      "color": "#172b3a"
                     }
                   }
                 ]
@@ -31,11 +31,23 @@
               {
                 "textRuns": [
                   {
-                    "value": "Synthetic construction guarantees allocation balance.",
+                    "value": "Payment failures, refund rates and checkout latency were not included in the synthetic experiment. These guardrails must be evaluated before any real-world rollout decision.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "12pt",
-                      "color": "#64748B"
+                      "fontSize": "16pt",
+                      "color": "#172b3a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Synthetic construction guarantees allocation balance. Guardrail observations remain missing in ab_guardrails.csv.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "14pt",
+                      "color": "#64748b"
                     }
                   }
                 ]
@@ -175,7 +187,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -226,28 +238,28 @@
             "left": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "20D"
                 }
               }
             },
             "right": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "20D"
                 }
               }
             },
             "top": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "20D"
                 }
               }
             },
             "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "20D"
                 }
               }
             }
