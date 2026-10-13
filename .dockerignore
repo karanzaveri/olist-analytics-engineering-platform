@@ -11,6 +11,8 @@ analytics/logs/
 analytics/dbt_packages/
 
 data/raw/
+forecasting/outputs/
+**/__pycache__/
 
 
 *.log

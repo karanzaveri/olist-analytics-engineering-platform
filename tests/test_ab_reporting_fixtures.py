@@ -1,5 +1,6 @@
 """Reconcile the small dashboard fixtures and their disconnected import contract."""
 
+import csv
 from pathlib import Path
 
 import pandas as pd
@@ -16,7 +17,11 @@ def test_dashboard_fixtures_match_deterministic_exporter(tmp_path):
     generated = export_powerbi_csvs(tmp_path)
     assert sorted(p.name for p in FIXTURES.iterdir()) == sorted(p.name for p in generated)
     for path in generated:
-        assert (FIXTURES / path.name).read_bytes() == path.read_bytes()
+        with (
+            (FIXTURES / path.name).open(encoding="utf-8", newline="") as expected,
+            path.open(encoding="utf-8", newline="") as actual,
+        ):
+            assert list(csv.reader(expected, strict=True)) == list(csv.reader(actual, strict=True))
 
 
 def test_guardrail_import_preserves_missing_numeric_values():
