@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "GA4 Product Analytics"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "bfeb2124-976b-4ae0-bc5c-6789c6b0ba44"
+  }
+}

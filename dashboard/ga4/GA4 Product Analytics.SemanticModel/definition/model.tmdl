@@ -1,0 +1,27 @@
+model Model
+	culture: en-IN
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Sessions"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Sessions
+ref table DateTableTemplate_e57a7406-e721-4867-af79-5f406fbcc47f
+ref table LocalDateTable_b02c0280-254d-459f-ae9d-4de82f6f5c14
+ref table LocalDateTable_ea2ae45e-e8f5-46ed-85d6-7199938c653a
+ref table LocalDateTable_8e72bb68-ff9d-42b7-bd7d-e197c1efcd5d
+ref table LocalDateTable_ef6ef7f6-a685-4e99-a73f-fd0897145792
+ref table LocalDateTable_6751586a-dfcf-47c9-9bbf-a5b90a703079
+ref table LocalDateTable_73bc01bf-018c-41ce-8910-bf758df2374c
+ref table 'Funnel Stages'
+ref table 'Attribution Quality Flags'
+
+ref cultureInfo en-IN

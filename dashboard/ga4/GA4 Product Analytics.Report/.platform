@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "GA4 Product Analytics"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "bbb4f29a-c2bd-41a7-bb1b-377f5739a925"
+  }
+}

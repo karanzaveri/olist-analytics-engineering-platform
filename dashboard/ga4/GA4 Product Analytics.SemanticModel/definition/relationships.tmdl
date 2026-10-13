@@ -1,0 +1,29 @@
+relationship aef1bb7e-b00a-40ac-ab8a-5cceceb59aed
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Sessions.session_start_timestamp
+	toColumn: LocalDateTable_b02c0280-254d-459f-ae9d-4de82f6f5c14.Date
+
+relationship 7d573032-dad1-4bba-99c1-47b0e7ed5a7d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Sessions.session_end_timestamp
+	toColumn: LocalDateTable_ea2ae45e-e8f5-46ed-85d6-7199938c653a.Date
+
+relationship 3460d00f-d658-4815-8f99-448b56c18175
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Sessions.funnel_view_item_timestamp
+	toColumn: LocalDateTable_8e72bb68-ff9d-42b7-bd7d-e197c1efcd5d.Date
+
+relationship d1f8e73c-519d-44a2-a13e-825f5551421c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Sessions.funnel_add_to_cart_timestamp
+	toColumn: LocalDateTable_ef6ef7f6-a685-4e99-a73f-fd0897145792.Date
+
+relationship 61236d9d-3a16-408f-8999-03c5ded1dac0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Sessions.funnel_begin_checkout_timestamp
+	toColumn: LocalDateTable_6751586a-dfcf-47c9-9bbf-a5b90a703079.Date
+
+relationship 08203b45-78db-4e4c-a1f0-40da605f713e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Sessions.funnel_purchase_timestamp
+	toColumn: LocalDateTable_73bc01bf-018c-41ce-8910-bf758df2374c.Date

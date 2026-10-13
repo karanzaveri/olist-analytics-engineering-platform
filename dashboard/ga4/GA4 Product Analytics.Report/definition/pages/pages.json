@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+  "pageOrder": [
+    "0e08913e14b39623bac0",
+    "ga4deviceacq202601302",
+    "ga4attributionquality3"
+  ],
+  "activePageName": "ga4deviceacq202601302"
+}

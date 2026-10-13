@@ -40,6 +40,7 @@ documentation includes verified results, limitations, and read-only analysis.
 - [Customer analytics](#customer-analytics)
 - [A/B testing and experimentation](#ab-testing-and-experimentation)
 - [GA4 product analytics](#ga4-product-analytics)
+- [GA4 Power BI dashboard](#ga4-product-analytics--power-bi-dashboard)
 - [Revenue forecasting — in progress](#revenue-forecasting--in-progress)
 - [AI-generated monthly insights](#ai-generated-monthly-insights)
 - [Airflow orchestration](#airflow-orchestration)
@@ -182,7 +183,35 @@ For January 25–31, 2021, verified counts are **273,507 events**, **21,596 pseu
 
 Device and custom-channel conversion analysis uses all sessions in each segment as its denominator. First-user acquisition source/medium remain available in staging and are kept separate from event/session attribution. The earliest complete non-internal event source/medium pair supplies a **custom attribution proxy, not Google's official GA4 session attribution**. Both merchandise-store domain self-referrals are investigated explicitly: **8,041 sessions** contain internal referrals, **4,045** are internal-only, and **4,200** contain conflicting pairs. These flags overlap; they do not prove a tracking cause.
 
-See the [GA4 feature documentation](analytics/models/ga4/README.md) and [read-only funnel analysis](analytics/analyses/ga4/session_funnel_analysis.sql). GA4 is a separate historical obfuscated sample, not Olist web activity or an additional page in the current Power BI report.
+See the [GA4 feature documentation](analytics/models/ga4/README.md) and [read-only funnel analysis](analytics/analyses/ga4/session_funnel_analysis.sql). GA4 is a separate historical obfuscated sample, not Olist web activity. Its standalone Power BI dashboard is documented below.
+
+## GA4 Product Analytics — Power BI Dashboard
+
+A separate three-page Power BI dashboard turns the **January 25-31, 2021** seven-day historical, obfuscated GA4 e-commerce sample into a view of conversion, device performance, and attribution quality. It covers **26,355 sessions** and **21,596 pseudonymous users**; these are historical observations, not current store performance.
+
+The sequential funnel contains **6,192 product-view sessions**, **1,090 add-to-cart sessions**, **407 checkout sessions**, and **226 purchasing sessions**, giving a **0.86% sequential session purchase rate** across all sessions.
+
+### Product Conversion Overview
+
+Shows where sessions stop progressing from product discovery to purchase, with daily session trends and stage conversion/drop-off rates to guide further investigation.
+
+![GA4 Product Conversion Overview with session KPIs, sequential funnel and daily trends](docs/images/ga4/ga4-product-conversion.jpg)
+
+### Device & Acquisition Performance
+
+Compares device and custom-channel conversion alongside session volumes. Device, channel, and UTC session-start date slicers support exploration; observed differences are not causal findings or randomized A/B test results.
+
+![GA4 Device and Acquisition Performance with device purchase rates and session-level funnel tables](docs/images/ga4/ga4-device-acquisition.jpg)
+
+### Attribution & Data Quality
+
+Shows attribution coverage and measurement-quality indicators before channel comparisons inform marketing decisions. **55.88%** of sessions are attributed and **28.77%** have unknown attribution. **30.51%** contain internal referrals and **15.94%** contain conflicting source/medium pairs; these two flags overlap and must not be added.
+
+![GA4 Attribution and Data Quality with attribution coverage, overlapping quality flags and channel quality](docs/images/ga4/ga4-attribution-quality.jpg)
+
+Acquisition attribution uses a **custom session-level proxy**, not official GA4 attribution or GA4 default channel grouping. The dashboard is separate from the seven-page Olist report and contains no simulated experiments.
+
+[Full three-page dashboard PDF](docs/powerbi/GA4%20Product%20Analytics.pdf) | [Editable Power BI project](dashboard/ga4/GA4%20Product%20Analytics.pbip) | [Dashboard setup and metric guide](dashboard/ga4/README.md) | [GA4 dbt documentation](analytics/models/ga4/README.md)
 
 ## Revenue forecasting — in progress
 

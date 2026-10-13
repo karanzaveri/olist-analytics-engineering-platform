@@ -1,0 +1,201 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "0e08913e14b39623bac0",
+  "displayName": "Product Conversion Overview",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#EDF1F5'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "ga4p1000000000000007",
+      "target": "ga4p1000000000000001",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000007",
+      "target": "f556f15e24bdfc5c6c87",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000007",
+      "target": "ga4p1000000000000003",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000007",
+      "target": "ga4p1000000000000004",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000007",
+      "target": "ga4p1000000000000005",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000007",
+      "target": "ga4p1000000000000006",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000007",
+      "target": "ga4p1000000000000008",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000007",
+      "target": "ga4p1000000000000009",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000007",
+      "target": "ga4p100000000000000a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000007",
+      "target": "ga4p100000000000000b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000007",
+      "target": "ga4p100000000000000c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000008",
+      "target": "ga4p1000000000000001",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000008",
+      "target": "f556f15e24bdfc5c6c87",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000008",
+      "target": "ga4p1000000000000003",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000008",
+      "target": "ga4p1000000000000004",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000008",
+      "target": "ga4p1000000000000005",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000008",
+      "target": "ga4p1000000000000006",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000008",
+      "target": "ga4p1000000000000007",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000008",
+      "target": "ga4p1000000000000009",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000008",
+      "target": "ga4p100000000000000a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000008",
+      "target": "ga4p100000000000000b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p1000000000000008",
+      "target": "ga4p100000000000000c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p100000000000000a",
+      "target": "ga4p1000000000000001",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p100000000000000a",
+      "target": "f556f15e24bdfc5c6c87",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p100000000000000a",
+      "target": "ga4p1000000000000003",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p100000000000000a",
+      "target": "ga4p1000000000000004",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p100000000000000a",
+      "target": "ga4p1000000000000005",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p100000000000000a",
+      "target": "ga4p1000000000000006",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p100000000000000a",
+      "target": "ga4p1000000000000007",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p100000000000000a",
+      "target": "ga4p1000000000000008",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p100000000000000a",
+      "target": "ga4p1000000000000009",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p100000000000000a",
+      "target": "ga4p100000000000000b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p100000000000000a",
+      "target": "ga4p100000000000000c",
+      "type": "NoFilter"
+    }
+  ]
+}
