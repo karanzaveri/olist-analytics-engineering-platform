@@ -1,0 +1,5 @@
+# Version GA4 project definitions, not local caches.
+!GA4 Product Analytics.Report/definition/**/*.json
+!GA4 Product Analytics.Report/StaticResources/**/*.json
+!GA4 Product Analytics.SemanticModel/diagramLayout.json
+**/.pbi/

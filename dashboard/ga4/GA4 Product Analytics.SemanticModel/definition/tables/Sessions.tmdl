@@ -1,0 +1,489 @@
+table Sessions
+	lineageTag: f575fecf-b114-4238-81d8-962e81516a81
+
+	measure 'Total Sessions' = COUNTROWS('Sessions')
+		formatString: #,##0
+		lineageTag: ec6c7aad-0a90-435c-b179-90b1af02e754
+
+	measure 'Pseudonymous Users' = DISTINCTCOUNT('Sessions'[user_pseudo_id])
+		formatString: #,##0
+		displayFolder: Overview / Volume
+		lineageTag: ad9755c1-4d50-4f98-a902-0c12ab86fafd
+
+	measure 'Observed Events' = SUM('Sessions'[total_events])
+		formatString: #,##0
+		displayFolder: Overview / Volume
+		lineageTag: 2d33a638-07ee-422d-9f7a-14245983d7a6
+
+	measure 'Viewed Product Sessions' = COALESCE(CALCULATE([Total Sessions], KEEPFILTERS('Sessions'[funnel_viewed_product] = TRUE())), 0)
+		formatString: #,##0
+		displayFolder: Overview / Volume
+		lineageTag: 11651cd7-1808-4e9c-9835-23bc91a02636
+
+	measure 'Added to Cart Sessions' = COALESCE(CALCULATE([Total Sessions], KEEPFILTERS('Sessions'[funnel_added_to_cart] = TRUE())), 0)
+		formatString: #,##0
+		displayFolder: Overview / Volume
+		lineageTag: d698aaa3-0c33-47f0-8c49-d9dd2f8e82ae
+
+	measure 'Started Checkout Sessions' = COALESCE(CALCULATE([Total Sessions], KEEPFILTERS('Sessions'[funnel_started_checkout] = TRUE())), 0)
+		formatString: #,##0
+		displayFolder: Overview / Volume
+		lineageTag: 302da0c6-cf5b-4c55-b89e-ac5883cbd843
+
+	measure 'Sequential Purchasing Sessions' = COALESCE(CALCULATE([Total Sessions], KEEPFILTERS('Sessions'[funnel_purchased] = TRUE())), 0)
+		formatString: #,##0
+		displayFolder: Overview / Volume
+		lineageTag: 632343ef-3c54-4797-87ec-bb706bf664ec
+
+	measure 'Funnel Entry Rate' = DIVIDE([Viewed Product Sessions], [Total Sessions])
+		formatString: 0.00%
+		displayFolder: Overview / Conversion
+		lineageTag: 758015fe-78e6-4194-8d58-415493e0c4ec
+
+	measure 'View-to-Cart Rate' = DIVIDE([Added to Cart Sessions], [Viewed Product Sessions])
+		formatString: 0.00%
+		displayFolder: Overview / Conversion
+		lineageTag: 75a53f97-b718-45f8-88c2-a008637be9b8
+
+	measure 'Cart-to-Checkout Rate' = DIVIDE([Started Checkout Sessions], [Added to Cart Sessions])
+		formatString: 0.00%
+		displayFolder: Overview / Conversion
+		lineageTag: 37b60cd5-05f0-49fa-ac5d-38eba7f36b37
+
+	measure 'Checkout-to-Purchase Rate' = DIVIDE([Sequential Purchasing Sessions], [Started Checkout Sessions])
+		formatString: 0.00%
+		displayFolder: Overview / Conversion
+		lineageTag: f9b0e5e0-d71b-4330-9524-5bb34ec4b966
+
+	measure 'View-to-Purchase Rate' = DIVIDE([Sequential Purchasing Sessions], [Viewed Product Sessions])
+		formatString: 0.00%
+		displayFolder: Overview / Conversion
+		lineageTag: 487b3565-a540-4849-a763-24f5e81622c6
+
+	measure 'Overall Sequential Session Purchase Rate' = DIVIDE([Sequential Purchasing Sessions], [Total Sessions])
+		formatString: 0.00%
+		displayFolder: Overview / Conversion
+		lineageTag: ebaf5440-40b3-4b56-8687-6f9348de28a7
+
+	measure 'Drop-off After Product View' = [Viewed Product Sessions] - [Added to Cart Sessions]
+		formatString: #,##0
+		displayFolder: Overview / Drop-off
+		lineageTag: 0b9d4e15-b5c1-42c0-870d-918dfa6ab48b
+
+	measure 'Drop-off After Product View Rate' = DIVIDE([Drop-off After Product View], [Viewed Product Sessions])
+		formatString: 0.00%
+		displayFolder: Overview / Drop-off
+		lineageTag: 72f9b83c-93a5-4fc9-9637-fe57e83ac062
+
+	measure 'Drop-off After Add to Cart' = [Added to Cart Sessions] - [Started Checkout Sessions]
+		formatString: #,##0
+		displayFolder: Overview / Drop-off
+		lineageTag: d975be23-d746-45bc-8409-0b82d1d9bca0
+
+	measure 'Drop-off After Add to Cart Rate' = DIVIDE([Drop-off After Add to Cart], [Added to Cart Sessions])
+		formatString: 0.00%
+		displayFolder: Overview / Drop-off
+		lineageTag: a8375a8c-55e5-4ec5-84ce-7577480a6f06
+
+	measure 'Drop-off After Checkout' = [Started Checkout Sessions] - [Sequential Purchasing Sessions]
+		formatString: #,##0
+		displayFolder: Overview / Drop-off
+		lineageTag: 1c99bab8-66aa-433d-9811-3ef189a51ecf
+
+	measure 'Drop-off After Checkout Rate' = DIVIDE([Drop-off After Checkout], [Started Checkout Sessions])
+		formatString: 0.00%
+		displayFolder: Overview / Drop-off
+		lineageTag: a8b58609-0ce9-4774-bcbc-8bd23bf753c9
+
+	measure 'Not Entered Sessions' = [Total Sessions] - [Viewed Product Sessions]
+		formatString: #,##0
+		displayFolder: Overview / Drop-off
+		lineageTag: 44cc59a5-19b1-4596-85eb-3f1fd73b3064
+
+	measure 'Funnel Stage Sessions' = SWITCH(SELECTEDVALUE('Funnel Stages'[Stage Order]), 1, [Viewed Product Sessions], 2, [Added to Cart Sessions], 3, [Started Checkout Sessions], 4, [Sequential Purchasing Sessions], BLANK())
+		formatString: #,##0
+		displayFolder: Overview / Chart Helpers
+		lineageTag: de509818-21da-4760-b22b-0f9d0fecee0c
+
+	measure 'Stage Conversion Rate' = SWITCH(SELECTEDVALUE('Funnel Stages'[Stage Order]), 1, [View-to-Cart Rate], 2, [Cart-to-Checkout Rate], 3, [Checkout-to-Purchase Rate], BLANK())
+		formatString: 0.00%
+		displayFolder: Overview / Chart Helpers
+		lineageTag: 491ac801-2893-4389-bb73-7ecf36dd3512
+
+	measure 'Stage Drop-off Rate' = SWITCH(SELECTEDVALUE('Funnel Stages'[Stage Order]), 1, [Drop-off After Product View Rate], 2, [Drop-off After Add to Cart Rate], 3, [Drop-off After Checkout Rate], BLANK())
+		formatString: 0.00%
+		displayFolder: Overview / Chart Helpers
+		lineageTag: 3db6e015-4425-41bf-abe4-453b45aff248
+
+	measure 'Stage Drop-off Sessions' = SWITCH(SELECTEDVALUE('Funnel Stages'[Stage Order]), 1, [Drop-off After Product View], 2, [Drop-off After Add to Cart], 3, [Drop-off After Checkout], BLANK())
+		formatString: #,##0
+		displayFolder: Overview / Chart Helpers
+		lineageTag: 6b5761c0-ccf5-4cd8-ab91-96057eca5909
+
+	measure 'Desktop Purchase Rate' = CALCULATE([Overall Sequential Session Purchase Rate], KEEPFILTERS('Sessions'[device_category] = "desktop"))
+		formatString: 0.00%
+		displayFolder: Device & Acquisition / Comparisons
+		lineageTag: 15dfe6eb-2a08-4da1-a246-41e3153bbb67
+
+	measure 'Mobile Purchase Rate' = CALCULATE([Overall Sequential Session Purchase Rate], KEEPFILTERS('Sessions'[device_category] = "mobile"))
+		formatString: 0.00%
+		displayFolder: Device & Acquisition / Comparisons
+		lineageTag: e800debb-0106-4323-9e99-0c5b551da4f9
+
+	measure 'Tablet Purchase Rate' = CALCULATE([Overall Sequential Session Purchase Rate], KEEPFILTERS('Sessions'[device_category] = "tablet"))
+		formatString: 0.00%
+		displayFolder: Device & Acquisition / Comparisons
+		lineageTag: 1fb4c8a6-a6a0-4ccf-8ac5-06d742bee1e1
+
+	measure 'Observed Device Purchase Rate Gap' = VAR Rates = FILTER(ADDCOLUMNS(FILTER(VALUES('Sessions'[device_category]), 'Sessions'[device_category] IN {"desktop", "mobile", "tablet"}), "__Rate", [Overall Sequential Session Purchase Rate]), NOT ISBLANK([__Rate])) RETURN IF(COUNTROWS(Rates) < 2, BLANK(), (MAXX(Rates, [__Rate]) - MINX(Rates, [__Rate])) * 100)
+		formatString: 0.00" pp"
+		displayFolder: Device & Acquisition / Comparisons
+		lineageTag: 7b1a8b78-1c56-446a-b3c0-e5a15c71def8
+
+	measure 'Attributed Sessions' = COALESCE(CALCULATE([Total Sessions], KEEPFILTERS('Sessions'[attribution_status] = "Attributed")), 0)
+		formatString: #,##0
+		displayFolder: Attribution & Data Quality
+		lineageTag: f803cb06-9ff1-4398-bcf9-8e70ce14ee18
+
+	measure 'Attributed Session Share' = DIVIDE([Attributed Sessions], [Total Sessions])
+		formatString: 0.00%
+		displayFolder: Attribution & Data Quality
+		lineageTag: f8a50f19-cc29-4f3a-a947-31d2712b74b5
+
+	measure 'Unknown Attribution Sessions' = COALESCE(CALCULATE([Total Sessions], KEEPFILTERS('Sessions'[attribution_status] = "Unknown")), 0)
+		formatString: #,##0
+		displayFolder: Attribution & Data Quality
+		lineageTag: 87dc8d99-817b-41c5-a42f-73d537dab674
+
+	measure 'Unknown Attribution Session Share' = DIVIDE([Unknown Attribution Sessions], [Total Sessions])
+		formatString: 0.00%
+		displayFolder: Attribution & Data Quality
+		lineageTag: f28595a9-3030-4c6a-a8ee-c00eae1b62f8
+
+	measure 'Internal Referral Sessions' = COALESCE(CALCULATE([Total Sessions], KEEPFILTERS('Sessions'[has_internal_referral] = TRUE())), 0)
+		formatString: #,##0
+		displayFolder: Attribution & Data Quality
+		lineageTag: c481534f-bfed-4411-b12a-985f4d282e46
+
+	measure 'Internal Referral Session Share' = DIVIDE([Internal Referral Sessions], [Total Sessions])
+		formatString: 0.00%
+		displayFolder: Attribution & Data Quality
+		lineageTag: 3753db2d-5a69-48a3-995a-ba8588d8ee4f
+
+	measure 'Conflicting Source Sessions' = COALESCE(CALCULATE([Total Sessions], KEEPFILTERS('Sessions'[has_conflicting_sources] = TRUE())), 0)
+		formatString: #,##0
+		displayFolder: Attribution & Data Quality
+		lineageTag: 51f57397-28c1-49d5-bd25-e2ae674caf44
+
+	measure 'Conflicting Source Session Share' = DIVIDE([Conflicting Source Sessions], [Total Sessions])
+		formatString: 0.00%
+		displayFolder: Attribution & Data Quality
+		lineageTag: b475f97c-2d69-4b50-9c56-98b4062cbc5d
+
+	measure 'Attribution Status Session Share' = DIVIDE([Total Sessions], CALCULATE([Total Sessions], ALLSELECTED('Sessions'[attribution_status])))
+		formatString: 0.00%
+		displayFolder: Attribution & Data Quality
+		lineageTag: dc86696f-a128-4df5-a81c-eb5d1d32864a
+
+	measure 'Attribution Quality Flag Sessions' = SWITCH(SELECTEDVALUE('Attribution Quality Flags'[Flag Order]), 1, [Internal Referral Sessions], 2, [Conflicting Source Sessions], BLANK())
+		formatString: #,##0
+		displayFolder: Attribution & Data Quality
+		lineageTag: 48e88d7f-0725-40a5-9f71-3bb4714f9f75
+
+	measure 'Attribution Quality Flag Session Share' = DIVIDE([Attribution Quality Flag Sessions], [Total Sessions])
+		formatString: 0.00%
+		displayFolder: Attribution & Data Quality
+		lineageTag: 5a2be924-9783-4db6-87b9-d6336589a16f
+
+	column user_pseudo_id
+		dataType: string
+		lineageTag: dbdd638b-b7ba-4e3e-b522-98189f4c7f26
+		summarizeBy: none
+		sourceColumn: user_pseudo_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ga_session_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 93ab18d4-3766-4089-8afd-dbf4896109d3
+		summarizeBy: sum
+		sourceColumn: ga_session_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column session_start_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5250dc76-2d30-4b8a-b7fe-7394c587abac
+		summarizeBy: none
+		sourceColumn: session_start_timestamp
+
+		variation Variation
+			isDefault
+			relationship: aef1bb7e-b00a-40ac-ab8a-5cceceb59aed
+			defaultHierarchy: LocalDateTable_b02c0280-254d-459f-ae9d-4de82f6f5c14.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column session_end_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fc7122cd-e8d3-4692-99a6-a0bce9cedd66
+		summarizeBy: none
+		sourceColumn: session_end_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 7d573032-dad1-4bba-99c1-47b0e7ed5a7d
+			defaultHierarchy: LocalDateTable_ea2ae45e-e8f5-46ed-85d6-7199938c653a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column session_duration_seconds
+		dataType: int64
+		formatString: 0
+		lineageTag: 2c268771-2dfd-4951-8755-23c212364692
+		summarizeBy: sum
+		sourceColumn: session_duration_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_events
+		dataType: int64
+		formatString: 0
+		lineageTag: 310ea3bc-4794-4eca-9428-fefaa688bd2f
+		summarizeBy: sum
+		sourceColumn: total_events
+
+		annotation SummarizationSetBy = Automatic
+
+	column device_category
+		dataType: string
+		lineageTag: 950b4391-9696-444f-bcae-d61610d80df8
+		summarizeBy: none
+		sourceColumn: device_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_product_view
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 312425ee-41d6-453a-8d5b-c05eee059a00
+		summarizeBy: none
+		sourceColumn: has_product_view
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_add_to_cart
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6c22d85f-b189-4138-959e-7a2557cdf013
+		summarizeBy: none
+		sourceColumn: has_add_to_cart
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_begin_checkout
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 9900c8ff-75ca-4050-aa47-5ee6b7f44a73
+		summarizeBy: none
+		sourceColumn: has_begin_checkout
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_purchase
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 24a0feb0-6519-48a6-b0d6-f40632566bb7
+		summarizeBy: none
+		sourceColumn: has_purchase
+
+		annotation SummarizationSetBy = Automatic
+
+	column attributed_source
+		dataType: string
+		lineageTag: 6a3aef89-077e-45a5-b768-6da7bc6a90f8
+		summarizeBy: none
+		sourceColumn: attributed_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column attributed_medium
+		dataType: string
+		lineageTag: 0b3f2981-07ed-43b9-a427-797f261c0222
+		summarizeBy: none
+		sourceColumn: attributed_medium
+
+		annotation SummarizationSetBy = Automatic
+
+	column attributed_channel
+		dataType: string
+		lineageTag: 340ad7ae-82dd-439b-a445-1056a50e4acd
+		summarizeBy: none
+		sourceColumn: attributed_channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column attribution_status
+		dataType: string
+		lineageTag: 9f2ac3bf-8fec-4587-bff0-b54f11ed285f
+		summarizeBy: none
+		sourceColumn: attribution_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_internal_referral
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7c9c936b-8d77-4c9a-9d9b-ee7323949838
+		summarizeBy: none
+		sourceColumn: has_internal_referral
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_conflicting_sources
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 6e45026e-72b9-45c4-a8cb-ad9ad99ea0e3
+		summarizeBy: none
+		sourceColumn: has_conflicting_sources
+
+		annotation SummarizationSetBy = Automatic
+
+	column distinct_source_medium_pairs
+		dataType: int64
+		formatString: 0
+		lineageTag: 8374e7fc-bcee-409d-bd74-90450aff5351
+		summarizeBy: sum
+		sourceColumn: distinct_source_medium_pairs
+
+		annotation SummarizationSetBy = Automatic
+
+	column funnel_view_item_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d19f3e22-7a28-4bbc-8c01-b14797ff7a69
+		summarizeBy: none
+		sourceColumn: funnel_view_item_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 3460d00f-d658-4815-8f99-448b56c18175
+			defaultHierarchy: LocalDateTable_8e72bb68-ff9d-42b7-bd7d-e197c1efcd5d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column funnel_add_to_cart_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 94c36b00-4d48-4663-911e-844aa45fd46a
+		summarizeBy: none
+		sourceColumn: funnel_add_to_cart_timestamp
+
+		variation Variation
+			isDefault
+			relationship: d1f8e73c-519d-44a2-a13e-825f5551421c
+			defaultHierarchy: LocalDateTable_ef6ef7f6-a685-4e99-a73f-fd0897145792.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column funnel_begin_checkout_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9d4d26f8-a35b-447f-af97-6c0ac16b4b4a
+		summarizeBy: none
+		sourceColumn: funnel_begin_checkout_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 61236d9d-3a16-408f-8999-03c5ded1dac0
+			defaultHierarchy: LocalDateTable_6751586a-dfcf-47c9-9bbf-a5b90a703079.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column funnel_purchase_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bfe1d091-c28a-4081-b225-6ac16ae74b77
+		summarizeBy: none
+		sourceColumn: funnel_purchase_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 08203b45-78db-4e4c-a1f0-40da605f713e
+			defaultHierarchy: LocalDateTable_73bc01bf-018c-41ce-8910-bf758df2374c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column funnel_viewed_product
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8a677e1b-8c9b-4a3a-b391-65f85389967c
+		summarizeBy: none
+		sourceColumn: funnel_viewed_product
+
+		annotation SummarizationSetBy = Automatic
+
+	column funnel_added_to_cart
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5a20c555-d122-4214-ba07-669608bfd162
+		summarizeBy: none
+		sourceColumn: funnel_added_to_cart
+
+		annotation SummarizationSetBy = Automatic
+
+	column funnel_started_checkout
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 42404665-4e0e-4ab4-92f4-4a6029cd9ff1
+		summarizeBy: none
+		sourceColumn: funnel_started_checkout
+
+		annotation SummarizationSetBy = Automatic
+
+	column funnel_purchased
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0ee7d740-0bc0-4f58-88a6-022771c4108e
+		summarizeBy: none
+		sourceColumn: funnel_purchased
+
+		annotation SummarizationSetBy = Automatic
+
+	column funnel_stage_reached
+		dataType: int64
+		formatString: 0
+		lineageTag: f0011d15-138d-47a8-b856-8ac6ad7ced0c
+		summarizeBy: sum
+		sourceColumn: funnel_stage_reached
+
+		annotation SummarizationSetBy = Automatic
+
+	column funnel_drop_off_stage
+		dataType: string
+		lineageTag: e91f34b4-f542-4042-97d9-0ce297f5ab4b
+		summarizeBy: none
+		sourceColumn: funnel_drop_off_stage
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'UTC Session Start Date' = IF(ISBLANK('Sessions'[session_start_timestamp]), BLANK(), DATE(YEAR('Sessions'[session_start_timestamp]), MONTH('Sessions'[session_start_timestamp]), DAY('Sessions'[session_start_timestamp])))
+		dataType: dateTime
+		formatString: dd MMM yyyy
+		lineageTag: d7158950-14fe-4983-9a25-f93a056c392b
+		summarizeBy: none
+
+	partition Sessions = m
+		mode: import
+		source =
+				let
+				  Source = Value.NativeQuery(GoogleBigQuery.Database([BillingProject = null, UseStorageApi = null, ConnectionTimeout = null, CommandTimeout = null]){[Name = "mda-platform-2026.analytics_ga4_dev.fct_ga4_session_funnel"]}[Data], "SELECT *#(lf)FROM `mda-platform-2026.analytics_ga4_dev.fct_ga4_session_funnel`", null, [EnableFolding = true])
+				in
+				  Source
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Exception

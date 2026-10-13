@@ -1,0 +1,897 @@
+cultureInfo en-IN
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "sessions.total_sessions": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Total Sessions"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Total Sessions": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Sessions": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Sessions - denominator": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Selected sessions - denominator": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.pseudonymous_users": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Pseudonymous Users"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Pseudonymous Users": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.viewed_product_sessions": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Viewed Product Sessions"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Product-View Sessions": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.sequential_purchasing_sessions": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Sequential Purchasing Sessions"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Sequential Purchasing Sessions": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Purchasing sessions": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.overall_sequential_session_purchase_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Overall Sequential Session Purchase Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Sequential Session Purchase Rate": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Session purchase rate": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.funnel_stage_sessions": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Funnel Stage Sessions"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Sessions": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.stage_conversion_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Stage Conversion Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Progression to next stage": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Progressed": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.stage_dropoff_sessions": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Stage Drop-off Sessions"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Sessions lost before next stage": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Sessions dropped off": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.stage_dropoff_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Stage Drop-off Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Dropped off": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.dropoff_after_product_view": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Drop-off After Product View"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "After view": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.dropoff_after_add_to_cart": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Drop-off After Add to Cart"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "After cart": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.dropoff_after_checkout": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Drop-off After Checkout"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "After checkout": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.utc_session_start_date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "UTC Session Start Date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "UTC session-start date": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.observed_events": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Observed Events"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Observed events": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "funnel_stages.funnel_stage": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Funnel Stages",
+			          "ConceptualProperty": "Funnel Stage"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Stage": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Starting stage": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.device_category": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "device_category"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Device": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.attributed_channel": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "attributed_channel"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Custom attributed channel": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.desktop_purchase_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Desktop Purchase Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Desktop purchase rate": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.mobile_purchase_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Mobile Purchase Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Mobile purchase rate": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.tablet_purchase_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Tablet Purchase Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Tablet purchase rate": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.observed_device_purchase_rate_gap": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Observed Device Purchase Rate Gap"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Observed device gap · percentage points": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.viewtopurchase_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "View-to-Purchase Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "View-to-purchase rate": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.viewtocart_rate": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "View-to-Cart Rate"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "View-to-cart rate": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.added_to_cart_sessions": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Added to Cart Sessions"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Add-to-cart sessions": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.started_checkout_sessions": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Started Checkout Sessions"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Checkout sessions": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.attributed_session_share": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Attributed Session Share"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Attributed session share": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.unknown_attribution_session_share": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Unknown Attribution Session Share"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Unknown attribution share": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.internal_referral_session_share": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Internal Referral Session Share"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Internal-referral session share": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Internal-referral %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.conflicting_source_session_share": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Conflicting Source Session Share"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Conflicting-source session share": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Conflicting-source %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.attribution_status": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "attribution_status"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Attribution status": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.attribution_status_session_share": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Attribution Status Session Share"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Share of selected sessions": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Selected sessions %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.attribution_quality_flag_session_share": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Attribution Quality Flag Session Share"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Affected sessions %": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.attribution_quality_flag_sessions": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Attribution Quality Flag Sessions"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Affected sessions": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.internal_referral_sessions": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Internal Referral Sessions"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Internal-referral sessions": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.conflicting_source_sessions": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Conflicting Source Sessions"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Conflicting-source sessions": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "sessions.unknown_attribution_sessions": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Sessions",
+			          "ConceptualProperty": "Unknown Attribution Sessions"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Unknown sessions": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "attribution_quality_flags.quality_flag": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Attribution Quality Flags",
+			          "ConceptualProperty": "Quality Flag"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Quality flag": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json

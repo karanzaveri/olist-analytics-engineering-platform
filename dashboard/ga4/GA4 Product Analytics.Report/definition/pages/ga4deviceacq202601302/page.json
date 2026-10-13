@@ -1,0 +1,426 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "ga4deviceacq202601302",
+  "displayName": "Device & Acquisition Performance",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#EDF1F5'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "ga4p2000000000000003",
+      "target": "ga4p2000000000000001",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000003",
+      "target": "ga4p2000000000000002",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000003",
+      "target": "ga4p2000000000000004",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000003",
+      "target": "ga4p2000000000000005",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000003",
+      "target": "ga4p2000000000000006",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000003",
+      "target": "ga4p2000000000000007",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000003",
+      "target": "ga4p2000000000000008",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000003",
+      "target": "ga4p2000000000000009",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000003",
+      "target": "ga4p200000000000000a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000003",
+      "target": "ga4p200000000000000b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000003",
+      "target": "ga4p200000000000000c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000003",
+      "target": "ga4p200000000000000d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000003",
+      "target": "ga4p200000000000000e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000004",
+      "target": "ga4p2000000000000001",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000004",
+      "target": "ga4p2000000000000002",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000004",
+      "target": "ga4p2000000000000003",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000004",
+      "target": "ga4p2000000000000005",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000004",
+      "target": "ga4p2000000000000006",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000004",
+      "target": "ga4p2000000000000007",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000004",
+      "target": "ga4p2000000000000008",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000004",
+      "target": "ga4p2000000000000009",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000004",
+      "target": "ga4p200000000000000a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000004",
+      "target": "ga4p200000000000000b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000004",
+      "target": "ga4p200000000000000c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000004",
+      "target": "ga4p200000000000000d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000004",
+      "target": "ga4p200000000000000e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000005",
+      "target": "ga4p2000000000000001",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000005",
+      "target": "ga4p2000000000000002",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000005",
+      "target": "ga4p2000000000000003",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000005",
+      "target": "ga4p2000000000000004",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000005",
+      "target": "ga4p2000000000000006",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000005",
+      "target": "ga4p2000000000000007",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000005",
+      "target": "ga4p2000000000000008",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000005",
+      "target": "ga4p2000000000000009",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000005",
+      "target": "ga4p200000000000000a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000005",
+      "target": "ga4p200000000000000b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000005",
+      "target": "ga4p200000000000000c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ga4p2000000000000005",
+      "target": "ga4p200000000000000d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p2000000000000005",
+      "target": "ga4p200000000000000e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000a",
+      "target": "ga4p2000000000000001",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000a",
+      "target": "ga4p2000000000000002",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000a",
+      "target": "ga4p2000000000000003",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000a",
+      "target": "ga4p2000000000000004",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000a",
+      "target": "ga4p2000000000000005",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000a",
+      "target": "ga4p2000000000000006",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000a",
+      "target": "ga4p2000000000000007",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000a",
+      "target": "ga4p2000000000000008",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000a",
+      "target": "ga4p2000000000000009",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000a",
+      "target": "ga4p200000000000000b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000a",
+      "target": "ga4p200000000000000c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000a",
+      "target": "ga4p200000000000000d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000a",
+      "target": "ga4p200000000000000e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000b",
+      "target": "ga4p2000000000000001",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000b",
+      "target": "ga4p2000000000000002",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000b",
+      "target": "ga4p2000000000000003",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000b",
+      "target": "ga4p2000000000000004",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000b",
+      "target": "ga4p2000000000000005",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000b",
+      "target": "ga4p2000000000000006",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000b",
+      "target": "ga4p2000000000000007",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000b",
+      "target": "ga4p2000000000000008",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000b",
+      "target": "ga4p2000000000000009",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000b",
+      "target": "ga4p200000000000000a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000b",
+      "target": "ga4p200000000000000c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000b",
+      "target": "ga4p200000000000000d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000b",
+      "target": "ga4p200000000000000e",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000c",
+      "target": "ga4p2000000000000001",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000c",
+      "target": "ga4p2000000000000002",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000c",
+      "target": "ga4p2000000000000003",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000c",
+      "target": "ga4p2000000000000004",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000c",
+      "target": "ga4p2000000000000005",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000c",
+      "target": "ga4p2000000000000006",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000c",
+      "target": "ga4p2000000000000007",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000c",
+      "target": "ga4p2000000000000008",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000c",
+      "target": "ga4p2000000000000009",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000c",
+      "target": "ga4p200000000000000a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000c",
+      "target": "ga4p200000000000000b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000c",
+      "target": "ga4p200000000000000d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ga4p200000000000000c",
+      "target": "ga4p200000000000000e",
+      "type": "NoFilter"
+    }
+  ]
+}

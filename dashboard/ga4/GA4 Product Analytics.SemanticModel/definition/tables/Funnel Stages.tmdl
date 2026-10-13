@@ -1,0 +1,22 @@
+table 'Funnel Stages'
+	lineageTag: 73b67f6f-600d-4c6a-a985-a5b8e872bf69
+
+	column 'Stage Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: 44316119-0095-4e61-ba3a-e69815719f44
+		summarizeBy: none
+		sourceColumn: [Stage Order]
+
+	column 'Funnel Stage'
+		dataType: string
+		lineageTag: 4d6a9105-ce5a-4ecb-8f93-c2fbf62d1221
+		summarizeBy: none
+		sourceColumn: [Funnel Stage]
+		sortByColumn: 'Stage Order'
+
+	partition 'Funnel Stages' = calculated
+		mode: import
+		source = DATATABLE("Stage Order", INTEGER, "Funnel Stage", STRING, { {1, "Product View"}, {2, "Add to Cart"}, {3, "Begin Checkout"}, {4, "Purchase"} })
+
+	annotation PBI_ResultType = Table

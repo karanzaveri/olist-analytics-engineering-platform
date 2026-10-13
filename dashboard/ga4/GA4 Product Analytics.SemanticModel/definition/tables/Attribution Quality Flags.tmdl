@@ -1,0 +1,20 @@
+table 'Attribution Quality Flags'
+	lineageTag: bbbff9b8-aaca-4ce3-b2de-6d32998cd029
+
+	column 'Flag Order'
+		dataType: int64
+		formatString: 0
+		lineageTag: ef2426e0-e72f-46e1-9751-766b562ad162
+		summarizeBy: none
+		sourceColumn: [Flag Order]
+
+	column 'Quality Flag'
+		dataType: string
+		lineageTag: d3a7bb26-e326-44bd-b640-9106068ba293
+		summarizeBy: none
+		sourceColumn: [Quality Flag]
+		sortByColumn: 'Flag Order'
+
+	partition 'Attribution Quality Flags' = calculated
+		mode: import
+		source = DATATABLE("Flag Order", INTEGER, "Quality Flag", STRING, { {1, "Internal referrals"}, {2, "Conflicting sources"} })
