@@ -89,3 +89,28 @@ def test_nonconvergence_is_an_error_not_a_naive_fallback(monkeypatch):
     monkeypatch.setattr(model, 'SimpleExpSmoothing', Mock(return_value=library_model))
     with pytest.raises(RuntimeError, match='converge'):
         model.ses_forecast([10, 20, 30])
+
+
+def test_cli_checks_explicit_original_predictions_path(monkeypatch, tmp_path):
+    import sys
+
+    snapshot = tmp_path / 'input.csv'
+    saved_predictions = tmp_path / 'original.csv'
+    output = tmp_path / 'results'
+    source = weeks()
+    baseline, _ = model.compare_scenarios(source)
+    loaded = Mock(return_value=baseline['C_original'])
+    exported = Mock()
+    monkeypatch.setattr(sys, 'argv', [
+        'statistical_candidates', '--snapshot', str(snapshot),
+        '--original-predictions', str(saved_predictions), '--output-dir', str(output),
+    ])
+    monkeypatch.setattr(model, 'load_snapshot', Mock(return_value=source))
+    monkeypatch.setattr(model, 'load_predictions', loaded)
+    monkeypatch.setattr(model, 'evaluate_candidates', Mock(return_value=(baseline, [])))
+    monkeypatch.setattr(model, 'export_results', exported)
+
+    model.main()
+
+    loaded.assert_called_once_with(saved_predictions)
+    exported.assert_called_once_with(baseline, [], output)

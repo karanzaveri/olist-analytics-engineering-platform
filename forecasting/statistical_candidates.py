@@ -204,10 +204,11 @@ def export_results(predictions, metrics, output_dir):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--snapshot', type=Path, default=DEFAULT_OUTPUT / 'source_snapshot.csv')
+    parser.add_argument('--original-predictions', type=Path, default=DEFAULT_OUTPUT / 'predictions.csv')
     parser.add_argument('--output-dir', type=Path, default=DEFAULT_OUTPUT / 'statistical_candidates')
     args = parser.parse_args()
     predictions, metrics = evaluate_candidates(load_snapshot(args.snapshot))
-    saved = load_predictions(DEFAULT_OUTPUT / 'predictions.csv')
+    saved = load_predictions(args.original_predictions)
     original = [{key: row[key] for key in ('week_start', 'actual_revenue', *METHODS)}
                 for row in predictions['C_original']]
     if original != saved:
