@@ -1,56 +1,71 @@
 # Olist Analytics Engineering Platform
 
-## Overview
+An analytics engineering portfolio that turns historical e-commerce records into reporting datasets, customer analysis and business dashboards. Python loads Olist CSVs into BigQuery; dbt models order, item and customer grains; Power BI presents the results; and Gemini generates monthly commentary checked against warehouse KPIs.
 
-An end-to-end analytics engineering and advanced data analytics portfolio built around Olist e-commerce data. Python ingestion and BigQuery feed tested dbt facts, dimensions and reporting marts; local Airflow orchestration supports business intelligence and validated Gemini-generated insights. The project extends into customer cohorts and repeat purchasing, synthetic experimentation, a separate GA4 product-analytics pipeline, and revenue forecasting research.
+The analytical work extends to customer retention, an independent synthetic checkout experiment, a separate public GA4 conversion funnel, and a retrospective weekly revenue forecasting case study. Each module keeps its source, assumptions and validation scope explicit.
 
-**Project status: October 12, 2026.** This is a locally validated portfolio project, not a production deployment. The forecasting case study is retrospective; operational validity remains unconfirmed.
+**Scope:** local execution and historical validation, with no production deployment. The evidence below distinguishes saved warehouse results, documented offline runs and test definitions. This documentation refresh does not rerun those workloads.
 
-| Capability | Implemented evidence |
+## Architecture
+
+![Architecture showing the EU Olist pipeline and analytical outputs, separate FX and US GA4 workflows, independent synthetic experimentation, and orchestration and engineering support](docs/images/analytics-platform-overview.svg)
+
+[Editable Mermaid source](docs/architecture/analytics-platform.mmd) | [Diagram conventions and export instructions](docs/architecture/README.md)
+
+Solid arrows show data flow; the separate Airflow band shows task order. Olist CSV loading is manual. Power BI refresh, GA4 and Python forecasting are outside the DAG. FX supplies no Olist business metric, and GA4 stays in BigQuery US while Olist stays in EU.
+
+## Implemented capabilities
+
+| Area | Analytical work | Explore |
+| --- | --- | --- |
+| Olist reporting | Order, payment, delivery, geography, product and seller analysis; seven-page report including two labeled synthetic A/B pages | [Dashboards](#dashboards), [dbt models](#dbt-model-architecture) |
+| Customer analytics | Monthly cohorts, periodic retention, complete-follow-up M1-M3 return and purchase-behaviour segments | [Methods and reference results](#customer-analytics) |
+| Experimentation | Sample-size planning, conversion inference, allocation checks, Monte Carlo simulations and hypothetical economics | [Synthetic checkout case study](experimentation/CASE_STUDY.md) |
+| GA4 product analytics | Session reconstruction, sequential funnel, custom attribution proxy and measurement-quality analysis | [Methods](#ga4-product-analytics), [dashboard](#ga4-dashboard) |
+| Revenue forecasting | Five-model retrospective comparison, endpoint sensitivity and chronological interval calibration | [Case study](docs/forecasting/README.md) |
+| AI insights | Structured commentary, deterministic numeric checks, retry and synchronized reports | [Generation and validation](#ai-generated-monthly-insights) |
+
+[Business questions](#business-questions) | [Ingestion](#ingestion-and-data-sources) | [Modelling decisions](#key-metrics-and-modeling-decisions) | [Orchestration](#airflow-orchestration) | [Run locally](#how-to-run-locally) | [Testing and evidence](#testing-and-validation-evidence) | [Limitations](#known-limitations)
+
+## Dashboards
+
+### Olist dashboard
+
+The [editable seven-page Power BI project](dashboard/Data%20Analytics.pbip) imports Olist facts, dimensions and customer marts. Its two A/B pages use disconnected synthetic fixtures; experiment results and hypothetical economics remain separate from Olist KPIs.
+
+[Original four-page PDF](docs/powerbi/olist-analytics-dashboard.pdf) | [Customer page notes](docs/powerbi/customer-purchase-behaviour.md) | [A/B page definitions](docs/powerbi/ab-testing-seven-pages.md)
+
+![Olist Executive Overview with delivered revenue, customer KPIs, monthly trends and customer mix](docs/images/powerbi-executive-overview.jpg)
+
+| Page | Business purpose |
 | --- | --- |
-| Business intelligence | Seven-page Power BI report combining Olist reporting/customer analytics with clearly labeled synthetic A/B results |
-| Customer analytics | Monthly cohorts, periodic retention, complete-follow-up three-month return and purchase-behaviour segments |
-| GA4 product analytics | Four US-region dbt models; 67 warehouse tests passed; 26,355 reconstructed sessions |
-| Revenue forecasting case study | Five-model retrospective comparison, boundary investigation, historical intervals and credential-free offline reproduction |
-| AI insights | Gemini commentary grounded in warehouse KPIs, structured validation, numeric checks and synchronized reports |
+| Executive Overview | Delivered revenue, orders, customers, average order value, repeat customers and monthly trends |
+| Delivery Performance | Delivery times, late-delivery rates, delay days, delivery status and state comparisons |
+| Geography Performance | State-level revenue, orders, customers, average order value and delivery performance |
+| Product & Seller Performance | Merchandise value, items, products, sellers and category/seller-state analysis |
+| Customer Retention & Cohorts | Cohort matrix, weighted periodic retention, cumulative three-month return and purchase-behaviour segments |
+| A/B Results | Synthetic conversion, effect size, confidence interval and statistical inference |
+| A/B Quality & Decision | Allocation checks, hypothetical financial scenarios, guardrail availability and a conditional decision |
 
-A standalone [synthetic checkout A/B test case study](experimentation/CASE_STUDY.md)
-demonstrates sample-size planning, statistical inference, sample ratio mismatch,
-Monte Carlo power and false positives, and hypothetical business-impact and
-guardrail evaluation. It is separate from the Olist/FX warehouse pipelines and
-contains no real-company experiment or production deployment. See the
-[experimentation module](experimentation/README.md) for reproducible commands.
+Additional previews: [Delivery](docs/images/powerbi-delivery-performance.jpg) | [Geography](docs/images/powerbi-geography-performance.jpg) | [Products and sellers](docs/images/powerbi-product-seller-performance.jpg).
 
-A separate [GA4 Product Analytics & Conversion Funnel feature](analytics/models/ga4/README.md)
-reconstructs sessions, investigates attribution quality, and measures sequential
-conversion in the historical public GA4 sample. It uses BigQuery US under
-`ga4_dev`, while Olist remains in EU under the default `dev` target. The GA4
-documentation includes verified results, limitations, and read-only analysis.
+The screenshots and PDF cover the original four pages. Pages 5-7 have definitions and validation notes, but no committed screenshots. Static PBIR/TMDL checks do not establish every Desktop interaction or cached result.
 
-## Contents
+### GA4 dashboard
 
-- [Business questions](#business-questions)
-- [Architecture](#architecture)
-- [Data sources](#data-sources)
-- [Tech stack](#tech-stack)
-- [Data flow](#data-flow)
-- [dbt model architecture](#dbt-model-architecture)
-- [Key metrics and modeling decisions](#key-metrics-and-modeling-decisions)
-- [Power BI dashboard](#power-bi-dashboard)
-- [Customer analytics](#customer-analytics)
-- [A/B testing and experimentation](#ab-testing-and-experimentation)
-- [GA4 product analytics](#ga4-product-analytics)
-- [GA4 Power BI dashboard](#ga4-product-analytics--power-bi-dashboard)
-- [Revenue forecasting case study](#revenue-forecasting-case-study)
-- [AI-generated monthly insights](#ai-generated-monthly-insights)
-- [Airflow orchestration](#airflow-orchestration)
-- [Docker usage](#docker-usage)
-- [Testing and CI](#testing-and-ci)
-- [How to run locally](#how-to-run-locally)
-- [Verified results](#verified-results)
-- [Known limitations](#known-limitations)
-- [Future improvements](#future-improvements)
-- [Repository structure](#repository-structure)
+The [separate three-page Power BI project](dashboard/ga4/GA4%20Product%20Analytics.pbip) imports the US-region session funnel mart. It covers the historical, obfuscated January 25-31, 2021 sample and contains no synthetic experiments.
+
+[Full three-page PDF](docs/powerbi/GA4%20Product%20Analytics.pdf) | [Dashboard setup and metric guide](dashboard/ga4/README.md)
+
+![GA4 Product Conversion Overview with session KPIs, sequential funnel and daily trends](docs/images/ga4/ga4-product-conversion.jpg)
+
+| Page | Business purpose |
+| --- | --- |
+| Product Conversion Overview | Locate observed losses between product view, cart, checkout and purchase; review daily session trends |
+| [Device & Acquisition Performance](docs/images/ga4/ga4-device-acquisition.jpg) | Compare device and custom-channel conversion alongside session volumes |
+| [Attribution & Data Quality](docs/images/ga4/ga4-attribution-quality.jpg) | Assess attribution coverage and overlapping quality flags before interpreting channel performance |
+
+Device, custom-channel and UTC session-start date slicers support exploration. Static exports show visible table rows; open the editable project for further inspection. Desktop review and reconciliation are reported in the dashboard guide and were not repeated during this refresh.
 
 ## Business questions
 
@@ -64,50 +79,14 @@ documentation includes verified results, limitations, and read-only analysis.
 - Which weekly revenue forecasting methods hold up across historical evaluation windows and a flagged dataset boundary?
 - How should a synthetic conversion experiment be interpreted alongside allocation quality, unmeasured guardrails and hypothetical economics?
 
-## Architecture
-
-![Olist Analytics Engineering Platform architecture](docs/images/analytics-platform-overview.png)
-
-The infographic highlights the analytics trust problem and the workflow: Olist ingestion into BigQuery, dbt staging/intermediate/mart layers, Airflow orchestration, Power BI reporting, and validated Gemini-generated insights, alongside separate FX ingestion.
-
-The approved image represents the core platform workflow. Customer analytics extends the Olist marts; experimentation and forecasting are separate Python modules. GA4 has its own dbt branch and US-region target rather than a cross-region join with Olist.
-
-Olist and FX are separate pipelines. FX rates are not used in Olist revenue calculations. Airflow sequences their execution; this does not imply a data dependency between FX and the Olist models.
-
-## Data sources
+## Ingestion and data sources
 
 - **Olist Brazilian e-commerce CSVs:** customers, orders, order items, payments, reviews, products, sellers, geolocation, and category translations. Place the original files in `data/raw/olist/`; expected filenames are defined in `ingestion/olist/load_olist_bigquery.py`. Data files are not committed. dbt currently uses customers, orders, order items, payments, products, and sellers.
 - **Frankfurter REST API:** latest or historical exchange rates. Dated raw JSON files are saved under `data/raw/fx/`; warehouse rows include source and ingestion timestamps.
 - **Public GA4 sample:** `bigquery-public-data.ga4_obfuscated_sample_ecommerce`, restricted to January 25–31, 2021. Historical obfuscated events are separate from the Olist source data.
 - **Synthetic checkout experiment:** reproducibly generated user outcomes, with hypothetical financial assumptions. These are educational experiment results, not observed Olist transactions or a deployed product test.
 
-## Tech stack
-
-| Technology | Role |
-| --- | --- |
-| Python 3.11, Requests, BigQuery client | Ingestion, validation, warehouse loading |
-| BigQuery SQL | Analytical storage and transformations |
-| dbt Core, dbt-bigquery, Jinja | Dependencies, materializations, macros, data tests |
-| Power BI Desktop, PBIP/PBIR | Stakeholder-facing dashboard using the BigQuery/dbt analytical layer |
-| Gemini / Google GenAI | Structured business commentary from trusted KPIs |
-| Pydantic | Structured AI response validation |
-| pytest | Ingestion, KPI retrieval, AI validation, and Airflow integration tests |
-| Apache Airflow | External/local orchestration |
-| Docker Compose | Local Python/dbt runtime |
-| GitHub Actions | pytest and dbt parse on pushes and pull requests |
-| Statsmodels, SciPy, NumPy | Experiment planning/inference, simulations, statistical forecasting candidates and time-series diagnostics |
-| Matplotlib | Reproducible experiment summaries, forecast comparisons and diagnostic charts |
-
-## Data flow
-
-1. The Olist loader applies explicit schemas and replaces nine raw tables using `WRITE_TRUNCATE`.
-2. Staging exposes source fields and standardizes selected names. Intermediate models enrich records and aggregate payments and items to order grain.
-3. dbt marts calculate trusted business metrics and provide facts, dimensions, customer metrics, and monthly reporting datasets.
-4. After dbt validation, Python fetches monthly reporting KPIs from BigQuery. Gemini generates narrative only; Pydantic checks the response structure and deterministic Python validation rejects unsupported numerical claims, including unsupported derived numbers. Validated JSON and Markdown reports are saved.
-5. Separately, Power BI imports Olist reporting and customer-cohort/repeat-behaviour marts. Disconnected synthetic A/B CSV fixtures support two additional experiment pages without mixing their results into Olist KPIs.
-6. Independently, the FX runner validates API responses, saves raw JSON, and appends normalized currency rows. A date-level existence check skips previously loaded dates.
-7. GA4 events are staged, reconstructed into sessions, assigned a custom attribution proxy, and aggregated into a sequential session funnel under the US `ga4_dev` target.
-8. The EU weekly revenue mart supplies a read-only Python forecasting workflow. Saved snapshots support reproducible offline backtesting and uncertainty experiments.
+The [Olist loader](ingestion/olist/load_olist_bigquery.py) applies explicit schemas and replaces nine BigQuery RAW tables with `WRITE_TRUNCATE`. Staging projects source fields and standardizes selected names; intermediate models enrich records and aggregate payments/items at order grain. The independent [FX runner](ingestion/fx_api/run_fx_pipeline.py) validates responses and appends normalized currency rows; a date-level existence check skips previously loaded dates. GA4 reads public event shards directly through dbt, with no Python ingestion step.
 
 ## dbt model architecture
 
@@ -119,45 +98,19 @@ Olist and FX are separate pipelines. FX rates are not used in Olist revenue calc
 | Olist `dev` — incremental demonstration | 1 | Incremental |
 | GA4 `ga4_dev` — staging / intermediate / mart | 1 / 2 / 1 | Views / views / table |
 
-The default **`dev` target enables 24 Olist models in BigQuery EU**, including the weekly forecasting input mart. **`ga4_dev` enables four GA4 models in BigQuery US**. Each target disables the other model family. Current manifests define **156 Olist data tests** and **67 GA4 data tests**; definitions and passing warehouse results are distinguished below.
+The default **`dev` target enables 24 Olist models in BigQuery EU**, including the weekly forecasting input mart. **`ga4_dev` enables four GA4 models in BigQuery US**. Each target disables the other model family. Saved target-specific manifests define **156 Olist data tests** and **67 GA4 data tests**; definitions and passing warehouse results are distinguished below.
 
-`fct_orders_incremental` remains a demonstration; it and its four tests are excluded from normal orchestration and non-incremental validation. `ref()`/`source()` dependencies describe lineage, while schema and singular tests cover keys, relationships, calendar coverage and reconciliation. See [Olist model documentation](analytics/README.md) for model grains, [GA4 documentation](analytics/models/ga4/README.md) for its separate lineage, and the [weekly mart schema](analytics/models/marts/weekly_revenue_forecasting.yml) for forecasting input definitions. Some older Olist documentation retains the original 19-model inventory.
+`fct_orders_incremental` remains a demonstration; it and its four tests are excluded from normal orchestration and non-incremental validation. `ref()`/`source()` dependencies describe lineage, while schema and singular tests cover keys, relationships, calendar coverage and reconciliation. See [Olist model documentation](analytics/README.md) for model grains, [GA4 documentation](analytics/models/ga4/README.md) for its separate lineage, and the [weekly mart schema](analytics/models/marts/weekly_revenue_forecasting.yml) for forecasting input definitions. Customer activity/cohort intermediate models consume `fct_orders` and then feed the customer marts: folder layers are not a strictly one-way dependency chain. Older guides retain historical inventories, including the original 19-model Olist baseline and the pre-forecasting 23-model inventory.
 
 ## Key metrics and modeling decisions
 
 - **Order grain:** payments and items are aggregated separately before joining orders, avoiding multiplication of payment totals across item rows.
 - **Customer identity:** `customer_id` identifies an order-associated record; `customer_unique_id` groups repeat purchases. The customer dimension selects the latest order's attributes.
 - **Monthly attribution:** KPIs are grouped by purchase month. Delivered metrics describe orders purchased in that month whose current status is delivered, not orders delivered during that calendar month.
-- **Revenue and spend:** delivered revenue sums qualifying payments. Customer spend and average order value include all order statuses. Missing payments may remain null. These are payment-based measures, not profit.
+- **Revenue and spend:** delivered revenue sums qualifying payments. Customer-level spend and average order value include all order statuses. Missing payments may remain null. These are payment-based measures, not profit.
 - **Delivery:** facts calculate elapsed delivery days and delay relative to the estimated date.
 - **Growth:** safe division and consecutive-month checks avoid misleading comparisons across gaps or zero denominators.
 - **Reporting window:** January 2017 through August 2018 is chosen for stable reporting coverage. A broader monthly mart is also available.
-
-## Power BI dashboard
-
-The seven-page report is stored as a Power BI Project (PBIP/PBIR) under [dashboard/](dashboard/), with [Data Analytics.pbip](dashboard/Data%20Analytics.pbip) as its entry point. It connects in Import mode to Olist reporting facts, dimensions and customer marts. The two A/B pages use disconnected synthetic fixtures; their experimental outcomes and hypothetical economics are not real Olist business results.
-
-### Dashboard preview
-
-![Power BI Executive Overview showing revenue and customer KPIs, monthly trends, and customer mix](docs/images/powerbi-executive-overview.jpg)
-
-![Power BI Delivery Performance showing delivery times, late-delivery rates, delivery status, and state comparisons](docs/images/powerbi-delivery-performance.jpg)
-
-![Power BI Geography Performance showing state-level revenue, delivered orders, and delivery performance](docs/images/powerbi-geography-performance.jpg)
-
-![Power BI Product & Seller Performance showing merchandise KPIs, leading categories and sellers, and category detail](docs/images/powerbi-product-seller-performance.jpg)
-
-The report contains seven pages with consistent navigation:
-
-- **Executive Overview:** delivered revenue, orders, customers, average order value, repeat customers, and monthly trends.
-- **Delivery Performance:** delivery times, late-delivery rates, delay days, delivery status, and state comparisons.
-- **Geography Performance:** state-level revenue, orders, customers, average order value, and delivery performance.
-- **Product & Seller Performance:** merchandise value, items, products, sellers, and category/seller-state analysis.
-- **Customer Retention & Cohorts:** cohort matrix, weighted periodic retention, cumulative three-month return and customer purchase-behaviour segments.
-- **A/B Results:** synthetic control/treatment conversion, effect size, confidence interval and statistical inference.
-- **A/B Quality & Decision:** allocation quality, hypothetical contribution/cost scenarios, guardrail availability and a conditional decision.
-
-[View the original four-page Power BI dashboard PDF](docs/powerbi/olist-analytics-dashboard.pdf). The screenshots above and this PDF cover the original four pages; saved screenshots for pages 5–7 are not currently included. See the [customer page notes](docs/powerbi/customer-purchase-behaviour.md) and [seven-page A/B layout](docs/powerbi/ab-testing-seven-pages.md) for the added report definitions and validation scope. Static PBIR/TMDL checks do not establish every Desktop interaction or cached result.
 
 ## Customer analytics
 
@@ -167,51 +120,23 @@ The report contains seven pages with consistent navigation:
 
 Documented reconciliation references for January 2017–May 2018 cohorts contain **75,123 customers**: **72,527 single-purchase**, **984 same-month repeat only**, and **1,612 cross-month repeat**. **790 / 75,123 = 1.052%** returned during M1–M3. These historical observations show that one observed delivered purchase dominates this cohort window; they do not establish subscription churn, lifetime loyalty or the causes of low repeat purchasing.
 
-See the [mart definitions and reconciliation references](analytics/models/marts/customer_repeat_behavior.yml), [retention page notes](docs/powerbi/customer-retention-page.md), and [purchase-behaviour documentation](docs/powerbi/customer-purchase-behaviour.md). Offline reference calculations and Desktop/DAX verification are documented separately.
+See the [mart definitions and reconciliation references](analytics/models/marts/customer_repeat_behavior.yml), [retention page notes](docs/powerbi/customer-retention-page.md), and [purchase-behaviour documentation](docs/powerbi/customer-purchase-behaviour.md). Offline reference calculations and Desktop/DAX verification are documented separately. Cohort acquisition means first observed activity, and current delivered status is not a point-in-time historical status.
 
 ## A/B testing and experimentation
 
 The [synthetic checkout case study](experimentation/CASE_STUDY.md) covers prespecified two-sided hypotheses, sample-size/MDE/power planning, two-proportion statistical tests, Newcombe/Wilson confidence intervals, sample ratio mismatch detection, and Monte Carlo power/false-positive simulations. Guardrail tooling and hypothetical contribution, implementation-cost and break-even analysis connect statistical results to a conditional business decision.
 
-The reproducible seed-42 experiment uses **4,433 users per arm** and observes **1.7144 percentage points** of uplift. The case study does not recommend a full rollout: assumed economics and unmeasured payment/refund/latency guardrails remain important. Synthetic statistical evidence is not evidence from a real deployed experiment. Read the [module guide](experimentation/README.md) and [rendered experiment executive summary](docs/images/checkout-ab-test-executive-summary.png) for methods, assumptions and reproduction commands.
+The reproducible seed-42 experiment uses **4,433 users per arm** with **527 control conversions** and **603 treatment conversions**, an uplift of **1.7144 percentage points**. Fixed balanced allocation makes its SRM pass insufficient evidence of real randomisation quality. The case study does not recommend a full rollout: assumed economics and unmeasured payment/refund/latency guardrails remain important. Synthetic statistical evidence is not evidence from a real deployed experiment. Read the [module guide](experimentation/README.md) and [rendered experiment executive summary](docs/images/checkout-ab-test-executive-summary.png) for methods, assumptions and reproduction commands.
 
 ## GA4 product analytics
 
-The separate US-region `ga4_dev` pipeline stages nested event parameters without multiplying raw rows, reconstructs sessions using `(user_pseudo_id, ga_session_id)`, and preserves every observed session in its funnel mart. **67 GA4 dbt tests passed against BigQuery**, covering event/session fields, composite grain, complete coverage, attribution consistency and ordered funnel progression.
+The separate US-region `ga4_dev` pipeline stages nested event parameters without multiplying raw rows, reconstructs sessions using `(user_pseudo_id, ga_session_id)`, and preserves every observed session in its funnel mart. Saved historical warehouse results show **67 GA4 dbt test passes**, covering event/session fields, composite grain, complete coverage, attribution consistency and ordered funnel progression.
 
-For January 25–31, 2021, verified counts are **273,507 events**, **21,596 pseudonymous users**, and **26,355 sessions**. Sequential `view_item → add_to_cart → begin_checkout → purchase` counts are **6,192 → 1,090 → 407 → 226**. Stage flags require preceding stages in timestamp order; independent event-presence flags do not. Equal timestamps may qualify together, and product-level continuity is not enforced.
+For January 25–31, 2021, documented warehouse counts are **273,507 events**, **21,596 pseudonymous users**, and **26,355 sessions**. Sequential `view_item → add_to_cart → begin_checkout → purchase` counts are **6,192 → 1,090 → 407 → 226**. Stage flags require preceding stages in timestamp order; independent event-presence flags do not. Equal timestamps may qualify together, and product-level continuity is not enforced.
 
 Device and custom-channel conversion analysis uses all sessions in each segment as its denominator. First-user acquisition source/medium remain available in staging and are kept separate from event/session attribution. The earliest complete non-internal event source/medium pair supplies a **custom attribution proxy, not Google's official GA4 session attribution**. Both merchandise-store domain self-referrals are investigated explicitly: **8,041 sessions** contain internal referrals, **4,045** are internal-only, and **4,200** contain conflicting pairs. These flags overlap; they do not prove a tracking cause.
 
-See the [GA4 feature documentation](analytics/models/ga4/README.md) and [read-only funnel analysis](analytics/analyses/ga4/session_funnel_analysis.sql). GA4 is a separate historical obfuscated sample, not Olist web activity. Its standalone Power BI dashboard is documented below.
-
-## GA4 Product Analytics — Power BI Dashboard
-
-A separate three-page Power BI dashboard turns the **January 25-31, 2021** seven-day historical, obfuscated GA4 e-commerce sample into a view of conversion, device performance, and attribution quality. It covers **26,355 sessions** and **21,596 pseudonymous users**; these are historical observations, not current store performance.
-
-The sequential funnel contains **6,192 product-view sessions**, **1,090 add-to-cart sessions**, **407 checkout sessions**, and **226 purchasing sessions**, giving a **0.86% sequential session purchase rate** across all sessions.
-
-### Product Conversion Overview
-
-Shows where sessions stop progressing from product discovery to purchase, with daily session trends and stage conversion/drop-off rates to guide further investigation.
-
-![GA4 Product Conversion Overview with session KPIs, sequential funnel and daily trends](docs/images/ga4/ga4-product-conversion.jpg)
-
-### Device & Acquisition Performance
-
-Compares device and custom-channel conversion alongside session volumes. Device, channel, and UTC session-start date slicers support exploration; observed differences are not causal findings or randomized A/B test results.
-
-![GA4 Device and Acquisition Performance with device purchase rates and session-level funnel tables](docs/images/ga4/ga4-device-acquisition.jpg)
-
-### Attribution & Data Quality
-
-Shows attribution coverage and measurement-quality indicators before channel comparisons inform marketing decisions. **55.88%** of sessions are attributed and **28.77%** have unknown attribution. **30.51%** contain internal referrals and **15.94%** contain conflicting source/medium pairs; these two flags overlap and must not be added.
-
-![GA4 Attribution and Data Quality with attribution coverage, overlapping quality flags and channel quality](docs/images/ga4/ga4-attribution-quality.jpg)
-
-Acquisition attribution uses a **custom session-level proxy**, not official GA4 attribution or GA4 default channel grouping. The dashboard is separate from the seven-page Olist report and contains no simulated experiments.
-
-[Full three-page dashboard PDF](docs/powerbi/GA4%20Product%20Analytics.pdf) | [Editable Power BI project](dashboard/ga4/GA4%20Product%20Analytics.pbip) | [Dashboard setup and metric guide](dashboard/ga4/README.md) | [GA4 dbt documentation](analytics/models/ga4/README.md)
+See the [GA4 feature documentation](analytics/models/ga4/README.md) and [read-only funnel analysis](analytics/analyses/ga4/session_funnel_analysis.sql). GA4 is a separate historical obfuscated sample, not Olist web activity. The [standalone dashboard](#ga4-dashboard) shows a **0.86% sequential session purchase rate**. Attributed and unknown session shares are **55.88%** and **28.77%**; internal-referral and conflicting-source shares are **30.51%** and **15.94%**. Window boundaries may truncate sessions, and pseudonymous users are not necessarily people. Observed device/channel differences are not causal findings.
 
 ## Revenue forecasting case study
 
@@ -223,7 +148,7 @@ Historical nominal 80%/90% intervals achieved 78.57%/85.71% coverage over 14 tar
 
 ## AI-generated monthly insights
 
-The workflow reads BigQuery/dbt monthly reporting KPIs from `monthly_revenue_reporting`. Python retrieves and formats the trusted metrics; Gemini produces structured stakeholder commentary without calculating new metrics.
+The [generation workflow](ai/generate_insights.py) reads BigQuery/dbt monthly reporting KPIs from `monthly_revenue_reporting`. Python retrieves and formats the trusted metrics; Gemini produces structured stakeholder commentary without calculating new metrics.
 
 From the repository root, generate the latest available reporting month or request a specific month:
 
@@ -232,7 +157,7 @@ python -m ai.generate_insights
 python -m ai.generate_insights --month YYYY-MM
 ```
 
-Pydantic enforces the response contract. A deterministic numeric validator rejects unsupported numbers, including fabricated or unsupported derived values, and retries generation once when numeric validation fails. The same validated response and KPI payload produce synchronized JSON and Markdown reports in `ai/outputs/`; generated files are excluded from version control.
+Pydantic enforces the response contract. A [deterministic numeric validator](ai/validate_insights.py) rejects numeric values outside the supported KPI values, including unsupported derived numbers; numeric validation failure triggers one retry. This check does not prove that a supported number is attached to the correct metric or that every semantic claim is sound. The same validated response and KPI payload produce synchronized JSON and Markdown reports in `ai/outputs/`; generated files are excluded from version control.
 
 The design principle is: **Warehouse / Python = facts and calculations; Gemini = narrative; Python validation = grounding gate.** Live execution requires BigQuery authentication, Google GenAI and Pydantic dependencies, and `GEMINI_API_KEY` in the environment.
 
@@ -242,33 +167,11 @@ The DAG is included at `orchestration/airflow/dags/fx_pipeline.py`. Airflow runs
 
 The daily 07:00 schedule follows Airflow's configured timezone. Tasks retry twice with a one-minute delay and execute `run_fx_ingestion` -> `run_dbt_project` -> `test_dbt_project` -> `generate_ai_insights`. FX ingestion uses the logical date; the AI task runs after successful dbt tests and automatically selects the latest available reporting month. Both dbt commands exclude `fct_orders_incremental`. Olist raw tables must already exist; the DAG does not load the Olist CSVs.
 
-Paths are configurable. See [Airflow setup](orchestration/airflow/README.md). DagBag/import validation passed, and a real full four-task DAG run completed successfully locally. The AI task automatically resolved the reporting month, generated validated insights, and saved JSON and Markdown outputs. This is local validation evidence, not a production deployment.
+See [Airflow setup](orchestration/airflow/README.md) for worker configuration, including `PROJECT_PYTHON` to override executable defaults. Earlier project notes reported DagBag/import validation and a successful four-task local run with saved AI outputs. No independent full-run execution artifact was found during this audit, and neither the DAG nor live AI generation was rerun. The DAG does not refresh Power BI, select GA4 or execute Python forecasting experiments.
 
-## Docker usage
+## Runtime and analytical tools
 
-From the repository root:
-
-```bash
-docker compose build
-docker compose run --rm analytics
-docker compose run --rm analytics dbt parse
-docker compose run --rm analytics dbt debug
-docker compose run --rm analytics dbt run --exclude fct_orders_incremental
-docker compose run --rm analytics dbt test --select fct_order_items
-docker compose run --rm analytics dbt test --exclude fct_orders_incremental
-```
-
-The default Compose command runs pytest from `/app`; explicit dbt commands run from `/app/analytics`. Rebuild after code or SQL edits because files are copied at image build time. The Docker image now includes forecasting modules and selected aggregate replay inputs; local generated forecasting outputs and caches stay outside the build context. See the [forecasting guide](forecasting/README.md#docker-and-local-validation) for credential-free container checks.
-
-Compose mounts Windows host dbt and Google application-credential directories read-only using `USERPROFILE` and `APPDATA`. Adapt these mounts for other host operating systems. Credentials are not included in the image. Warehouse commands require external authentication and a dbt profile.
-
-## Testing and CI
-
-- **Python:** 457 tests are currently collected. Forecasting/target-isolation checks pass 70 tests locally and in Docker. The complete local and container suites each pass all 457 tests after the fixture comparison was made platform independent; no remote CI run is claimed.
-- **dbt:** manifests define 156 Olist tests under `dev` and 67 GA4 tests under `ga4_dev`. The original Olist baseline's 91 non-incremental tests were historically warehouse-validated; the weekly mart's 14 tests and full GA4 suite's 67 tests have separately passed. This does not claim a fresh run of all current Olist tests.
-- **GitHub Actions:** preserves pytest and placeholder-profile parsing, then runs the offline [target-isolation guard](analytics/ci/validate_ga4.py). It checks 24 Olist / 4 GA4 model isolation and 67 GA4 test definitions without production credentials or warehouse runs. Compilation can initialize authentication and is not advertised as credential-free CI validation.
-
-Parsing checks project structure and Jinja processing, not successful SQL execution in BigQuery.
+Python 3.11, Requests and the BigQuery client handle ingestion and analysis; dbt Core/dbt-bigquery and Jinja define warehouse transformations and tests. Power BI Desktop uses PBIP/PBIR projects. Google GenAI and Pydantic support structured commentary, while Statsmodels, SciPy and NumPy support experiment inference and forecasting. Matplotlib produces analytical charts. Airflow, Docker/Compose, pytest and GitHub Actions provide orchestration, runtime and validation support.
 
 ## How to run locally
 
@@ -300,21 +203,40 @@ dbt test --exclude fct_orders_incremental
 
 GA4 requires its explicitly selected US target; forecasting is a separate Python workflow. See [GA4 reproduction commands](analytics/models/ga4/README.md) and [forecasting commands](forecasting/README.md) for targeted runs, offline replay and generated reports. The Airflow DAG does not execute the Python forecasting experiments or select `ga4_dev` automatically.
 
-## Verified results
+## Docker usage
 
-| Validation | Result |
+From the repository root:
+
+```bash
+docker compose build
+docker compose run --rm analytics
+docker compose run --rm analytics dbt parse
+docker compose run --rm analytics dbt debug
+docker compose run --rm analytics dbt run --exclude fct_orders_incremental
+docker compose run --rm analytics dbt test --select fct_order_items
+docker compose run --rm analytics dbt test --exclude fct_orders_incremental
+```
+
+The default Compose command runs pytest from `/app`; explicit dbt commands run from `/app/analytics`. Rebuild after code or SQL edits because files are copied at image build time. The Docker image now includes forecasting modules and selected aggregate replay inputs; local generated forecasting outputs and caches stay outside the build context. See the [forecasting guide](forecasting/README.md#docker-and-local-validation) for credential-free container checks.
+
+Compose mounts Windows host dbt and Google application-credential directories read-only using `USERPROFILE` and `APPDATA`. Adapt these mounts for other host operating systems. Credentials are not included in the image. Warehouse commands require external authentication and a dbt profile.
+
+## Testing and validation evidence
+
+The [GitHub Actions workflow](.github/workflows/ci.yml) runs pytest, placeholder-profile dbt parsing and the offline [target-isolation guard](analytics/ci/validate_ga4.py). The guard checks 24 Olist / four GA4 models and 67 GA4 test definitions without executing warehouse SQL. Parsing validates project structure and Jinja processing, not successful BigQuery execution; compilation can initialize authentication.
+
+| Evidence | Result and scope |
 | --- | --- |
-| Python validation | 457 passed locally and in Docker; 70 forecasting/isolation tests passed; cross-platform fixture comparison verified |
-| Original Olist baseline, historical warehouse validation | 18 models and 91 tests passed before customer/forecasting additions; incremental demonstration excluded |
-| GA4 warehouse validation | Four US-region models, 67 tests passed; 26,355 sessions and 226 sequential purchasing sessions |
-| Weekly revenue mart | 86 EU-region rows; 14 tests passed; complete weekly calendar and payment/revenue reconciliation |
-| Forecasting experiments | Offline baseline/candidate comparisons, rolling backtests, trend/error diagnostics and chronological interval calibration implemented and tested; project remains in progress |
-| `fct_order_items` against BigQuery | Table built successfully; approximately 112.7k rows; all 9 selected tests passed |
-| dbt parse, including Compose execution | Passed |
-| Airflow DAG | DagBag/import validation passed; full four-task local DAG execution completed successfully |
-| AI insights | Structured response validation, numeric grounding, and retry behavior verified; a successful local run generated synchronized JSON and Markdown reports |
+| Test definitions | Saved target-specific manifests define **156 Olist tests** and **67 GA4 tests**. Definitions are not passing executions; four Olist incremental tests are excluded from normal validation. |
+| Python, documented October 13, 2026 runs | **457 passed locally and in Docker**, including **70 targeted forecasting/isolation tests**; fixture comparison corrected for cross-platform line endings. See the [validation record](forecasting/README.md#finalization-validation---october-13-2026). These were not rerun for this refresh. |
+| Historical Olist baseline | **18 models / 91 non-incremental tests** reported warehouse-validated before customer/forecasting additions. This does not establish a full pass of the current inventory. |
+| GA4 warehouse results | Saved results show **67 passes** for the separate US workflow. Documented reconciliations report 26,355 sessions and 226 sequential purchasing sessions. |
+| Weekly revenue mart | Historical **86-row EU build**; **13 test passes and a calendar-test error, followed by a successful corrected calendar-test rerun**. No fresh all-14 warehouse pass is claimed. See [mart validation notes](forecasting/README.md). |
+| Item fact | Historical build of approximately **112.7k rows** and **nine selected test passes**, recorded in the [Olist guide](analytics/README.md). |
+| Offline forecasting | October 13 record reports six CLIs replayed copied aggregate inputs and reproduced selected scores, predictions and interval metrics; Docker build, placeholder parse and isolation guard passed. |
+| Airflow and live AI | Earlier notes report import validation, a local four-task run and synchronized AI outputs. The implementation/tests support the task chain, schema checks, numeric validation and retries; independent full-run evidence was not found during this audit. |
 
-These are local validation results, not production deployment evidence or CI warehouse checks.
+No fresh warehouse, Docker, Airflow, Gemini or remote CI execution is claimed by this documentation refresh. Historical records and current code have different evidentiary scope.
 
 ## Known limitations
 
@@ -327,21 +249,12 @@ These are local validation results, not production deployment evidence or CI war
 - Production deployment is not implemented.
 - Live AI generation requires Gemini API availability and credentials; narrative quality depends on the configured model/API. Numeric grounding validation does not prove full semantic correctness.
 - New Power BI pages have documented static validation and reference checks; pages 5–7 do not yet have committed screenshot assets. The existing PDF remains a four-page snapshot.
-- Older Olist documentation retains baseline inventory counts. Forecasting Docker support and the platform-independent A/B fixture comparison are implemented; full local and container suites pass.
+- Older module documentation retains historical model/test inventories; the inventory and evidence table above distinguish their scope.
 - Forecasting uses a short retrospective series with an unresolved boundary observation and possible as-of status leakage. Historical interval coverage is not a future guarantee; annual seasonality is not established.
 
 ## Future improvements
 
-- Parameterize warehouse configuration and improve setup portability.
-- Add ingestion failure-path tests and stronger load reconciliation.
-- Extend incremental processing for updates and late arrivals.
-- Document stakeholder usage and report maintenance.
-- Schedule delivery of generated reports, such as Slack/email delivery.
-- Strengthen semantic validation and AI evaluation.
-- Define production deployment, monitoring, observability, and refresh operations.
-- Extend model and test coverage for additional source tables.
-
-These are proposed improvements, not current capabilities.
+Potential next steps include portable warehouse configuration, stronger ingestion reconciliation, update-aware incremental processing, committed previews for Olist pages 5-7, and semantic AI evaluation. Production monitoring, refresh operations and scheduled report delivery also remain future work.
 
 ## Repository structure
 
@@ -355,12 +268,12 @@ analytics/
   analyses/ga4/             Read-only funnel and segmentation analysis
   ci/                       Offline target-isolation checks
   macros/                   Growth and cohort-cutoff helpers
-ai/                        Validated AI insight generation and grounding logic
-experimentation/             Standalone synthetic A/B testing case study and tools
+ai/                         Validated AI insight generation and grounding logic
+experimentation/            Standalone synthetic A/B testing case study and tools
 forecasting/                Weekly baselines, candidates, backtests and diagnostics
 orchestration/airflow/       Portable DAG and external setup notes
 dashboard/                  Power BI PBIP/PBIR report project
-docs/                       Architecture, screenshots, PDF and report-page notes
+docs/                       Editable architecture/SVG, previews, PDF and evidence
 tests/                      Python tests
 .github/workflows/ci.yml     Credential-free CI
 Dockerfile                  Python/dbt image

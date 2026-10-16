@@ -1,0 +1,82 @@
+---
+config:
+  theme: base
+  htmlLabels: false
+  themeCSS: 'text, tspan { font-family: Arial, sans-serif !important; }'
+  themeVariables:
+    fontFamily: Arial, sans-serif
+    fontSize: 20px
+    primaryColor: '#ffffff'
+    primaryTextColor: '#243447'
+    primaryBorderColor: '#94a3b8'
+    lineColor: '#64748b'
+    clusterBkg: '#f8fafc'
+    clusterBorder: '#cbd5e1'
+  flowchart:
+    htmlLabels: false
+    curve: linear
+    nodeSpacing: 12
+    rankSpacing: 16
+    padding: 12
+    wrappingWidth: 280
+    subGraphTitleMargin:
+      top: 6
+      bottom: 12
+---
+flowchart TB
+  accTitle: Analytics engineering platform architecture
+  accDescr: Independent EU Olist, FX, US GA4 and synthetic experimentation workflows. Airflow task order is separate from data lineage. Docker, pytest and CI support execution and validation.
+
+  subgraph orchestration["ORCHESTRATION · local / external Airflow · task order only"]
+    direction LR
+    afx["FX ingestion"] ==> arun["Olist dbt run"] ==> atest["dbt tests"] ==> aai["AI generation"]
+  end
+
+  subgraph olist["OLIST · BigQuery EU · dev target · CSV load is manual"]
+    direction LR
+    csv["Olist\nCSVs"] --> ingest["Python\ningestion"] --> raw["BigQuery RAW\nOlist tables"]
+    raw --> stage["dbt\nstaging"] --> intermediate["dbt\nintermediate"] --> marts["dbt marts\nfacts & reporting"]
+    marts --> bi["Power BI\nOlist reporting + customer\ndashboard, pages 1–5"]
+    marts --> ai["Monthly KPIs → Gemini\nPydantic + numeric checks\nJSON / Markdown"]
+    marts --> customer["Customer analytics\nIntermediate + mart models\nfct_orders → activity / cohorts\nretention & repeat marts"]
+    marts --> forecast["Forecasting case study\nweekly mart → Python\nretrospective / offline replay"]
+  end
+
+  subgraph fx["FX · independent ingestion · no Olist metric dependency"]
+    direction LR
+    api["Frankfurter API"] --> fxpython["Python ingestion\nvalidate + save JSON"] --> fxraw["BigQuery RAW\nFX rates"]
+  end
+
+  subgraph ga4["GA4 · BigQuery US · ga4_dev target · separate public sample"]
+    direction LR
+    public["Public GA4 events\n25–31 Jan 2021"] --> gstg["dbt staging\nevent parameters"]
+    gstg --> gint["dbt intermediate\nsessions + attribution"] --> gmart["dbt mart\nsequential funnel"] --> gbi["Power BI\n3-page GA4 report"]
+  end
+
+  subgraph experiment["EXPERIMENTATION · synthetic data · independent of Olist transactions"]
+    direction LR
+    synthetic["Generated user outcomes"] --> stats["Python statistical evaluation\nplanning · inference · SRM\npower · hypothetical economics"]
+    stats --> fixtures["Disconnected CSV fixtures\nOlist report A/B pages 6–7"]
+  end
+
+  subgraph engineering["ENGINEERING SUPPORT · runtime and validation, not pipeline stages"]
+    direction LR
+    docker["Docker / Compose\nlocal Python + dbt runtime"]
+    pytest["pytest\noffline Python checks"]
+    ci["GitHub Actions CI\npytest · parse · target isolation"]
+    docker ~~~ pytest ~~~ ci
+  end
+
+  %% Invisible links arrange independent bands; they are not dependencies.
+  orchestration ~~~ olist
+  olist ~~~ fx
+  fx ~~~ ga4
+  ga4 ~~~ experiment
+  experiment ~~~ engineering
+
+  classDef source fill:#f1f5f9,stroke:#94a3b8,color:#243447
+  classDef output fill:#edf6f5,stroke:#5d9290,color:#163f40
+  classDef support fill:#f8fafc,stroke:#94a3b8,color:#334155
+  class csv,api,public,synthetic source
+  class bi,ai,customer,forecast,gbi,fixtures output
+  class afx,arun,atest,aai,docker,pytest,ci support
