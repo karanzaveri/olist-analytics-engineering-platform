@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "ga4p200000000000000b",
   "position": {
-    "x": 728,
-    "y": 400,
+    "x": 792,
+    "y": 396,
     "z": 11000,
-    "height": 296,
-    "width": 1128,
+    "height": 286,
+    "width": 1064,
     "tabOrder": 11000
   },
   "visual": {
@@ -161,7 +161,7 @@
             "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "2D"
                 }
               }
             },
@@ -213,7 +213,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "13D"
                 }
               }
             },
@@ -222,7 +222,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#172B3A'"
+                      "Value": "'#31445F'"
                     }
                   }
                 }
@@ -233,7 +233,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F4F6F8'"
+                      "Value": "'#EAF1FF'"
                     }
                   }
                 }
@@ -276,7 +276,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "13D"
                 }
               }
             },
@@ -285,7 +285,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#172B3A'"
+                      "Value": "'#31445F'"
                     }
                   }
                 }
@@ -350,7 +350,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "13D"
                 }
               }
             },
@@ -359,7 +359,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#172B3A'"
+                      "Value": "'#31445F'"
                     }
                   }
                 }
@@ -392,7 +392,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "100D"
+                  "Value": "94D"
                 }
               }
             }
@@ -406,7 +406,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "110D"
+                  "Value": "104D"
                 }
               }
             }
@@ -420,7 +420,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "172D"
+                  "Value": "162D"
                 }
               }
             }
@@ -434,7 +434,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "162D"
+                  "Value": "153D"
                 }
               }
             }
@@ -448,7 +448,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "150D"
+                  "Value": "141D"
                 }
               }
             }
@@ -462,7 +462,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "210D"
+                  "Value": "198D"
                 }
               }
             }
@@ -476,7 +476,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "172D"
+                  "Value": "162D"
                 }
               }
             }
@@ -517,7 +517,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#172B3A'"
+                      "Value": "'#142641'"
                     }
                   }
                 }
@@ -540,7 +540,7 @@
             "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -626,7 +626,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E2E8F0'"
+                      "Value": "'#DCE5F1'"
                     }
                   }
                 }

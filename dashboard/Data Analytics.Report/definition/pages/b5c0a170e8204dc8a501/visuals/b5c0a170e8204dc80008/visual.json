@@ -3,10 +3,10 @@
   "name": "b5c0a170e8204dc80008",
   "position": {
     "x": 64,
-    "y": 332,
+    "y": 328,
     "z": 7000,
-    "height": 548,
-    "width": 1120,
+    "height": 438,
+    "width": 1792,
     "tabOrder": 7000
   },
   "visual": {
@@ -108,7 +108,7 @@
             "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "4D"
+                  "Value": "1D"
                 }
               }
             },
@@ -153,7 +153,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "12D"
                 }
               }
             },
@@ -162,7 +162,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#172B3A'"
+                      "Value": "'#31445F'"
                     }
                   }
                 }
@@ -198,7 +198,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "12D"
                 }
               }
             },
@@ -207,7 +207,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#172B3A'"
+                      "Value": "'#31445F'"
                     }
                   }
                 }
@@ -218,7 +218,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#F4F6F8'"
+                      "Value": "'#EAF1FF'"
                     }
                   }
                 }
@@ -254,7 +254,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "12D"
                 }
               }
             },
@@ -263,7 +263,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#172B3A'"
+                      "Value": "'#31445F'"
                     }
                   }
                 }
@@ -291,6 +291,24 @@
                         }
                       },
                       "Property": "Retention Cell Colour"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#31445F'"
                     }
                   }
                 }
@@ -335,7 +353,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "64D"
+                  "Value": "79D"
                 }
               }
             }
@@ -349,7 +367,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "104D"
+                  "Value": "125D"
                 }
               }
             }
@@ -381,7 +399,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "15D"
+                  "Value": "18D"
                 }
               }
             },
@@ -390,7 +408,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#172B3A'"
+                      "Value": "'#142641'"
                     }
                   }
                 }
@@ -413,7 +431,7 @@
             "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -473,7 +491,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E2E8F0'"
+                      "Value": "'#DCE5F1'"
                     }
                   }
                 }

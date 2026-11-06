@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "ga4p300000000000000e",
   "position": {
-    "x": 1208,
-    "y": 620,
-    "width": 648,
-    "height": 44,
+    "x": 1280,
+    "y": 616,
+    "width": 576,
+    "height": 52,
     "z": 14000,
     "tabOrder": 14000
   },
@@ -23,7 +23,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "13pt",
-                      "color": "#64748B"
+                      "color": "#31445F"
                     }
                   }
                 ]

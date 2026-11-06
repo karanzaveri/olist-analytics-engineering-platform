@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "9f6b2e71a4304c8d0009",
   "position": {
-    "x": 972,
-    "y": 692,
+    "x": 968,
+    "y": 654,
     "z": 8000,
-    "height": 332,
-    "width": 884,
+    "height": 374,
+    "width": 888,
     "tabOrder": 8000
   },
   "visual": {
@@ -91,7 +91,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "13D"
                 }
               }
             },
@@ -157,7 +157,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "13D"
                 }
               }
             },
@@ -237,6 +237,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
             }
           }
         }
@@ -249,7 +256,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#50738A'"
+                      "Value": "'#6343AD'"
                     }
                   }
                 }
@@ -278,7 +285,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "13D"
                 }
               }
             },
@@ -346,7 +353,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "15D"
+                  "Value": "18D"
                 }
               }
             },
@@ -355,7 +362,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#172B3A'"
+                      "Value": "'#142641'"
                     }
                   }
                 }
@@ -378,7 +385,7 @@
             "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -438,7 +445,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E2E8F0'"
+                      "Value": "'#DCE5F1'"
                     }
                   }
                 }

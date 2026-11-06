@@ -4384,19 +4384,7 @@ cultureInfo en-IN
 			          "ConceptualProperty": "random_seed"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Seed": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "ab_summary.actual_sample_size_per_arm": {
 			      "Definition": {
@@ -4405,19 +4393,7 @@ cultureInfo en-IN
 			          "ConceptualProperty": "actual_sample_size_per_arm"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Users / arm": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "ab_summary.alpha": {
 			      "Definition": {
@@ -4426,19 +4402,7 @@ cultureInfo en-IN
 			          "ConceptualProperty": "alpha"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Alpha": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "ab_summary.confidence_level": {
 			      "Definition": {
@@ -4447,10 +4411,29 @@ cultureInfo en-IN
 			          "ConceptualProperty": "confidence_level"
 			        }
 			      },
+			      "State": "Generated"
+			    },
+			    "ab_summary.absolute_uplift_pp": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ab_summary",
+			          "ConceptualProperty": "Absolute Uplift pp"
+			        }
+			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Confidence": {
+			          "Absolute uplift (pp)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Observed effect": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -4461,15 +4444,6 @@ cultureInfo en-IN
 			        }
 			      ]
 			    },
-			    "ab_summary.absolute_uplift_pp": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "ab_summary",
-			          "ConceptualProperty": "Absolute Uplift pp"
-			        }
-			      },
-			      "State": "Generated"
-			    },
 			    "ab_summary.experiment_pvalue": {
 			      "Definition": {
 			        "Binding": {
@@ -4477,7 +4451,29 @@ cultureInfo en-IN
 			          "ConceptualProperty": "Experiment P-value"
 			        }
 			      },
-			      "State": "Generated"
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "P-value": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Significance · p-value": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    },
 			    "ab_summary.statistical_test_method": {
 			      "Definition": {
@@ -4504,19 +4500,7 @@ cultureInfo en-IN
 			          "ConceptualProperty": "guardrail_metric"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Metric": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "ab_guardrails.availability": {
 			      "Definition": {
@@ -4570,19 +4554,7 @@ cultureInfo en-IN
 			          "ConceptualProperty": "Guardrail Availability Text"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Availability and interpretation": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "ab_summary.inference_text": {
 			      "Definition": {
@@ -4591,19 +4563,7 @@ cultureInfo en-IN
 			          "ConceptualProperty": "Inference Text"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Observed effect, interval and test": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "ab_summary.power_simulation_trials": {
 			      "Definition": {
@@ -4612,19 +4572,7 @@ cultureInfo en-IN
 			          "ConceptualProperty": "power_simulation_trials"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Power simulation trials": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "ab_summary.null_simulation_trials": {
 			      "Definition": {
@@ -4633,19 +4581,7 @@ cultureInfo en-IN
 			          "ConceptualProperty": "null_simulation_trials"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Null simulation trials": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "ab_summary.projected_eligible_users": {
 			      "Definition": {
@@ -4654,19 +4590,7 @@ cultureInfo en-IN
 			          "ConceptualProperty": "projected_eligible_users"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Eligible users / quarter": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "ab_summary.contribution_profit_per_conversion": {
 			      "Definition": {
@@ -4675,19 +4599,7 @@ cultureInfo en-IN
 			          "ConceptualProperty": "contribution_profit_per_conversion"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Profit / conversion (EUR)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "ab_summary.ongoing_costs": {
 			      "Definition": {
@@ -4696,19 +4608,7 @@ cultureInfo en-IN
 			          "ConceptualProperty": "ongoing_costs"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Ongoing costs (EUR)": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "ab_summary.financial_period": {
 			      "Definition": {
@@ -4717,10 +4617,28 @@ cultureInfo en-IN
 			          "ConceptualProperty": "financial_period"
 			        }
 			      },
+			      "State": "Generated"
+			    },
+			    "ab_summary.recommendation_text": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ab_summary",
+			          "ConceptualProperty": "Recommendation Text"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "ab_summary.total_participants": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ab_summary",
+			          "ConceptualProperty": "Total Participants"
+			        }
+			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Hypothetical period": {
+			          "Total participants": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -4731,17 +4649,447 @@ cultureInfo en-IN
 			        }
 			      ]
 			    },
-			    "ab_summary.recommendation_text": {
+			    "ab_summary.control_conversion": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "ab_summary",
-			          "ConceptualProperty": "Recommendation Text"
+			          "ConceptualProperty": "Control Conversion"
 			        }
 			      },
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "No full rollout recommended under the stated assumptions": {
+			          "Control conversion": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ab_summary.treatment_conversion": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "ab_summary",
+			          "ConceptualProperty": "Treatment Conversion"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Treatment conversion": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_events.valid_events": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Events",
+			          "ConceptualProperty": "Valid Events"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Valid Events": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Valid event deliveries": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_events.invalid_deliveries": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Events",
+			          "ConceptualProperty": "Invalid Deliveries"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Invalid Deliveries": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_events.event_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Events",
+			          "ConceptualProperty": "event_name"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "GA4 event": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_funnel.app_sessions": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Funnel",
+			          "ConceptualProperty": "App Sessions"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "App Sessions": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_funnel.logical_purchases": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Funnel",
+			          "ConceptualProperty": "Logical Purchases"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Logical Purchases": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_funnel.removal_events": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Funnel",
+			          "ConceptualProperty": "Removal Events"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Removal Events": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_funnel.stage": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Funnel",
+			          "ConceptualProperty": "stage"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Stage": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_funnel.reached": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Funnel",
+			          "ConceptualProperty": "reached"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Sessions reached": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_funnel.previous": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Funnel",
+			          "ConceptualProperty": "previous"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Eligible sessions": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_funnel.conversion": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Funnel",
+			          "ConceptualProperty": "conversion"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Conversion": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_funnel.drop_off": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Funnel",
+			          "ConceptualProperty": "drop_off"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Drop-off": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_sessions.test_run_id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Sessions",
+			          "ConceptualProperty": "test_run_id"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Run": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_sessions.scenario_id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Sessions",
+			          "ConceptualProperty": "scenario_id"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Scenario": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_sessions.app_session_id": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Sessions",
+			          "ConceptualProperty": "app_session_id"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "App session": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_sessions.session_started_at": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Sessions",
+			          "ConceptualProperty": "session_started_at"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Start (UTC)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_sessions.event_count": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Sessions",
+			          "ConceptualProperty": "event_count"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Events": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_sessions.furthest_stage": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Sessions",
+			          "ConceptualProperty": "furthest_stage"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Furthest stage": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_sessions.logical_purchases": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Sessions",
+			          "ConceptualProperty": "logical_purchases"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Purchases": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "ga4_commerce_sessions.removal_events": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "GA4 Commerce Sessions",
+			          "ConceptualProperty": "removal_events"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Removals": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "ga4p3000000000000002",
   "position": {
-    "x": 1208,
-    "y": 48,
-    "width": 648,
-    "height": 80,
+    "x": 64,
+    "y": 10,
+    "width": 1792,
+    "height": 34,
     "z": 2000,
     "tabOrder": 2000
   },
@@ -25,7 +25,7 @@
             "cellPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "12L"
+                  "Value": "4L"
                 }
               }
             },
@@ -113,7 +113,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "12D"
                 }
               }
             },
@@ -152,14 +152,14 @@
             "leftMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "8L"
+                  "Value": "3L"
                 }
               }
             },
             "rightMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "8L"
+                  "Value": "3L"
                 }
               }
             },
@@ -201,7 +201,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "12D"
                 }
               }
             },
@@ -240,14 +240,14 @@
             "leftMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "8L"
+                  "Value": "3L"
                 }
               }
             },
             "rightMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "8L"
+                  "Value": "3L"
                 }
               }
             },
@@ -289,7 +289,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "12D"
                 }
               }
             },
@@ -328,14 +328,14 @@
             "leftMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "8L"
+                  "Value": "3L"
                 }
               }
             },
             "rightMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "8L"
+                  "Value": "3L"
                 }
               }
             },
@@ -438,7 +438,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#172B3A'"
+                      "Value": "'#142641'"
                     }
                   }
                 }

@@ -1,0 +1,37 @@
+table 'GA4 Commerce Events'
+	lineageTag: 975d8db1-7516-423a-acf4-b4dcee5718ab
+
+	measure 'Valid Events' = SUM('GA4 Commerce Events'[valid_events])
+		formatString: #,0
+		lineageTag: 3c1bc9dc-2a88-4b2d-baaa-6cb0973602f9
+
+	measure 'Invalid Deliveries' = SUM('GA4 Commerce Events'[invalid_deliveries])
+		formatString: #,0
+		lineageTag: 8ffe6483-e2cf-4b7d-a082-a2e0f9e5b27f
+
+	column event_name
+		dataType: string
+		lineageTag: a0ca0c8b-6161-45ce-958b-e29a1d478918
+		summarizeBy: none
+		sourceColumn: event_name
+
+	column valid_events
+		dataType: int64
+		lineageTag: 7ad8af0e-f436-4256-a71c-3e31fad2e2b3
+		summarizeBy: none
+		sourceColumn: valid_events
+
+	column invalid_deliveries
+		dataType: int64
+		lineageTag: 95fc89aa-0a14-4e24-afa3-e6561927fa22
+		summarizeBy: none
+		sourceColumn: invalid_deliveries
+
+	partition 'GA4 Commerce Events' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(GoogleBigQuery.Database([BillingProject = "mda-platform-2026", UseStorageApi = false, CommandTimeout = #duration(0, 0, 2, 0)]){[Name = "mda-platform-2026.analytics_ga4_commerce_dev.stg_ga4_commerce_events"]}[Data], "SELECT ga4_event_name AS event_name, COUNTIF(is_valid) AS valid_events, COUNTIF(NOT is_valid) AS invalid_deliveries#(lf)FROM `mda-platform-2026.analytics_ga4_commerce_dev.stg_ga4_commerce_events` GROUP BY event_name", null, [EnableFolding = true])
+				in
+				    Source
+

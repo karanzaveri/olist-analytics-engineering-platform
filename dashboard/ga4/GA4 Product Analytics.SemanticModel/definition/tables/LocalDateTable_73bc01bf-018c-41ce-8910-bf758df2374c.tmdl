@@ -113,3 +113,4 @@ table LocalDateTable_73bc01bf-018c-41ce-8910-bf758df2374c
 		source = Calendar(Date(Year(MIN('Sessions'[funnel_purchase_timestamp])), 1, 1), Date(Year(MAX('Sessions'[funnel_purchase_timestamp])), 12, 31))
 
 	annotation __PBI_LocalDateTable = true
+

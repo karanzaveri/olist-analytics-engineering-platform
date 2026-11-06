@@ -3,9 +3,9 @@
   "name": "a11e0000000000000102",
   "position": {
     "x": 64,
-    "y": 4,
+    "y": 10,
     "z": 8000,
-    "height": 28,
+    "height": 34,
     "width": 1792,
     "tabOrder": 8000
   },
@@ -25,7 +25,7 @@
             "cellPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "8L"
+                  "Value": "4L"
                 }
               }
             },
@@ -39,7 +39,7 @@
             "columnCount": {
               "expr": {
                 "Literal": {
-                  "Value": "7L"
+                  "Value": "8L"
                 }
               }
             }
@@ -113,7 +113,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "11D"
                 }
               }
             },
@@ -152,14 +152,14 @@
             "leftMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "8L"
+                  "Value": "3L"
                 }
               }
             },
             "rightMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "8L"
+                  "Value": "3L"
                 }
               }
             },
@@ -201,7 +201,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "11D"
                 }
               }
             },
@@ -240,14 +240,14 @@
             "leftMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "8L"
+                  "Value": "3L"
                 }
               }
             },
             "rightMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "8L"
+                  "Value": "3L"
                 }
               }
             },
@@ -289,7 +289,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "11D"
                 }
               }
             },
@@ -328,14 +328,14 @@
             "leftMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "8L"
+                  "Value": "3L"
                 }
               }
             },
             "rightMargin": {
               "expr": {
                 "Literal": {
-                  "Value": "8L"
+                  "Value": "3L"
                 }
               }
             },
@@ -438,7 +438,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#172B3A'"
+                      "Value": "'#142641'"
                     }
                   }
                 }

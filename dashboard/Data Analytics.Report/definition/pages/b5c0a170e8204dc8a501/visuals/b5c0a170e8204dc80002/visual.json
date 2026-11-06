@@ -35,7 +35,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
                       "fontSize": "22px",
-                      "color": "#172b3a"
+                      "color": "#142641"
                     }
                   }
                 ]
@@ -46,7 +46,7 @@
                     "value": "Calendar convention; completeness not proven",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "color": "#64748b"
+                      "color": "#31445F"
                     }
                   }
                 ]

@@ -3,9 +3,9 @@
   "name": "b5c0a170e8204dc80001",
   "position": {
     "x": 64,
-    "y": 36,
+    "y": 54,
     "z": 0,
-    "height": 104,
+    "height": 98,
     "width": 844,
     "tabOrder": 0
   },
@@ -19,14 +19,15 @@
               {
                 "textRuns": [
                   {
-                    "value": "OLIST / ANALYTICS",
+                    "value": "OLIST  /  MARKETPLACE ANALYTICS",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "11px",
-                      "color": "#0f766e"
+                      "fontSize": "13px",
+                      "color": "#087C73"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "left"
               },
               {
                 "textRuns": [
@@ -34,23 +35,25 @@
                     "value": "Customer Retention & Cohorts",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "30px",
-                      "color": "#172b3a"
+                      "fontSize": "36px",
+                      "color": "#142641"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "left"
               },
               {
                 "textRuns": [
                   {
-                    "value": "Monthly repeat-purchase behaviour of Olist customers",
+                    "value": "How do cohorts return over time, and how does repeat behavior vary?",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "14px",
-                      "color": "#64748b"
+                      "fontSize": "17px",
+                      "color": "#536782"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "left"
               }
             ]
           }

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "4c8a56e9d10347b20007",
   "position": {
-    "x": 972,
-    "y": 332,
+    "x": 844,
+    "y": 328,
     "z": 6000,
-    "height": 332,
-    "width": 884,
+    "height": 336,
+    "width": 1012,
     "tabOrder": 6000
   },
   "visual": {
@@ -164,7 +164,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -178,7 +178,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "13D"
                 }
               }
             },
@@ -244,7 +244,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "13D"
                 }
               }
             },
@@ -324,6 +324,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
             }
           }
         }
@@ -336,7 +343,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#50738A'"
+                      "Value": "'#6343AD'"
                     }
                   }
                 }
@@ -365,7 +372,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "11D"
+                  "Value": "13D"
                 }
               }
             },
@@ -433,7 +440,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "15D"
+                  "Value": "18D"
                 }
               }
             },
@@ -442,7 +449,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#172B3A'"
+                      "Value": "'#142641'"
                     }
                   }
                 }
@@ -465,14 +472,14 @@
             "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Top 10 Sellers by Merchandise Value'"
+                  "Value": "'Top 10 sellers by merchandise value · hover for seller ID'"
                 }
               }
             }
@@ -525,7 +532,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E2E8F0'"
+                      "Value": "'#DCE5F1'"
                     }
                   }
                 }

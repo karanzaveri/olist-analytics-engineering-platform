@@ -27,3 +27,4 @@ relationship 08203b45-78db-4e4c-a1f0-40da605f713e
 	joinOnDateBehavior: datePartOnly
 	fromColumn: Sessions.funnel_purchase_timestamp
 	toColumn: LocalDateTable_73bc01bf-018c-41ce-8910-bf758df2374c.Date
+

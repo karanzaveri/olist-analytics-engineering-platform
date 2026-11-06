@@ -487,3 +487,4 @@ table Sessions
 	changedProperty = Name
 
 	annotation PBI_ResultType = Exception
+

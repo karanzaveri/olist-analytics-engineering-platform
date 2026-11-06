@@ -163,6 +163,45 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3458.3830500146937,
+            "y": 88.494555357432375
+          },
+          "nodeIndex": "GA4 Commerce Events",
+          "nodeLineageTag": "975d8db1-7516-423a-acf4-b4dcee5718ab",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3742.3830500146937,
+            "y": 38.494555357432375
+          },
+          "nodeIndex": "GA4 Commerce Funnel",
+          "nodeLineageTag": "f967c8f4-55ef-420c-b197-784e8f11f5bd",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4026.3830500146937,
+            "y": 52.494555357432375
+          },
+          "nodeIndex": "GA4 Commerce Sessions",
+          "nodeLineageTag": "af6628a4-f901-490a-a734-b1380e08a95b",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

@@ -3,10 +3,10 @@
   "name": "ga4p2000000000000001",
   "position": {
     "x": 64,
-    "y": 56,
+    "y": 50,
     "z": 1000,
-    "height": 80,
-    "width": 1120,
+    "height": 92,
+    "width": 1792,
     "tabOrder": 1000
   },
   "visual": {
@@ -19,26 +19,41 @@
               {
                 "textRuns": [
                   {
-                    "value": "GA4 | Device & Acquisition Performance",
+                    "value": "HISTORICAL GA4  /  PRODUCT ANALYTICS",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "28pt",
-                      "color": "#172B3A"
+                      "fontSize": "13px",
+                      "color": "#087C73"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "left"
               },
               {
                 "textRuns": [
                   {
-                    "value": "Historical GA4 e-commerce sample | January 25–31, 2021",
+                    "value": "Device & Acquisition Performance",
                     "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "14pt",
-                      "color": "#64748B"
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "36px",
+                      "color": "#142641"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "left"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Historical GA4 e-commerce sample | January 25–31, 2021 | Compare device conversion and custom acquisition segments in the historical sample.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "17px",
+                      "color": "#536782"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
               }
             ]
           }
@@ -144,7 +159,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },

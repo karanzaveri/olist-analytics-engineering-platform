@@ -3,9 +3,9 @@
   "name": "ga4p1000000000000001",
   "position": {
     "x": 64,
-    "y": 32,
+    "y": 50,
     "z": 1000,
-    "height": 104,
+    "height": 92,
     "width": 1792,
     "tabOrder": 1000
   },
@@ -19,26 +19,41 @@
               {
                 "textRuns": [
                   {
-                    "value": "GA4 | Product Conversion Overview",
+                    "value": "HISTORICAL GA4  /  PRODUCT ANALYTICS",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "28pt",
-                      "color": "#172B3A"
+                      "fontSize": "13px",
+                      "color": "#087C73"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "left"
               },
               {
                 "textRuns": [
                   {
-                    "value": "Historical GA4 e-commerce sample | January 25–31, 2021",
+                    "value": "Product Conversion Overview",
                     "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "fontSize": "14pt",
-                      "color": "#64748B"
+                      "fontFamily": "Segoe UI Semibold",
+                      "fontSize": "36px",
+                      "color": "#142641"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "left"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Historical GA4 e-commerce sample | January 25–31, 2021 | Where do sessions exit the sequential funnel?",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "17px",
+                      "color": "#536782"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
               }
             ]
           }
@@ -144,7 +159,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },

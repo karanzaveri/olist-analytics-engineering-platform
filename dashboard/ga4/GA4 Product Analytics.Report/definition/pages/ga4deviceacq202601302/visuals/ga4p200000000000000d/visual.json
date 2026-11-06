@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "ga4p200000000000000d",
   "position": {
-    "x": 1208,
-    "y": 720,
+    "x": 1184,
+    "y": 700,
     "z": 13000,
-    "height": 292,
-    "width": 648,
+    "height": 312,
+    "width": 672,
     "tabOrder": 13000
   },
   "visual": {
@@ -23,7 +23,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
                       "fontSize": "18pt",
-                      "color": "#172B3A"
+                      "color": "#142641"
                     }
                   }
                 ]
@@ -34,8 +34,8 @@
                     "value": "Compare purchase rates with session counts. Small device or channel segments can produce unstable observed rates.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "14pt",
-                      "color": "#172B3A"
+                      "fontSize": "13pt",
+                      "color": "#31445F"
                     }
                   }
                 ]
@@ -46,8 +46,8 @@
                     "value": "Channels use a custom session-attribution proxy, not official GA4 channel grouping or verified acquisition. Unknown and Internal Referral Only are included.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "14pt",
-                      "color": "#172B3A"
+                      "fontSize": "13pt",
+                      "color": "#31445F"
                     }
                   }
                 ]
@@ -58,8 +58,8 @@
                     "value": "Gap = highest minus lowest selected device rate; blank for fewer than two devices. Investigate audience mix and attribution quality. No causal or significance claim.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "14pt",
-                      "color": "#172B3A"
+                      "fontSize": "13pt",
+                      "color": "#31445F"
                     }
                   }
                 ]

@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "ga4p3000000000000010",
   "position": {
-    "x": 1208,
-    "y": 688,
-    "width": 648,
-    "height": 324,
+    "x": 1160,
+    "y": 692,
+    "width": 696,
+    "height": 320,
     "z": 16000,
     "tabOrder": 16000
   },
@@ -23,7 +23,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
                       "fontSize": "18pt",
-                      "color": "#172B3A"
+                      "color": "#142641"
                     }
                   }
                 ]
@@ -35,7 +35,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "14pt",
-                      "color": "#172B3A"
+                      "color": "#31445F"
                     }
                   }
                 ]
@@ -47,7 +47,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "14pt",
-                      "color": "#172B3A"
+                      "color": "#31445F"
                     }
                   }
                 ]
@@ -59,7 +59,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "14pt",
-                      "color": "#172B3A"
+                      "color": "#31445F"
                     }
                   }
                 ]
@@ -71,7 +71,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "13pt",
-                      "color": "#64748B"
+                      "color": "#31445F"
                     }
                   }
                 ]
@@ -189,7 +189,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#FFF2DC'"
                     }
                   }
                 }

@@ -40,6 +40,9 @@ ref table customer_repeat_behavior
 ref table ab_variants
 ref table ab_guardrails
 ref table ab_summary
+ref table 'GA4 Commerce Events'
+ref table 'GA4 Commerce Funnel'
+ref table 'GA4 Commerce Sessions'
 
 ref cultureInfo en-IN
 

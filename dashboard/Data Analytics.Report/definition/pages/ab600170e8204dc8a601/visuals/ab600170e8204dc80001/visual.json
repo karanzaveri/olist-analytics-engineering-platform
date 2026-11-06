@@ -3,9 +3,9 @@
   "name": "ab600170e8204dc80001",
   "position": {
     "x": 64,
-    "y": 44,
+    "y": 54,
     "width": 1792,
-    "height": 104,
+    "height": 98,
     "z": 1000,
     "tabOrder": 1000
   },
@@ -19,38 +19,41 @@
               {
                 "textRuns": [
                   {
-                    "value": "SYNTHETIC EXPERIMENT",
+                    "value": "OLIST  /  EXPERIMENT LAB",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "12pt",
-                      "color": "#0F766E"
+                      "fontSize": "13px",
+                      "color": "#087C73"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "left"
               },
               {
                 "textRuns": [
                   {
-                    "value": "A/B Testing | Experiment Results",
+                    "value": "A/B Results",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "28pt",
-                      "color": "#172B3A"
+                      "fontSize": "36px",
+                      "color": "#142641"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "left"
               },
               {
                 "textRuns": [
                   {
-                    "value": "Fictional checkout redesign | Educational case study",
+                    "value": "Synthetic experiment | Compare conversion, uplift and statistical uncertainty.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "12pt",
-                      "color": "#64748B"
+                      "fontSize": "17px",
+                      "color": "#536782"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "left"
               }
             ]
           }
@@ -156,7 +159,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },

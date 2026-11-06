@@ -3,9 +3,9 @@
   "name": "ab600170e8204dc8001a",
   "position": {
     "x": 64,
-    "y": 896,
+    "y": 892,
     "width": 1792,
-    "height": 144,
+    "height": 148,
     "z": 26000,
     "tabOrder": 26000
   },
@@ -23,7 +23,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
                       "fontSize": "18pt",
-                      "color": "#172B3A"
+                      "color": "#142641"
                     }
                   }
                 ]
@@ -35,7 +35,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "14pt",
-                      "color": "#172B3A"
+                      "color": "#31445F"
                     }
                   }
                 ]
@@ -47,7 +47,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "14pt",
-                      "color": "#172B3A"
+                      "color": "#31445F"
                     }
                   }
                 ]
@@ -59,7 +59,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "12pt",
-                      "color": "#64748B"
+                      "color": "#31445F"
                     }
                   }
                 ]

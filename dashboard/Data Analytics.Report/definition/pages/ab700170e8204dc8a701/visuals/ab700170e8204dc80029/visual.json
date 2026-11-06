@@ -3,7 +3,7 @@
   "name": "ab700170e8204dc80029",
   "position": {
     "x": 64,
-    "y": 1008,
+    "y": 1006,
     "width": 1792,
     "height": 64,
     "z": 41000,
@@ -23,7 +23,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "13pt",
-                      "color": "#64748B"
+                      "color": "#31445F"
                     }
                   }
                 ]
@@ -35,7 +35,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "12pt",
-                      "color": "#64748B"
+                      "color": "#31445F"
                     }
                   }
                 ]

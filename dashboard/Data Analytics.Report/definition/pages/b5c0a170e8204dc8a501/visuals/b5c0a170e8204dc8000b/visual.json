@@ -3,10 +3,10 @@
   "name": "b5c0a170e8204dc8000b",
   "position": {
     "x": 64,
-    "y": 904,
+    "y": 1016,
     "z": 10000,
-    "height": 120,
-    "width": 1120,
+    "height": 56,
+    "width": 1792,
     "tabOrder": 10000
   },
   "visual": {
@@ -19,58 +19,28 @@
               {
                 "textRuns": [
                   {
-                    "value": "Monthly periodic retention - first observed delivered-purchase cohort",
+                    "value": "Monthly periodic retention - first observed delivered-purchase cohort M0 = 100%. Zero = an observed month with no repeat purchase; blank = not yet observable. M0 is neutral. M1+ teal bands: >0 to <0.5%, 0.5 to <1%, 1 to <2%, >=2%; zero is white.",
                     "textStyle": {
-                      "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "14pt",
-                      "color": "#172b3a"
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "13px",
+                      "color": "#31445F"
                     }
                   }
-                ]
+                ],
+                "horizontalTextAlignment": "left"
               },
               {
                 "textRuns": [
                   {
-                    "value": "M0 = 100%. Zero = an observed month with no repeat purchase; blank = not yet observable.",
+                    "value": "Default cohorts: Jan 2017 to May 2018. Rates are customer-weighted, not lifetime retention. First observed purchase may not be true acquisition. Cutoff does not prove data completeness.",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "color": "#64748b"
+                      "fontSize": "13px",
+                      "color": "#31445F"
                     }
                   }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "M0 is neutral. M1+ teal bands: >0 to <0.5%, 0.5 to <1%, 1 to <2%, >=2%; zero is white.",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "color": "#64748b"
-                    }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "Default cohorts: Jan 2017 to May 2018. Rates are customer-weighted, not lifetime retention.",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "color": "#64748b"
-                    }
-                  }
-                ]
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "First observed purchase may not be true acquisition. Cutoff does not prove data completeness.",
-                    "textStyle": {
-                      "fontFamily": "Segoe UI",
-                      "color": "#64748b"
-                    }
-                  }
-                ]
+                ],
+                "horizontalTextAlignment": "left"
               }
             ]
           }

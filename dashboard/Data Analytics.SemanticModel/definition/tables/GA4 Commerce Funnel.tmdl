@@ -1,0 +1,80 @@
+table 'GA4 Commerce Funnel'
+	lineageTag: f967c8f4-55ef-420c-b197-784e8f11f5bd
+
+	measure 'App Sessions' = MAX('GA4 Commerce Funnel'[app_sessions])
+		formatString: #,0
+		lineageTag: b7e57c43-43df-4cf1-bc1d-625e3899b131
+
+	measure 'Logical Purchases' = MAX('GA4 Commerce Funnel'[purchases])
+		formatString: #,0
+		lineageTag: f899f487-1286-47f2-b83d-5e0e483d742e
+
+	measure 'Removal Events' = MAX('GA4 Commerce Funnel'[removals])
+		formatString: #,0
+		lineageTag: e5cb5a44-6700-4ff0-b6ed-ba9f9f1a9487
+
+	column stage_order
+		dataType: int64
+		lineageTag: 0bb41fbf-181e-4d81-af09-30659bf9fd85
+		summarizeBy: none
+		sourceColumn: stage_order
+
+	column stage
+		dataType: string
+		lineageTag: 773752d4-e8e2-4e61-ae2a-1aa4a69fa157
+		summarizeBy: none
+		sourceColumn: stage
+		sortByColumn: stage_order
+
+	column reached
+		dataType: int64
+		lineageTag: d1f74042-575d-49ae-88aa-130056ab8307
+		summarizeBy: none
+		sourceColumn: reached
+
+	column previous
+		dataType: int64
+		lineageTag: e7f6cd9a-4402-4313-bb33-6eee77c35c63
+		summarizeBy: none
+		sourceColumn: previous
+
+	column conversion
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 1ff42a44-8b7d-476a-81a8-d086cf55d4dd
+		summarizeBy: none
+		sourceColumn: conversion
+
+	column drop_off
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 01f2bc17-c002-4a55-b51b-61ca99f6cc86
+		summarizeBy: none
+		sourceColumn: drop_off
+
+	column app_sessions
+		dataType: int64
+		lineageTag: 8da30287-5f71-4000-a234-92fdb7050c2a
+		summarizeBy: none
+		sourceColumn: app_sessions
+
+	column purchases
+		dataType: int64
+		lineageTag: 6ea60999-20eb-4664-b6c6-a2a67c6cf862
+		summarizeBy: none
+		sourceColumn: purchases
+
+	column removals
+		dataType: int64
+		lineageTag: 8789c812-8fff-46f2-a8f5-2776da3bde1d
+		summarizeBy: none
+		sourceColumn: removals
+
+	partition 'GA4 Commerce Funnel' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(GoogleBigQuery.Database([BillingProject = "mda-platform-2026", UseStorageApi = false, CommandTimeout = #duration(0, 0, 2, 0)]){[Name = "mda-platform-2026.analytics_ga4_commerce_dev.fct_ga4_commerce_session_funnel"]}[Data], "WITH totals AS (#(lf) SELECT COUNT(*) AS app_sessions, COALESCE(SUM(logical_purchases),0) AS purchases,#(lf) COALESCE(SUM(removal_events),0) AS removals, COUNTIF(viewed_product) AS views,#(lf) COUNTIF(added_to_cart) AS adds, COUNTIF(started_checkout) AS checkouts, COUNTIF(purchased) AS buyers#(lf) FROM `mda-platform-2026.analytics_ga4_commerce_dev.fct_ga4_commerce_session_funnel`#(lf))#(lf)SELECT s.stage_order, s.stage, s.reached, s.previous,#(lf) CAST(SAFE_DIVIDE(s.reached,s.previous) AS FLOAT64) AS conversion,#(lf) CAST(SAFE_DIVIDE(s.previous-s.reached,s.previous) AS FLOAT64) AS drop_off,#(lf) app_sessions, purchases, removals#(lf)FROM totals, UNNEST([#(lf) STRUCT(1 AS stage_order, 'View Item' AS stage, views AS reached, app_sessions AS previous),#(lf) (2, 'Add to Cart', adds, views), (3, 'Begin Checkout', checkouts, adds), (4, 'Purchase', buyers, checkouts)#(lf)]) s", null, [EnableFolding = true])
+				in
+				    Source
+

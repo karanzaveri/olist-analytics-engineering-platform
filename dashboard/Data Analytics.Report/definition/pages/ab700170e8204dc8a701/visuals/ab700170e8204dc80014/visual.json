@@ -3,9 +3,9 @@
   "name": "ab700170e8204dc80014",
   "position": {
     "x": 64,
-    "y": 156,
+    "y": 154,
     "width": 1792,
-    "height": 80,
+    "height": 86,
     "z": 20000,
     "tabOrder": 20000
   },
@@ -35,7 +35,7 @@
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "14pt",
-                      "color": "#172B3A"
+                      "color": "#31445F"
                     }
                   }
                 ]
@@ -153,7 +153,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#FCECEF'"
                     }
                   }
                 }

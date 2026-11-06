@@ -1,0 +1,59 @@
+table 'GA4 Commerce Sessions'
+	lineageTag: af6628a4-f901-490a-a734-b1380e08a95b
+
+	column test_run_id
+		dataType: string
+		lineageTag: 2c8e0128-5c8a-42d9-bf50-d65918b6e9b8
+		summarizeBy: none
+		sourceColumn: test_run_id
+
+	column scenario_id
+		dataType: string
+		lineageTag: f993ae39-bf42-402c-9cc1-e41b17a1f5bd
+		summarizeBy: none
+		sourceColumn: scenario_id
+
+	column app_session_id
+		dataType: string
+		lineageTag: 2f64477b-2787-41ac-9262-b37574258128
+		summarizeBy: none
+		sourceColumn: app_session_id
+
+	column session_started_at
+		dataType: dateTime
+		lineageTag: ab2b9195-05c6-4ea5-9796-94ba31b3a59c
+		summarizeBy: none
+		sourceColumn: session_started_at
+
+	column event_count
+		dataType: int64
+		lineageTag: 85bf32d9-6a17-436b-ac2c-96b0187b609b
+		summarizeBy: none
+		sourceColumn: event_count
+
+	column furthest_stage
+		dataType: string
+		lineageTag: 78ab1e0a-5e97-4881-a06e-02f49ed25943
+		summarizeBy: none
+		sourceColumn: furthest_stage
+
+	column logical_purchases
+		dataType: int64
+		lineageTag: b109ccd4-4956-4d45-b7ed-cc3602b89107
+		summarizeBy: none
+		sourceColumn: logical_purchases
+
+	column removal_events
+		dataType: int64
+		lineageTag: d7ea1c91-5c8d-4d5c-9327-d2af9926c395
+		summarizeBy: none
+		sourceColumn: removal_events
+
+	partition 'GA4 Commerce Sessions' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(GoogleBigQuery.Database([BillingProject = "mda-platform-2026", UseStorageApi = false, CommandTimeout = #duration(0, 0, 2, 0)]){[Name = "mda-platform-2026.analytics_ga4_commerce_dev.fct_ga4_commerce_session_funnel"]}[Data], "SELECT test_run_id, scenario_id, app_session_id, session_started_at, event_count,#(lf) CASE stage_reached WHEN 4 THEN 'Purchase' WHEN 3 THEN 'Begin Checkout'#(lf) WHEN 2 THEN 'Add to Cart' WHEN 1 THEN 'View Item' ELSE 'No qualifying view' END AS furthest_stage,#(lf) logical_purchases, removal_events#(lf)FROM `mda-platform-2026.analytics_ga4_commerce_dev.fct_ga4_commerce_session_funnel` ORDER BY session_started_at DESC, session_key LIMIT 500", null, [EnableFolding = true])
+				in
+				    Source
+

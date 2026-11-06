@@ -3,10 +3,10 @@
   "name": "a11e0000000000000002",
   "position": {
     "x": 64,
-    "y": 36,
+    "y": 54,
     "z": 0,
     "width": 1792,
-    "height": 104,
+    "height": 98,
     "tabOrder": 0
   },
   "visual": {
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "OLIST / ANALYTICS",
+                    "value": "OLIST  /  MARKETPLACE ANALYTICS",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "11px",
-                      "color": "#0F766E"
+                      "fontSize": "13px",
+                      "color": "#087C73"
                     }
                   }
                 ],
@@ -35,8 +35,8 @@
                     "value": "Delivery Performance",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
-                      "fontSize": "30px",
-                      "color": "#172B3A"
+                      "fontSize": "36px",
+                      "color": "#142641"
                     }
                   }
                 ],
@@ -45,11 +45,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Delivery speed, reliability, and geographic performance",
+                    "value": "How reliable is fulfillment, and where are delays concentrated?",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
-                      "fontSize": "14px",
-                      "color": "#64748B"
+                      "fontSize": "17px",
+                      "color": "#536782"
                     }
                   }
                 ],

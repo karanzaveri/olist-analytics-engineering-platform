@@ -20,3 +20,4 @@ table 'Funnel Stages'
 		source = DATATABLE("Stage Order", INTEGER, "Funnel Stage", STRING, { {1, "Product View"}, {2, "Add to Cart"}, {3, "Begin Checkout"}, {4, "Purchase"} })
 
 	annotation PBI_ResultType = Table
+

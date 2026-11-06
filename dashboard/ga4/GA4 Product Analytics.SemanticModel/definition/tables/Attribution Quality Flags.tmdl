@@ -18,3 +18,4 @@ table 'Attribution Quality Flags'
 	partition 'Attribution Quality Flags' = calculated
 		mode: import
 		source = DATATABLE("Flag Order", INTEGER, "Quality Flag", STRING, { {1, "Internal referrals"}, {2, "Conflicting sources"} })
+
