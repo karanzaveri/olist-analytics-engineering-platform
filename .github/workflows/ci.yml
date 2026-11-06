@@ -15,11 +15,19 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+        with:
+          persist-credentials: false
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v6
         with:
           python-version: "3.11"
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          package-manager-cache: false
 
       - name: Upgrade pip
         run: python -m pip install --upgrade pip
@@ -29,6 +37,9 @@ jobs:
 
       - name: Run tests
         run: python -m pytest -v
+
+      - name: Run offline commerce JavaScript tests
+        run: node --test tests/commerce/*.test.mjs
 
       - name: Create temporary dbt profile
         shell: bash
@@ -52,3 +63,6 @@ jobs:
 
       - name: Validate GA4 parsing and target isolation offline
         run: python analytics/ci/validate_ga4.py
+
+      - name: Validate four-target commerce isolation offline
+        run: python analytics/ci/validate_commerce.py
