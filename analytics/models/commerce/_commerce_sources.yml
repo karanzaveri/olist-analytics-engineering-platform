@@ -1,0 +1,12 @@
+version: 2
+sources:
+  - name: commerce_posthog_raw
+    database: mda-platform-2026
+    schema: commerce_posthog_raw
+    config:
+      enabled: "{{ target.name == 'commerce_dev' }}"
+    tables:
+      - name: events
+        description: Manual supported PostHog file export deliveries with original records and file digest; native exporter never targets this table.
+      - name: events_native
+        description: Native events-only JSON batch export destination, separate from verified manual evidence. Enable commerce_include_native only after table arrival/schema verification.

@@ -1,0 +1,15 @@
+version: 2
+sources:
+  - name: ga4_commerce_raw
+    database: mda-platform-2026
+    schema: analytics_562157149
+    config:
+      enabled: "{{ target.name == 'ga4_commerce_dev' }}"
+    quoting:
+      database: true
+      schema: true
+      identifier: true
+    tables:
+      - name: daily_events
+        identifier: "events_{{ var('ga4_commerce_daily_suffix', '20261103') }}"
+        description: One explicitly selected completed GA4 daily shard in EU.

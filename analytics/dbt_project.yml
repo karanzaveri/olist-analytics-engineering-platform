@@ -36,3 +36,20 @@ models:
         +materialized: view
       marts:
         +materialized: table
+
+    commerce:
+      +enabled: "{{ target.name == 'commerce_dev' }}"
+      +materialized: view
+      fct_commerce_session_funnel:
+        +materialized: table
+
+    ga4_commerce:
+      +enabled: "{{ target.name == 'ga4_commerce_dev' }}"
+      +materialized: view
+      fct_ga4_commerce_session_funnel:
+        +materialized: table
+
+seeds:
+  analytics:
+    commerce:
+      +enabled: "{{ target.name == 'commerce_dev' }}"

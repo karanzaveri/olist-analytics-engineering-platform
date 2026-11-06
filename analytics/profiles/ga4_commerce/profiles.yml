@@ -1,0 +1,12 @@
+analytics:
+  target: ga4_commerce_dev
+  outputs:
+    ga4_commerce_dev:
+      type: bigquery
+      method: oauth
+      project: mda-platform-2026
+      dataset: analytics_ga4_commerce_dev
+      location: EU
+      threads: 1
+      maximum_bytes_billed: 100000000
+      job_execution_timeout_seconds: 120

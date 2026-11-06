@@ -1,0 +1,41 @@
+version: 2
+models:
+  - name: stg_commerce_events
+    description: One row per native/file-export vendor delivery, original UUID/properties retained; invalid canonical records explicitly flagged. Date bounded by commerce_start/end variables.
+    columns:
+      - name: vendor_uuid
+        data_tests: [not_null]
+      - name: event_id
+        data_tests: [not_null]
+      - name: is_valid
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [true]
+                quote: false
+  - name: int_commerce_events_deduped
+    description: One valid, non-conflicting logical event per environment/event_id. Original deliveries remain in raw/staging.
+    columns:
+      - name: event_id
+        data_tests: [not_null, unique]
+  - name: int_commerce_sessions
+    description: One app session per hashed environment/origin/run/anonymous_id/session_id. Vendor-native session definitions are not substituted.
+    columns:
+      - name: session_key
+        data_tests: [not_null, unique]
+  - name: fct_commerce_session_funnel
+    description: One app session, earliest-view anchored strict timestamp/sequence ordering within30 minutes; any qualifying path, matching checkout ID/items for purchase. Includes non-entrants.
+    columns:
+      - name: session_key
+        data_tests: [not_null, unique]
+seeds:
+  - name: commerce_expected_events
+    config:
+      column_types:
+        occurred_at: STRING
+        checkout_id: STRING
+        order_id: STRING
+    description: Independent browser-produced expected IDs/properties for the verified run; this seed is never a raw source or used to generate funnel results.
+    columns:
+      - name: event_id
+        data_tests: [not_null, unique]
