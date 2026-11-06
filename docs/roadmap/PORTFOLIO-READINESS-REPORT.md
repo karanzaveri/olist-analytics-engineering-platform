@@ -18,7 +18,7 @@ The local portfolio is ready for a walkthrough using the offline replays and the
 The initial clean checkout was a local clone of `2c0dbdc3dd318619ed1e74d4bb0b98818ada93b9`, with an empty Git status before setup. The checkout is at `%TEMP%\olist-readiness-d8e9550a`. It contains no working-tree commerce additions. The isolated rerun copied only the proposed dependency pin into that checkout.
 
 ```powershell
-$repo = 'C:/Users/karan/modern-data-analytics-platform'
+$repo = (git rev-parse --show-toplevel).Trim()
 $clean = Join-Path $env:TEMP 'olist-readiness-d8e9550a'
 git clone --no-local --quiet -- $repo $clean
 Set-Location $clean
