@@ -42,3 +42,22 @@ forecasting/outputs/
 !dashboard/data/ab_testing/ab_summary.csv
 !dashboard/data/ab_testing/ab_guardrails.csv
 !dashboard/Data Analytics.Report/definition/pages/ab600170e8204dc8a601/**
+
+# Independent commerce reconciliation expectations, not source events.
+!analytics/seeds/commerce/commerce_expected_events.csv
+
+# Vendor event exports and import evidence stay local.
+data/raw/commerce/
+
+!analytics/seeds/commerce/commerce_catalog.csv
+
+# Local commerce verification records (vendor identifiers and browser traces).
+docs/commerce/evidence/
+
+# Dedicated public GTM draft configuration (no secrets).
+!commerce_demo/gtm-container.json
+
+# Local dbt user metadata and Power BI caches.
+/analytics/profiles/**/.user.yml
+/dashboard/**/.pbi/
+/.pytest_cache/
