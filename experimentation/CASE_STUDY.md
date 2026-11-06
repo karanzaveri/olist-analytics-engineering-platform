@@ -239,7 +239,7 @@ The numerical snapshot was reproduced with NumPy 2.4.6, pandas 3.0.6, Statsmodel
 0.14.6, SciPy 1.17.1, and Matplotlib 3.11.2. Preserve package versions and draw
 order for exact reproduction. `requirements.txt` pins the broader development
 environment; the shared Docker/CI file pins direct dependencies but resolves
-NumPy and pandas transitively, so it is not a complete environment lock.
+NumPy transitively. The shared file pins pandas to match the saved fixture.
 
 | Review area | Finding |
 | --- | --- |

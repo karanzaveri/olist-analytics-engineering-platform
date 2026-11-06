@@ -107,8 +107,8 @@ file with the same data for the same seed, arm size, and library versions. The
 simulator does not modify NumPy's global random state. The tested environment
 uses NumPy 2.4.6, pandas 3.0.6, Statsmodels 0.14.6, and SciPy 1.17.1; preserve
 these versions when reproducing exact outcomes and numeric results. The shared
-Docker/CI dependency file resolves NumPy and pandas transitively, while the
-broader development requirements file pins their versions.
+Docker/CI dependency file pins pandas to match the saved fixture and resolves
+NumPy transitively. The broader development requirements pin both.
 
 Optional CLI arguments support alternate seeds, equal arm sizes, and file paths:
 

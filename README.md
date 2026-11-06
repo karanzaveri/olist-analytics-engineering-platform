@@ -12,13 +12,13 @@ The analytical work extends to customer retention, an independent synthetic chec
 
 [Editable Mermaid source](docs/architecture/analytics-platform.mmd) | [Diagram conventions and export instructions](docs/architecture/README.md)
 
-Solid arrows show data flow; the separate Airflow band shows task order. Olist CSV loading is manual. Power BI refresh, GA4 and Python forecasting are outside the DAG. FX supplies no Olist business metric, and GA4 stays in BigQuery US while Olist stays in EU.
+Solid arrows show data flow; the separate Airflow band shows task order. Olist CSV loading is manual. Power BI refresh, GA4 and Python forecasting are outside the DAG. FX supplies no Olist business metric, and historical public GA4 stays in BigQuery US. Olist and exploratory GA4 commerce use EU.
 
 ## Implemented capabilities
 
 | Area | Analytical work | Explore |
 | --- | --- | --- |
-| Olist reporting | Order, payment, delivery, geography, product and seller analysis; seven-page report including two labeled synthetic A/B pages | [Dashboards](#dashboards), [dbt models](#dbt-model-architecture) |
+| Olist reporting | Order, payment, delivery, geography, product and seller analysis; eight-page report including two labeled synthetic A/B pages and an exploratory GA4 commerce page | [Dashboards](#dashboards), [dbt models](#dbt-model-architecture) |
 | Customer analytics | Monthly cohorts, periodic retention, complete-follow-up M1-M3 return and purchase-behaviour segments | [Methods and reference results](#customer-analytics) |
 | Experimentation | Sample-size planning, conversion inference, allocation checks, Monte Carlo simulations and hypothetical economics | [Synthetic checkout case study](experimentation/CASE_STUDY.md) |
 | GA4 product analytics | Session reconstruction, sequential funnel, custom attribution proxy and measurement-quality analysis | [Methods](#ga4-product-analytics), [dashboard](#ga4-dashboard) |
@@ -31,11 +31,11 @@ Solid arrows show data flow; the separate Airflow band shows task order. Olist C
 
 ### Olist dashboard
 
-The [editable seven-page Power BI project](dashboard/Data%20Analytics.pbip) imports Olist facts, dimensions and customer marts. Its two A/B pages use disconnected synthetic fixtures; experiment results and hypothetical economics remain separate from Olist KPIs.
+The [editable eight-page Power BI project](dashboard/Data%20Analytics.pbip) imports Olist facts, dimensions and customer marts. Its two A/B pages use disconnected synthetic fixtures; experiment results and hypothetical economics remain separate from Olist KPIs.
 
 [Original four-page PDF](docs/powerbi/olist-analytics-dashboard.pdf) | [Customer page notes](docs/powerbi/customer-purchase-behaviour.md) | [A/B page definitions](docs/powerbi/ab-testing-seven-pages.md)
 
-![Olist Executive Overview with delivered revenue, customer KPIs, monthly trends and customer mix](docs/images/powerbi-executive-overview.jpg)
+![Olist Executive Overview with delivered revenue, customer KPIs, monthly trends and customer mix](docs/powerbi/portfolio-evidence/olist-executive-overview-2026-11-06.png)
 
 | Page | Business purpose |
 | --- | --- |
@@ -46,18 +46,19 @@ The [editable seven-page Power BI project](dashboard/Data%20Analytics.pbip) impo
 | Customer Retention & Cohorts | Cohort matrix, weighted periodic retention, cumulative three-month return and purchase-behaviour segments |
 | A/B Results | Synthetic conversion, effect size, confidence interval and statistical inference |
 | A/B Quality & Decision | Allocation checks, hypothetical financial scenarios, guardrail availability and a conditional decision |
+| Exploratory GA4 Commerce | Native-export event quality, app-session funnel and session detail for the exploratory run |
 
 Additional previews: [Delivery](docs/images/powerbi-delivery-performance.jpg) | [Geography](docs/images/powerbi-geography-performance.jpg) | [Products and sellers](docs/images/powerbi-product-seller-performance.jpg).
 
-The screenshots and PDF cover the original four pages. Pages 5-7 have definitions and validation notes, but no committed screenshots. Static PBIR/TMDL checks do not establish every Desktop interaction or cached result.
+The original Olist previews and four-page PDF are legacy exports. Current captures cover the seven Olist and synthetic A/B pages. [Desktop captures](docs/powerbi/portfolio-evidence/README.md) See the [readiness report and walkthrough](docs/roadmap/PORTFOLIO-READINESS-REPORT.md) for current Desktop evidence and export limitations.
 
 ### GA4 dashboard
 
 The [separate three-page Power BI project](dashboard/ga4/GA4%20Product%20Analytics.pbip) imports the US-region session funnel mart. It covers the historical, obfuscated January 25-31, 2021 sample and contains no synthetic experiments.
 
-[Full three-page PDF](docs/powerbi/GA4%20Product%20Analytics.pdf) | [Dashboard setup and metric guide](dashboard/ga4/README.md)
+[Current three-page Desktop export](docs/powerbi/portfolio-evidence/ga4-product-analytics-2026-11-06.pdf) | [Legacy PDF](docs/powerbi/GA4%20Product%20Analytics.pdf) | [Dashboard setup and metric guide](dashboard/ga4/README.md)
 
-![GA4 Product Conversion Overview with session KPIs, sequential funnel and daily trends](docs/images/ga4/ga4-product-conversion.jpg)
+![GA4 Product Conversion Overview with session KPIs, sequential funnel and daily trends](docs/powerbi/portfolio-evidence/ga4-product-analytics-1.png)
 
 | Page | Business purpose |
 | --- | --- |
@@ -66,6 +67,10 @@ The [separate three-page Power BI project](dashboard/ga4/GA4%20Product%20Analyti
 | [Attribution & Data Quality](docs/images/ga4/ga4-attribution-quality.jpg) | Assess attribution coverage and overlapping quality flags before interpreting channel performance |
 
 Device, custom-channel and UTC session-start date slicers support exploration. Static exports show visible table rows; open the editable project for further inspection. Desktop review and reconciliation are reported in the dashboard guide and were not repeated during this refresh.
+
+### Commerce evidence
+
+The consent-controlled storefront runs offline by default. The exploratory GA4 commerce page uses the native daily export. Its 37 observed events represent one app session and four purchases. Source-to-warehouse reconciliation is pending. The controlled offline fixture and the separately reconciled PostHog manual import represent different populations. PostHog native export remains unverified under the current billing restrictions. See the [GA4 warehouse notes](docs/commerce/GA4_WAREHOUSE.md) and [PostHog warehouse notes](docs/commerce/WAREHOUSE.md).
 
 ## Business questions
 
@@ -80,6 +85,9 @@ Device, custom-channel and UTC session-start date slicers support exploration. S
 - How should a synthetic conversion experiment be interpreted alongside allocation quality, unmeasured guardrails and hypothetical economics?
 
 ## Ingestion and data sources
+
+Olist-derived teaching extracts, catalog identifiers, aggregate replay data and Olist report evidence are credited to the **Brazilian E-Commerce Public Dataset by Olist** under **CC BY-NC-SA 4.0**. This portfolio uses selected columns and rows, adds deliberately dirty teaching records and fictional catalog display data, and presents aggregated analysis. The source terms apply to redistributed Olist data and adaptations. [Source dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+
 
 - **Olist Brazilian e-commerce CSVs:** customers, orders, order items, payments, reviews, products, sellers, geolocation, and category translations. Place the original files in `data/raw/olist/`; expected filenames are defined in `ingestion/olist/load_olist_bigquery.py`. Data files are not committed. dbt currently uses customers, orders, order items, payments, products, and sellers.
 - **Frankfurter REST API:** latest or historical exchange rates. Dated raw JSON files are saved under `data/raw/fx/`; warehouse rows include source and ingestion timestamps.
@@ -223,7 +231,7 @@ Compose mounts Windows host dbt and Google application-credential directories re
 
 ## Testing and validation evidence
 
-The [GitHub Actions workflow](.github/workflows/ci.yml) runs pytest, placeholder-profile dbt parsing and the offline [target-isolation guard](analytics/ci/validate_ga4.py). The guard checks 24 Olist / four GA4 models and 67 GA4 test definitions without executing warehouse SQL. Parsing validates project structure and Jinja processing, not successful BigQuery execution; compilation can initialize authentication.
+The [GitHub Actions workflow](.github/workflows/ci.yml) is configured to run pytest, offline Node commerce tests, placeholder-profile dbt parsing and the offline [target-isolation guard](analytics/ci/validate_ga4.py). The guard checks 24 Olist / four GA4 models and 67 GA4 test definitions without executing warehouse SQL. The [four-target commerce guard](analytics/ci/validate_commerce.py) also checks 24 Olist, four historical GA4, four PostHog commerce and two GA4 commerce models. Parsing validates project structure and Jinja processing, not successful BigQuery execution; compilation can initialize authentication.
 
 | Evidence | Result and scope |
 | --- | --- |

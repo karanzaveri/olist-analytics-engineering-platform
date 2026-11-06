@@ -1,0 +1,30 @@
+# Reference solutions
+
+## Technical drills
+
+| Topic | Answer and check |
+|---|---|
+| SQL and BigQuery | An order with two payments and three items yields six direct join rows. Each payment appears three times. Aggregate both sides by order ID before joining to the order record. Check order count and distinct keys before and after, and reconcile payment sums on the same eligibility set. For monthly reporting, filter delivered orders by purchase date, group by month, sum payment value and report missing payments with a separate count. Inspect partition filters and estimate bytes before a live query. |
+| Python and Pandas | Reject missing or duplicated IDs, unknown variants and nonbinary or null outcomes before aggregation. Group by variant and use size for assigned rows and sum for purchases. A malformed group must raise or enter an explicit exception path. Use merge cardinality validation when adding attributes. |
+| dbt | Raw source → staging → payments/items grouped by order → fact. Test order ID as unique and non-null. Test relationships, and reconcile sums separately. Parse each target locally and compare enabled model sets. Parse checks graph and configuration, with warehouse data assertions still to run. |
+| Airflow | Check logical date, saved raw file, load job outcome and existing warehouse rows. Confirm duplicate handling and correct target date before authorizing a replay. Separate raw file existence from successful table load. A date-existence check is not a transactional concurrency lock. Run downstream only after upstream success. |
+| GA4 | With cart before view and no later cart, only the view stage qualifies for the example. A qualifying cart after view and before checkout can allow all four stages. Count each session once per stage. Explain historical tie behavior and lack of product continuity before comparing to a stricter commerce funnel. |
+| Power BI and DAX | First check that both visuals bind to the same measure under the same filters. Inspect display units and decimal settings. For 37, use None and zero decimals for the count. Then check DAX context, relationships and refresh only if the displayed values truly differ. A weighted cohort rate divides summed retained customers by summed eligible customers. |
+| A/B | The synthetic effect is about +1.71 pp with a 95% interval around +0.33 to +3.10 pp. The hypothetical break-even is +3.33 pp and payment, refund and latency guardrails are unmeasured. Withhold full rollout. A real interim stop needs a preplanned sequential decision rule or another method that accounts for repeated looks. |
+| Retention and funnels | June M2 can be observed by the August cutoff. August M2 cannot. Compare mature cohorts at the same age using distinct customer identities and eligible starting sizes. Stage conversion uses previous qualifying sessions, and overall conversion uses all eligible sessions. |
+| Forecasting | Naive is a defensible retrospective MAE/WAPE baseline. MA8 leads RMSE in the full comparison. Validate future weeks using only information available at each forecast origin, including the time delivered status and payments become observable. Specify a decision loss and compare baselines at matching origins. |
+| Quality and CI | Trace the metric definition and active filter, inspect joins and row counts at the semantic and model grains, then reconcile monetary totals across the first divergent step. Check source freshness and relationship tests. CI parse proves neither live data quality nor deployment. Record scope, commit and test evidence. |
+
+## Business cases
+
+Use the five-dimension rubric in the learner material. The final column gives a case-specific condition for a strong score.
+
+| Case | Reference answer | Case-specific scoring anchor |
+|---|---|---|
+| Conversion | Compare all-session and stage-entry rates by device, channel and week. Check tracking gaps, attribution quality and traffic weights before interpreting behavior. Prioritize a checkout change only if a comparable population shows a verified stage-level decline. | Separates mix and measurement effects from within-segment conversion. |
+| Revenue | Reconcile volume, delivered share, payments and average order value. Check day coverage, cutoff, status maturity and payment ingestion. Hold the budget revision until Finance sees a reconciled comparison on mature weeks. | Distinguishes suspicious endpoint from proven missing records and identifies a reconciliation owner. |
+| Retention | Compare cohorts at a common mature age. Use weighted exact-month retention for that metric and a separately eligible cumulative return denominator. Seek a campaign comparison design before attributing change. | Correctly leaves immature cells unobserved and specifies the window. |
+| Delivery | Check state-level P90 and late share with order counts. Segment by route/carrier and report the open-order backlog separately with age and promise dates. Start with a targeted operational review. | Addresses selection from excluding orders still open. |
+| Pricing | Baseline contribution is BRL 30,000. With price BRL 95 and volume 1,150, contribution is BRL 28,750. Break-even is 1,200 units under fixed unit costs, or 20% lift. Test only with a credible path to that threshold and agreed margin and return guardrails. Payment data alone cannot establish the variable cost. | Shows contribution arithmetic and separates volume prediction from a causal elasticity estimate. |
+| Experiment | Withhold a full rollout. Establish real eligibility, assignment, valid outcome tracking, business threshold and guardrails. A simulated significant lift cannot justify investment by itself. | Gives an explicit gate for testing or rollout and names an owner for guardrails. |
+| Stakeholder disagreement | Keep two clearly named metrics, delivered payment value and delivered merchandise value, and document intended uses. Reconcile freight, payment adjustments and missingness by order. Ask Finance and Merchandising to agree on the executive decision definition and publish ownership. | Resolves the decision definition without silently forcing both sources to match. |
