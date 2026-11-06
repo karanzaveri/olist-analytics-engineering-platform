@@ -1,18 +1,30 @@
 # Olist Analytics Engineering Platform
 
-An analytics engineering portfolio that turns historical e-commerce records into reporting datasets, customer analysis and business dashboards. Python loads Olist CSVs into BigQuery; dbt models order, item and customer grains; Power BI presents the results; and Gemini generates monthly commentary checked against warehouse KPIs.
+![Olist Analytics Engineering Platform portfolio banner](docs/images/portfolio-banner.svg)
 
-The analytical work extends to customer retention, an independent synthetic checkout experiment, a separate public GA4 conversion funnel, and a retrospective weekly revenue forecasting case study. Each module keeps its source, assumptions and validation scope explicit.
+[![CI on main](https://github.com/karanzaveri/olist-analytics-engineering-platform/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/karanzaveri/olist-analytics-engineering-platform/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/Python-3.11-306998?logo=python&logoColor=white)
+![BigQuery](https://img.shields.io/badge/BigQuery-EU%20%2F%20US-2459B3?logo=googlebigquery&logoColor=white)
+![dbt](https://img.shields.io/badge/dbt-Models-F05D42?logo=dbt&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power%20BI-PBIP-E6B829?logo=powerbi&logoColor=171717)
 
-**Scope:** local execution and historical validation, with no production deployment. The evidence below distinguishes saved warehouse results, documented offline runs and test definitions. This documentation refresh does not rerun those workloads.
+A data analytics portfolio that turns marketplace transactions and product events into tested models, decision dashboards, and reproducible case studies. It pairs historical Olist reporting with a separate historical GA4 sample, a consent-controlled commerce lab, and a synthetic checkout experiment.
+
+| Start here | What to look for |
+| --- | --- |
+| 📊 [Dashboard gallery](docs/powerbi/portfolio-evidence/README.md) | Olist executive, delivery, retention, and experiment pages, plus the historical GA4 report |
+| 🧭 [Architecture](#architecture) | Separate warehouse regions, four dbt targets, and the path from source to report |
+| 🧪 [Experiment case study](experimentation/CASE_STUDY.md) | Conversion uplift, uncertainty, guardrails, and why the simulated result did not justify rollout |
+| 📈 [Forecasting case study](docs/forecasting/README.md) | Rolling validation, endpoint sensitivity, and a credential-free replay |
+| 🛠️ [Run locally](#how-to-run-locally) | Python tests, model parsing, and links to offline examples |
 
 ## Architecture
 
-![Architecture showing the EU Olist pipeline and analytical outputs, separate FX and US GA4 workflows, independent synthetic experimentation, and orchestration and engineering support](docs/images/analytics-platform-overview.svg)
+[![Platform architecture showing Olist EU, historical GA4 US, isolated commerce branches, synthetic experimentation, FX, and local Airflow](docs/images/analytics-platform-overview.svg)](docs/images/analytics-platform-overview.svg)
 
-[Editable Mermaid source](docs/architecture/analytics-platform.mmd) | [Diagram conventions and export instructions](docs/architecture/README.md)
+[Editable Mermaid source](docs/architecture/analytics-platform.mmd) · [Lineage, evidence boundaries and render instructions](docs/architecture/README.md)
 
-Solid arrows show data flow; the separate Airflow band shows task order. Olist CSV loading is manual. Power BI refresh, GA4 and Python forecasting are outside the DAG. FX supplies no Olist business metric, and historical public GA4 stays in BigQuery US. Olist and exploratory GA4 commerce use EU.
+The warehouse separates Olist EU, historical GA4 US, PostHog commerce EU, and native GA4 commerce EU. The storefront records locally by default and requires consent and opt-in configuration for vendor tracking. Airflow arrows describe local task order. GitHub Actions runs Python and JavaScript tests, credential-free dbt parsing, and target isolation checks.
 
 ## Implemented capabilities
 

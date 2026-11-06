@@ -11,11 +11,12 @@ The source is authoritative. The SVG is a Mermaid CLI export, with no manual cha
 - **AI:** `monthly_revenue_reporting` supplies Python KPI retrieval and Gemini generation, followed by Pydantic/numeric validation and JSON/Markdown output. Power BI does not feed the AI workflow. Numeric validation is narrower than semantic correctness.
 - **FX:** Frankfurter responses have a separate Python/RAW path. There is no FX dependency in Olist metrics.
 - **GA4 US:** public historical events feed a separate staging/session/attribution/funnel branch under `ga4_dev`, then a separate three-page Power BI report. No EU/US join is implied. The intermediate box summarizes model lineage: attribution reads staged events and sessions; the funnel mart also reads staged events directly.
+- **Commerce EU:** the storefront is offline by default. Consent and explicit configuration gate PostHog or GTM Preview. The verified PostHog warehouse path is a manual import. Native PostHog export is unverified under current billing restrictions. The separate native GA4 export feeds the exploratory commerce page. Source-to-warehouse reconciliation remains pending.
 - **Experimentation:** generated user outcomes feed statistical evaluation and disconnected CSV fixtures for Olist report pages 6–7. These pages share a report shell with Olist analytics; synthetic outcomes do not feed warehouse KPIs or come from observed Olist transactions.
 - **Airflow:** thick arrows in the top band mean task order, not data lineage: FX ingestion, dbt run, dbt test, AI generation. Both dbt commands exclude `fct_orders_incremental`. The DAG does not load Olist CSVs, refresh Power BI, select GA4 or run Python forecasting. Airflow is an external/local installation, not part of Compose.
-- **Engineering support:** Docker/Compose, pytest and GitHub Actions are runtime/testing infrastructure. CI performs Python tests, parsing and target-isolation checks, without executing BigQuery SQL.
+- **Engineering support:** Docker/Compose, pytest and GitHub Actions are runtime/testing infrastructure. CI performs Python and JavaScript tests, parsing and four-target isolation checks, without executing BigQuery SQL.
 
-Solid arrows inside data bands show flow; thick arrows inside the Airflow band show orchestration. Invisible Mermaid links only place the independent bands and engineering boxes. Their source comments identify them explicitly; they carry no dependency meaning. The diagram claims implemented structure, not a fresh execution, a production deployment or operational forecasting validity.
+Solid arrows inside data bands show flow; thick arrows inside the Airflow band show orchestration. Invisible Mermaid links only place the independent bands. Their source comments identify them explicitly; they carry no dependency meaning. The diagram claims implemented structure, not a fresh execution, a production deployment or operational forecasting validity.
 
 ## Export
 

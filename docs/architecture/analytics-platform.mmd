@@ -5,78 +5,73 @@ config:
   themeCSS: 'text, tspan { font-family: Arial, sans-serif !important; }'
   themeVariables:
     fontFamily: Arial, sans-serif
-    fontSize: 20px
+    fontSize: 19px
     primaryColor: '#ffffff'
-    primaryTextColor: '#243447'
-    primaryBorderColor: '#94a3b8'
-    lineColor: '#64748b'
-    clusterBkg: '#f8fafc'
-    clusterBorder: '#cbd5e1'
+    primaryTextColor: '#14253d'
+    primaryBorderColor: '#a7b8cf'
+    lineColor: '#607692'
+    clusterBkg: '#f5f8fc'
+    clusterBorder: '#cbd9eb'
   flowchart:
     htmlLabels: false
     curve: linear
-    nodeSpacing: 12
-    rankSpacing: 16
-    padding: 12
-    wrappingWidth: 280
+    nodeSpacing: 22
+    rankSpacing: 24
+    padding: 13
     subGraphTitleMargin:
-      top: 6
+      top: 10
       bottom: 12
 ---
 flowchart TB
-  accTitle: Analytics engineering platform architecture
-  accDescr: Independent EU Olist, FX, US GA4 and synthetic experimentation workflows. Airflow task order is separate from data lineage. Docker, pytest and CI support execution and validation.
+  accTitle: Olist analytics engineering platform and commerce measurement
+  accDescr: Six independent lanes show Olist reporting in EU, historical GA4 in US, local and vendor commerce, synthetic experimentation, FX, and local orchestration.
 
-  subgraph orchestration["ORCHESTRATION · local / external Airflow · task order only"]
+  subgraph O["01 · OLIST MARKETPLACE · BIGQUERY EU"]
     direction LR
-    afx["FX ingestion"] ==> arun["Olist dbt run"] ==> atest["dbt tests"] ==> aai["AI generation"]
+    o1["Olist CSVs"] --> o2["Python load\nmanual ingestion"] --> o3["BigQuery RAW"] --> o4["dbt · dev\n24 models"] --> o5["Power BI · pages 1–5\norders, delivery, cohorts"]
+    o4 --> o6["Weekly revenue snapshot\nretrospective forecasts"]
+    o4 --> o7["Monthly KPIs → Gemini\nvalidated commentary"]
   end
 
-  subgraph olist["OLIST · BigQuery EU · dev target · CSV load is manual"]
+  subgraph H["02 · HISTORICAL PRODUCT ANALYTICS · BIGQUERY US"]
     direction LR
-    csv["Olist\nCSVs"] --> ingest["Python\ningestion"] --> raw["BigQuery RAW\nOlist tables"]
-    raw --> stage["dbt\nstaging"] --> intermediate["dbt\nintermediate"] --> marts["dbt marts\nfacts & reporting"]
-    marts --> bi["Power BI\nOlist reporting + customer\ndashboard, pages 1–5"]
-    marts --> ai["Monthly KPIs → Gemini\nPydantic + numeric checks\nJSON / Markdown"]
-    marts --> customer["Customer analytics\nIntermediate + mart models\nfct_orders → activity / cohorts\nretention & repeat marts"]
-    marts --> forecast["Forecasting case study\nweekly mart → Python\nretrospective / offline replay"]
+    h1["Public GA4 sample\nJan 25–31, 2021"] --> h2["dbt · ga4_dev\n4 models"] --> h3["Sequential session funnel\ncustom attribution"] --> h4["Power BI\n3-page GA4 report"]
   end
 
-  subgraph fx["FX · independent ingestion · no Olist metric dependency"]
+  subgraph C["03 · CONSENT-CONTROLLED COMMERCE · BIGQUERY EU"]
     direction LR
-    api["Frankfurter API"] --> fxpython["Python ingestion\nvalidate + save JSON"] --> fxraw["BigQuery RAW\nFX rates"]
+    c1["Local storefront\ncanonical event contract"] --> c2["Offline inspector\nlocal evidence"]
+    c1 -->|opt-in| c3["PostHog EU\nmanual export verified"] --> c4["EU raw import → dbt\ncommerce_dev · 4 models"]
+    c1 -->|opt-in Preview| c5["GTM → GA4\nnative daily export"] --> c6["EU export → dbt\nga4_commerce_dev · 2 models"] --> c7["Power BI · page 8\nexploratory commerce"]
   end
 
-  subgraph ga4["GA4 · BigQuery US · ga4_dev target · separate public sample"]
+  subgraph E["04 · SYNTHETIC EXPERIMENTATION"]
     direction LR
-    public["Public GA4 events\n25–31 Jan 2021"] --> gstg["dbt staging\nevent parameters"]
-    gstg --> gint["dbt intermediate\nsessions + attribution"] --> gmart["dbt mart\nsequential funnel"] --> gbi["Power BI\n3-page GA4 report"]
+    e1["Generated checkout data"] --> e2["Power, inference, SRM\nhypothetical economics"] --> e3["CSV fixtures → Power BI\nA/B pages 6–7"]
   end
 
-  subgraph experiment["EXPERIMENTATION · synthetic data · independent of Olist transactions"]
+  subgraph F["05 · FX · INDEPENDENT DATA FLOW"]
     direction LR
-    synthetic["Generated user outcomes"] --> stats["Python statistical evaluation\nplanning · inference · SRM\npower · hypothetical economics"]
-    stats --> fixtures["Disconnected CSV fixtures\nOlist report A/B pages 6–7"]
+    f1["Frankfurter API"] --> f2["Python ingestion"] --> f3["BigQuery RAW · FX"]
   end
 
-  subgraph engineering["ENGINEERING SUPPORT · runtime and validation, not pipeline stages"]
+  subgraph A["06 · LOCAL AIRFLOW · TASK ORDER"]
     direction LR
-    docker["Docker / Compose\nlocal Python + dbt runtime"]
-    pytest["pytest\noffline Python checks"]
-    ci["GitHub Actions CI\npytest · parse · target isolation"]
-    docker ~~~ pytest ~~~ ci
+    a1["FX ingestion"] ==> a2["Olist dbt run"] ==> a3["dbt tests"] ==> a4["AI commentary"]
   end
 
-  %% Invisible links arrange independent bands; they are not dependencies.
-  orchestration ~~~ olist
-  olist ~~~ fx
-  fx ~~~ ga4
-  ga4 ~~~ experiment
-  experiment ~~~ engineering
+  %% Invisible links set the band order only.
+  O ~~~ H ~~~ C ~~~ E ~~~ F ~~~ A
 
-  classDef source fill:#f1f5f9,stroke:#94a3b8,color:#243447
-  classDef output fill:#edf6f5,stroke:#5d9290,color:#163f40
-  classDef support fill:#f8fafc,stroke:#94a3b8,color:#334155
-  class csv,api,public,synthetic source
-  class bi,ai,customer,forecast,gbi,fixtures output
-  class afx,arun,atest,aai,docker,pytest,ci support
+  classDef source fill:#eaf1ff,stroke:#7f9cc8,color:#173558
+  classDef output fill:#e4f7ef,stroke:#66a591,color:#164b42
+  classDef isolated fill:#f0eaff,stroke:#9a85c7,color:#3a286c
+  class o1,h1,c1,e1,f1 source
+  class o5,o6,o7,h4,c2,c7,e3,f3 output
+  class h2,c3,c4,c5,c6 isolated
+  style O fill:#f0f6ff,stroke:#b6cae7
+  style H fill:#f2f1ff,stroke:#cbc3ee
+  style C fill:#ebfaf5,stroke:#a6d5c4
+  style E fill:#fff6e8,stroke:#e4c89f
+  style F fill:#f4f7fb,stroke:#cbd8e7
+  style A fill:#f4f7fb,stroke:#cbd8e7
