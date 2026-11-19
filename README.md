@@ -1,30 +1,42 @@
+<div align="center">
+
+![Olist analytics engineering platform](docs/images/readme-hero.svg)
+
 # Olist Analytics Engineering Platform
 
-![Olist Analytics Engineering Platform portfolio banner](docs/images/portfolio-banner.svg)
+### From marketplace events to decisions you can inspect.
+
+A portfolio grade analytics platform spanning ingestion, BigQuery, dbt, orchestration, experiments, forecasting, and Power BI.
+
+[Explore the dashboards](docs/powerbi/portfolio-evidence/README.md) · [Read the architecture](#architecture) · [Run locally](#how-to-run-locally)
 
 [![CI on main](https://github.com/karanzaveri/olist-analytics-engineering-platform/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/karanzaveri/olist-analytics-engineering-platform/actions/workflows/ci.yml)
-![Python](https://img.shields.io/badge/Python-3.11-306998?logo=python&logoColor=white)
-![BigQuery](https://img.shields.io/badge/BigQuery-EU%20%2F%20US-2459B3?logo=googlebigquery&logoColor=white)
-![dbt](https://img.shields.io/badge/dbt-Models-F05D42?logo=dbt&logoColor=white)
-![Power BI](https://img.shields.io/badge/Power%20BI-PBIP-E6B829?logo=powerbi&logoColor=171717)
+![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
+![BigQuery](https://img.shields.io/badge/BigQuery-EU%20%2B%20US-4285F4?logo=googlebigquery&logoColor=white)
+![dbt](https://img.shields.io/badge/dbt-Core-F05A47?logo=dbt&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power%20BI-PBIP-F2C811?logo=powerbi&logoColor=222222)
 
-A data analytics portfolio that turns marketplace transactions and product events into tested models, decision dashboards, and reproducible case studies. It pairs historical Olist reporting with a separate historical GA4 sample, a consent-controlled commerce lab, and a synthetic checkout experiment.
+</div>
 
-| Start here | What to look for |
-| --- | --- |
-| 📊 [Dashboard gallery](docs/powerbi/portfolio-evidence/README.md) | Olist executive, delivery, retention, and experiment pages, plus the historical GA4 report |
-| 🧭 [Architecture](#architecture) | Separate warehouse regions, four dbt targets, and the path from source to report |
-| 🧪 [Experiment case study](experimentation/CASE_STUDY.md) | Conversion uplift, uncertainty, guardrails, and why the simulated result did not justify rollout |
-| 📈 [Forecasting case study](docs/forecasting/README.md) | Rolling validation, endpoint sensitivity, and a credential-free replay |
-| 🛠️ [Run locally](#how-to-run-locally) | Python tests, model parsing, and links to offline examples |
+---
+
+## Project map
+
+| Explore | What you will find |
+| :--- | :--- |
+| [Dashboard gallery](docs/powerbi/portfolio-evidence/README.md) | Olist reporting, experiment pages, and historical GA4 evidence |
+| [Experiment case study](experimentation/CASE_STUDY.md) | Synthetic conversion experiment, uncertainty, guardrails, and rollout decision |
+| [Forecasting case study](docs/forecasting/README.md) | Rolling validation, endpoint sensitivity, and an offline replay |
+| [Architecture](#architecture) | Region boundaries, dbt targets, and data movement |
+| [Local run guide](#how-to-run-locally) | Tests, dbt parsing, ingestion, Docker, and offline examples |
 
 ## Architecture
 
-[![Platform architecture showing Olist EU, historical GA4 US, isolated commerce branches, synthetic experimentation, FX, and local Airflow](docs/images/analytics-platform-overview.svg)](docs/images/analytics-platform-overview.svg)
+[![Analytics platform architecture](docs/images/analytics-platform-overview.svg)](docs/images/analytics-platform-overview.svg)
 
 [Editable Mermaid source](docs/architecture/analytics-platform.mmd) · [Lineage, evidence boundaries and render instructions](docs/architecture/README.md)
 
-The warehouse separates Olist EU, historical GA4 US, PostHog commerce EU, and native GA4 commerce EU. The storefront records locally by default and requires consent and opt-in configuration for vendor tracking. Airflow arrows describe local task order. GitHub Actions runs Python and JavaScript tests, credential-free dbt parsing, and target isolation checks.
+The platform keeps Olist EU, historical GA4 US, PostHog commerce EU, and native GA4 commerce EU in separate paths. The storefront records locally by default; vendor tracking requires consent and opt in configuration. Airflow describes local task order. GitHub Actions runs Python and JavaScript checks, credential free dbt parsing, and target isolation checks.
 
 ## Implemented capabilities
 
