@@ -1,5 +1,5 @@
 # Olist diagram style
 
-User-selected palette: ivory paper #faf6ed, deep navy ink #142b43, copper accent #a64f2c. Secondary ink #526477; white component faces #fffdf8. Use raised isometric top and side faces, orthogonal connectors, readable horizontal labels, and no shadows. System Arial typography ensures portable GitHub SVG rendering.
+Use the existing README hero palette: deep green #101b1b, mint #86d8ba, pale green #f1f6ef, secondary text #a6bbb2 and component fill #172927. The supporting canvas is #e4ede5. Flat geometry, generous spacing, open supporting paths, no faux 3D or shadows. System Segoe UI / Arial typography keeps GitHub SVG rendering portable.
 
-Architecture diagrams must use designed HTML/SVG rather than Mermaid. Keep EU and US paths distinct and preserve evidence limitations.
+Architecture diagrams use designed HTML/SVG rather than Mermaid. Keep EU and US paths distinct and preserve evidence limitations.

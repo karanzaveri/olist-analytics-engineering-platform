@@ -2,7 +2,7 @@
 
 [Editable HTML source](analytics-platform.html) · [SVG used by the root README](../images/analytics-platform-overview.svg) · [Platform overview](../../README.md#architecture)
 
-Designed with Diagram Design using an ivory, deep navy and copper palette. Raised component faces provide a restrained 3D treatment without shadows. HTML is authoritative; the SVG is exported from its inline figure. System fonts keep the GitHub image portable.
+Designed with Diagram Design using the repository README hero�s deep green (#101b1b), mint (#86d8ba), and pale green (#f1f6ef) palette. A flat layout emphasizes the primary Olist pipeline and uses open typography for supporting paths. HTML is authoritative; the SVG is exported from its inline figure. System fonts keep the GitHub image portable.
 
 ## Reading the diagram
 
@@ -26,4 +26,4 @@ Edit `analytics-platform.html`, then use the installed Diagram Design `scripts/e
 
 The former Mermaid source is retained only as a historical reference. It is no longer authoritative and is not used to generate the architecture image. Future architecture updates use designed HTML/SVG, never Mermaid.
 
-Automated source and geometry checks passed during this redesign. The PNG preview helper was unavailable because Python Playwright was not installed, so the figure was not visually reviewed.
+Automated source and geometry checks passed. The exported SVG was rendered with headless Chrome and visually inspected; commerce-note spacing was corrected after that review.
