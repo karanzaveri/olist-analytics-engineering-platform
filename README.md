@@ -34,7 +34,7 @@ A portfolio grade analytics platform spanning ingestion, BigQuery, dbt, orchestr
 
 [![Analytics platform architecture](docs/images/analytics-platform-overview.svg)](docs/images/analytics-platform-overview.svg)
 
-[Editable Mermaid source](docs/architecture/analytics-platform.mmd) · [Lineage, evidence boundaries and render instructions](docs/architecture/README.md)
+[Editable HTML diagram](docs/architecture/analytics-platform.html) · [Lineage, evidence boundaries and render instructions](docs/architecture/README.md)
 
 The platform keeps Olist EU, historical GA4 US, PostHog commerce EU, and native GA4 commerce EU in separate paths. The storefront records locally by default; vendor tracking requires consent and opt in configuration. Airflow describes local task order. GitHub Actions runs Python and JavaScript checks, credential free dbt parsing, and target isolation checks.
 
