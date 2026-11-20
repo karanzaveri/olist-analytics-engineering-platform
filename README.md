@@ -32,7 +32,7 @@ A portfolio grade analytics platform spanning ingestion, BigQuery, dbt, orchestr
 
 ## Architecture
 
-[![Analytics platform architecture](docs/images/analytics-platform-overview.svg)](docs/images/analytics-platform-overview.svg)
+[![Analytics platform architecture](docs/images/olist-platform-architecture.svg)](docs/images/olist-platform-architecture.svg)
 
 [Editable HTML diagram](docs/architecture/analytics-platform.html) · [Lineage, evidence boundaries and render instructions](docs/architecture/README.md)
 
